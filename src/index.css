@@ -1,15 +1,42 @@
 :root {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --nav-clr: #dc2626;
+    --nav-font-clr: #ffffff;
+}
+
+body {
+    margin: 0;
 }
 
 .Navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--nav-clr);
+    color: var(--nav-font-clr);
+}
+
+.Navbar ul, .logo {
+    margin-inline: 8px;
 }
 
 .Navbar ul {
     display: flex;
+    justify-content: center;
     gap: 8px;
     list-style: none;
+    padding: 0;
+}
+
+.container .Home {
+    margin-inline: 12px;
+}
+
+.Navbar img {
+    height: 28px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(107%) contrast(101%);
+}
+
+.Navbar a:hover {
+    border-bottom: 2px white solid;
 }
