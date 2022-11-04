@@ -1,0 +1,15 @@
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Navbar ul {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}
