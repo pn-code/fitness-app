@@ -4,6 +4,7 @@ import calculatorIcon from '../images/navbar/calculator.svg';
 import plannerIcon from '../images/navbar/planner.svg';
 import journalIcon from '../images/navbar/journal.svg';
 import profileIcon from '../images/navbar/profile.svg';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -12,19 +13,19 @@ const Navbar = () => {
             <h1 className="logo">Fitness</h1>
             <ul>
                 <li>
-                    <a href=""><img src={homeIcon}/></a>
+                    <Link to="/"><img src={homeIcon}/></Link>
                 </li>
                 <li>
-                    <a href=""><img src={calculatorIcon}/></a>
+                    <Link to="/calculator"><img src={calculatorIcon}/></Link>
                 </li>
                 <li>
-                    <a href=""><img src={plannerIcon}/></a>
+                    <Link to="/planner"><img src={plannerIcon}/></Link>
                 </li>
                 <li>
-                    <a href=""><img src={journalIcon}/></a>
+                    <Link to="/journal"><img src={journalIcon}/></Link>
                 </li>
                 <li>
-                    <a href=""><img src={profileIcon}/></a>
+                    <Link to="/profile"><img src={profileIcon}/></Link>
                 </li>
             </ul>
         </nav>
