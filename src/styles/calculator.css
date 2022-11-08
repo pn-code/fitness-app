@@ -3,6 +3,7 @@
     border: 1px solid gray;
     border-radius: 4px;
     padding: 20px;
+    overflow:hidden;
 }
 
 .metric--container {
@@ -38,6 +39,10 @@
 
 .calorie-plan {
     border-top: 1px solid gray;
+}
+
+h4 {
+    margin-block: 2vh;
 }
 
 strong {

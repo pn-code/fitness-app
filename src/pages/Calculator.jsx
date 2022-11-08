@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/calculator-styles.css";
+import "../styles/calculator.css";
 
 const Calculator = () => {
     const [metric, setMetric] = React.useState(false);

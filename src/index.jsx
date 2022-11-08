@@ -7,6 +7,7 @@ import Calculator from "./pages/Calculator";
 import Journal from "./pages/Journal";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/journal" element={<Journal />} />
                 <Route path="/profile" element={<Profile />} />
             </Routes>
+            <Footer />
         </Router>
     </React.StrictMode>
 );

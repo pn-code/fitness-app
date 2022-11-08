@@ -20,6 +20,15 @@ body {
     margin-inline: 16px;
 }
 
+.Navbar h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.Navbar h1 a:hover {
+    text-decoration: underline 2px var(--nav-font-clr);
+}
+
 .Navbar ul {
     display: flex;
     justify-content: center;
@@ -37,6 +46,25 @@ body {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(107%) contrast(101%);
 }
 
-.Navbar a:hover {
+.Navbar ul a:hover {
     border-bottom: 2px white solid;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--nav-clr);
+    padding: 4px;
+    text-align: center;
+}
+
+footer a {
+    color: var(--nav-font-clr);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
