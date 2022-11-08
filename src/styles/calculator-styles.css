@@ -1,0 +1,47 @@
+.form--container {
+    margin: 5vh 5vh 0 5vh;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.metric--container {
+    display: flex;
+    margin-bottom: 1vh;
+    align-items: center;
+}
+
+.metric--container h3 {
+    margin: 0 3vh 1.5vh 0;
+}
+
+.metric-btn, .calculate-btn {
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid rgb(95, 95, 95);
+    padding: 4px 8px 4px 8px;
+    font-weight: 500;
+}
+
+.metric-btn:hover, .calculate-btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#weight--input {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid;
+    margin-right: 2px;
+}
+
+.calorie-plan {
+    border-top: 1px solid gray;
+}
+
+strong {
+    color: #dc2626;
+    text-decoration: underline;
+}
+
