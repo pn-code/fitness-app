@@ -9,3 +9,31 @@ label {
 .container .Planner {
     margin-bottom: 10vh;
 }
+
+.my-plans--container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.my-plans--container a {
+    background-color: #dc2626;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.saved-plans-amount {
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+    border-radius: 50%;
+}
+
+.my-plans--container a:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #dc2626;
+}
