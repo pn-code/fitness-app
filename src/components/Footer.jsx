@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <footer>
-            <a href="https://github.com/pn-code/">Created by Philip Nguyen</a>
+            <a target="about:blank" href="https://github.com/pn-code/">Created by Philip Nguyen</a>
         </footer>
     )
 }

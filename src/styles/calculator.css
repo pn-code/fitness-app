@@ -1,19 +1,28 @@
+.calculator--info {
+    margin: 2vh 5vh 0vh 5vh;
+}
+
 .form--container {
-    margin: 5vh 5vh 0 5vh;
+    margin: 2vh 5vh 0 5vh;
     border: 1px solid gray;
     border-radius: 4px;
     padding: 20px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .metric--container {
     display: flex;
     margin-bottom: 1vh;
     align-items: center;
+    gap: 2vh;
 }
 
 .metric--container h3 {
-    margin: 0 3vh 1.5vh 0;
+    margin: 0;
+}
+
+.weight--label {
+    display: inline;
 }
 
 .metric-btn, .calculate-btn {

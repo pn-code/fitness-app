@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./pages/App";
 import Home from "./pages/Home";
 import Planner from "./pages/Planner";
 import Calculator from "./pages/Calculator";

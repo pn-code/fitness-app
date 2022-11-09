@@ -30,6 +30,9 @@ const Calculator = () => {
     return (
         <div className="container">
             <main className="Calculator">
+                <div className="calculator--info">
+                    <h2>Welcome to the Calculator</h2>
+                </div>
                 <div className="form--container">
                     <form>
                         <div className="metric--container">
@@ -44,7 +47,7 @@ const Calculator = () => {
                                     : `Imperial (lb)`}
                             </button>
                         </div>
-                        <label>Weight: </label>
+                        <label className="weight--label">Weight: </label>
                         <input
                             id="weight--input"
                             placeholder="weight in pounds"
@@ -71,9 +74,9 @@ const Calculator = () => {
 
                             <h3>How can I use this information?</h3>
                             <p>
-                                Calorie calculators are almost never 100%
-                                accurate, but you can still use this tool as a
-                                reference point to reach your fitness goals.
+                                This calorie calculator can be used to calculate the
+                                daily calorie consumption a person needs to eat to
+                                maintain, lose, or gain weight.
                             </p>
 
                             <div className="calorie-plan">
