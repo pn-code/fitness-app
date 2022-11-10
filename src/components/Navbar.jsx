@@ -13,19 +13,19 @@ const Navbar = () => {
             <h1 className="logo"><Link to="/">Fitness</Link></h1>
             <ul>
                 <li>
-                    <Link to="/"><img src={homeIcon}/></Link>
+                    <Link to="/fitness-app/"><img src={homeIcon}/></Link>
                 </li>
                 <li>
-                    <Link to="/calculator"><img src={calculatorIcon}/></Link>
+                    <Link to="/fitness-app/calculator"><img src={calculatorIcon}/></Link>
                 </li>
                 <li>
-                    <Link to="/planner"><img src={plannerIcon}/></Link>
+                    <Link to="/fitness-app/planner"><img src={plannerIcon}/></Link>
                 </li>
                 <li>
-                    <Link to="/journal"><img src={journalIcon}/></Link>
+                    <Link to="/fitness-app/journal"><img src={journalIcon}/></Link>
                 </li>
                 <li>
-                    <Link to="/profile"><img src={profileIcon}/></Link>
+                    <Link to="/fitness-app/profile"><img src={profileIcon}/></Link>
                 </li>
             </ul>
         </nav>

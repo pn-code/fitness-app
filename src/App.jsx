@@ -20,17 +20,17 @@ const App = () => {
         <div className="App">
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/calculator" element={<Calculator />} />
+                <Route path="/fitness-app/" element={<Home />} />
+                <Route path="/fitness-app/calculator" element={<Calculator />} />
                 <Route
-                    path="/planner"
+                    path="/fitness-app/planner"
                     element={
                         <Planner savedPlans={savedPlans} savePlan={plan => savePlan(plan)} />
                     }
                 />
-                <Route path="/journal" element={<Journal />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/my-plans" element={<MyPlans savedPlans={savedPlans}/>} />
+                <Route path="/fitness-app/journal" element={<Journal />} />
+                <Route path="/fitness-app/profile" element={<Profile />} />
+                <Route path="/fitness-app/my-plans" element={<MyPlans savedPlans={savedPlans}/>} />
             </Routes>
             <Footer />
         </div>
