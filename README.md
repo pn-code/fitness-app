@@ -16,6 +16,9 @@ Technologies used:
 
 
 WIP/TODOS:
+    Currently Working On:
+    - Journal Page and Functions
+
     Main:
     - Stylize Plans
     - Journal Functions
