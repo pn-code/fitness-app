@@ -18,8 +18,8 @@ Technologies used:
 WIP/TODOS:
     Main:
     - Stylize Plans
-    - Journal Page and Functions
-    - Profile Page and Functions
+    - Journal Functions
+    - Profile Functions
 
     Secondary: 
     - Add sets and rep schemes for planner

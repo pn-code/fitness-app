@@ -2,7 +2,7 @@ const Plan = (props) => {
     const { planDisplay } = props;
 
     return (
-        <div className="saved-plan--container">
+        <div className="plan--container">
         <h3>{planDisplay.name}</h3>
         <h4>{planDisplay.type}</h4>
         <h5>{planDisplay.style}</h5>

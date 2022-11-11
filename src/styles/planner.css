@@ -6,7 +6,6 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 2vh 5vh 2vh 5vh;
 }
 
 .container .Planner {
@@ -36,7 +35,6 @@ label {
 }
 
 .my-plans--container a:hover{
-    cursor: pointer;
     background-color: white;
     color: #dc2626;
 }

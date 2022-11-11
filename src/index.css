@@ -37,8 +37,8 @@ body {
     padding: 0;
 }
 
-.container .Home {
-    margin-inline: 12px;
+.container {
+    margin: 2vh 5vh 2vh 5vh;
 }
 
 .Navbar img {
@@ -48,6 +48,10 @@ body {
 
 .Navbar ul a:hover {
     border-bottom: 2px white solid;
+}
+
+button {
+    cursor: pointer;
 }
 
 footer {

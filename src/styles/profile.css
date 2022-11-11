@@ -1,27 +1,27 @@
-.MyPlans--info {
+.Profile main {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-.MyPlans--info a {
+.profile-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: fit-content;
+}
+
+.profile-nav button {
     background-color: #dc2626;
     color: white;
     padding: 10px;
     border-radius: 12px;
     border: none;
     font-weight: 600;
-    text-decoration: none;
+    font-size: 1.5rem
 }
 
-.MyPlans--info a:hover {
-    cursor: pointer;
+.profile-nav button:hover {
     background-color: white;
     color: #dc2626;
-};
-
-.plan--container {
-    background-color: gray;
-    border: 1px solid black;
-    color: white;
 }

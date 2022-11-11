@@ -25,8 +25,8 @@ const Home = () => {
                             goals.
                         </li>
                         <li>
-                            Planner - Create diet and exercise plans to attack
-                            your fitness goals!
+                            Planner - Create exercise plans to attack your
+                            fitness goals!
                         </li>
                         <li>
                             Journal - Keep track of your calories and exercise

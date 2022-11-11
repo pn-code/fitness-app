@@ -31,12 +31,11 @@ const Calculator = () => {
         <div className="container">
             <main className="Calculator">
                 <div className="calculator--info">
-                    <h2>Welcome to the Calculator</h2>
+                    <h2>Calorie Calculator</h2>
                 </div>
                 <div className="form--container">
                     <form>
                         <div className="metric--container">
-                            <h3>Calorie Calculator</h3>
                             <button
                                 className="metric-btn"
                                 type="button"
