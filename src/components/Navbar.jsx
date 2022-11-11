@@ -19,7 +19,7 @@ const Navbar = () => {
                     <Link to="/fitness-app/calculator"><img src={calculatorIcon}/></Link>
                 </li>
                 <li>
-                    <Link to="/fitness-app/planner"><img src={plannerIcon}/></Link>
+                    <Link to="/fitness-app/my-plans"><img src={plannerIcon}/></Link>
                 </li>
                 <li>
                     <Link to="/fitness-app/journal"><img src={journalIcon}/></Link>

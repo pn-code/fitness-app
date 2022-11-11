@@ -79,9 +79,9 @@ const MyPlans = (props) => {
         <div className="container">
             <div className="MyPlans">
                 <header>
-                    <div>
+                    <div className="MyPlans--info">
                         <h2>My Training Plans</h2>
-                        <Link to="/fitness-app/planner">Back to Planner</Link>
+                        <Link to="/fitness-app/planner">Create New Plan</Link>
                     </div>
                     <span>
                         This is where all your training plans are stored.

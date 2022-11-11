@@ -21,7 +21,7 @@ const Planner = (props) => {
         <div className="container">
             <main className="Planner">
                 <div className="planner--info">
-                    <h2>Welcome to the Planner</h2>
+                    <h2>Create a Plan</h2>
                     <div className="my-plans--container">
                         <Link to="/fitness-app/my-plans">
                             <span className="saved-plans-amount">
@@ -29,11 +29,6 @@ const Planner = (props) => {
                             </span>
                         </Link>
                     </div>
-                    <p>
-                        The planner does a variety of things. Here you can
-                        create a training plan to fit your specific fitness
-                        goals.
-                    </p>
                 </div>
                 <div className="form--container">
                     <form>

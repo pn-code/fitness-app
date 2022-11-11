@@ -3,7 +3,10 @@ label {
 }
 
 .planner--info {
-    margin: 0vh 5vh 2vh 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2vh 5vh 2vh 5vh;
 }
 
 .container .Planner {
