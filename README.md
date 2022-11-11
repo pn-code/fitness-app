@@ -17,11 +17,11 @@ Technologies used:
 
 WIP/TODOS:
     Currently Working On:
-    - Journal Page and Functions
+    - Responsive Design
 
     Main:
+    - Adding Firebase ?
     - Stylize Plans
-    - Journal Functions
     - Profile Functions
 
     Secondary: 

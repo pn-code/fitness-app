@@ -4,9 +4,11 @@ import Plan from "../components/Plan";
 import "../styles/my-plans.css";
 
 const MyPlans = (props) => {
-    
-    const planElements = props.savedPlans.map(plan => <Plan planDisplay={plan}/>);
+    const planElements = props.savedPlans.map((plan) => (
+        <Plan planDisplay={plan} />
+    ));
 
+    console.log(props.savedPlans)
     return (
         <div className="container">
             <div className="MyPlans">
@@ -19,7 +21,12 @@ const MyPlans = (props) => {
                         This is where all your training plans are stored.
                     </span>
                 </header>
-                <main className="plans--container">{planElements}</main>
+                <main className="plans--container">
+                    {props.savedPlans.length === 0 && (
+                        <h4>You currently have no training plans.</h4>
+                    )}
+                    {planElements}
+                </main>
             </div>
         </div>
     );

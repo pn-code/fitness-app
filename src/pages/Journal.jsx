@@ -5,6 +5,40 @@ import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
 
 const Journal = (props) => {
+    const { savedPlans } = props;
+
+    const [newEntry, setNewEntry] = React.useState({
+        date: null,
+        exercisePlan: null,
+        calorieIntake: null,
+        macro: null,
+        notes: null,
+    });
+
+    const [savedEntries, setSavedEntries] = React.useState([]);
+    console.log(savedEntries);
+
+    const handleChange = (e) => {
+        setNewEntry((prevNewEntry) => {
+            return { ...prevNewEntry, [e.target.name]: e.target.value };
+        });
+    };
+
+    const handleSubmit = (e) => {
+        setSavedEntries((prevSavedEntries) => [newEntry, ...prevSavedEntries]);
+        setNewEntry({
+            date: null,
+            exercisePlan: null,
+            calorieIntake: null,
+            macro: null,
+            notes: null,
+        });
+    };
+
+    const renderEntries = savedEntries.map((entry) => (
+        <Entry entryInfo={entry} savedPlans={savedPlans}/>
+    ));
+
     return (
         <div className="container">
             <main className="Journal">
@@ -15,11 +49,18 @@ const Journal = (props) => {
                         position="center center"
                         modal
                     >
-                        <EntryForm/>
+                        <EntryForm
+                            handleChange={handleChange}
+                            handleSubmit={handleSubmit}
+                            savedPlans={savedPlans}
+                        />
                     </Popup>
                 </header>
                 <main className="journal-entries--container">
-                    <Entry />
+                    {savedEntries.length === 0 && (
+                        <h4>You have no saved journal entries.</h4>
+                    )}
+                    {savedEntries.length > 0 && renderEntries}
                 </main>
             </main>
         </div>

@@ -12,8 +12,8 @@ import { Routes, Route } from "react-router-dom";
 const App = () => {
     const [savedPlans, setSavedPlans] = React.useState([]);
 
-    const savePlan = plan => {
-        savedPlans.push(plan);
+    const savePlan = (plan) => {
+        setSavedPlans(prevSavedPlans => [plan, ...prevSavedPlans])
     };
 
     return (
@@ -21,16 +21,25 @@ const App = () => {
             <Navbar />
             <Routes>
                 <Route path="/fitness-app/" element={<Home />} />
-                <Route path="/fitness-app/calculator" element={<Calculator />} />
+                <Route
+                    path="/fitness-app/calculator"
+                    element={<Calculator />}
+                />
                 <Route
                     path="/fitness-app/planner"
                     element={
-                        <Planner savedPlans={savedPlans} savePlan={plan => savePlan(plan)} />
+                        <Planner
+                            savedPlans={savedPlans}
+                            savePlan={(plan) => savePlan(plan)}
+                        />
                     }
                 />
-                <Route path="/fitness-app/journal" element={<Journal />} />
+                <Route path="/fitness-app/journal" element={<Journal savedPlans={savedPlans}/>} />
                 <Route path="/fitness-app/profile" element={<Profile />} />
-                <Route path="/fitness-app/my-plans" element={<MyPlans savedPlans={savedPlans}/>} />
+                <Route
+                    path="/fitness-app/my-plans"
+                    element={<MyPlans savedPlans={savedPlans} />}
+                />
             </Routes>
             <Footer />
         </div>

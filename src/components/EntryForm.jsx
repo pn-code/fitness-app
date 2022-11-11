@@ -1,6 +1,10 @@
 import React from "react";
 
 const EntryForm = (props) => {
+    const { savedPlans } = props;
+
+    const renderPlans = savedPlans.map(plan => <option>{plan.name}</option>)
+
     return (
         <div className="EntryForm">
             <form>
@@ -10,22 +14,46 @@ const EntryForm = (props) => {
                 </div>
                 <fieldset>
                     <label>Date: </label>
-                    <input type="date"/>
-                    <label>Exercise Selection: </label>
-                    <select>
-                        <option>Hello World</option>
+                    <input
+                        type="date"
+                        name="date"
+                        onChange={props.handleChange}
+                    />
+                    <label>Exercise Plan: </label>
+                    <select name="exercisePlan" onChange={props.handleChange}>
+                        <option>NONE</option>
+                        {renderPlans}
                     </select>
                     <label>Calorie Intake (kCal)</label>
-                    <input type="number" placeholder="Enter Caloric Intake"/>
-                    <label>Macronutrients: (Carbohydrates / Fat / Protein)</label>
-                    <input type="text" placeholder="Carbohydrates / Fat / Protein"/>
+                    <input
+                        type="number"
+                        name="calorieIntake"
+                        onChange={props.handleChange}
+                        placeholder="Enter Caloric Intake"
+                    />
+                    <label>
+                        Macronutrients: (Carbohydrates / Fat / Protein)
+                    </label>
+                    <input
+                        type="text"
+                        name="macro"
+                        onChange={props.handleChange}
+                        placeholder="Carbohydrates / Fat / Protein"
+                    />
                     <label>Notes: </label>
-                    <textarea  cols="30" rows="10"></textarea>
+                    <textarea
+                        cols="30"
+                        rows="10"
+                        name="notes"
+                        onChange={props.handleChange}
+                    ></textarea>
                 </fieldset>
-                <button>Submit</button>
+                <button type="button" onClick={props.handleSubmit}>
+                    Submit
+                </button>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default EntryForm;
