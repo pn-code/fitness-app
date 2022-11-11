@@ -23,3 +23,8 @@
     background-color: white;
     color: #dc2626;
 };
+
+.plans--container {
+    background-color: gray;
+    border: 1px solid black;
+}

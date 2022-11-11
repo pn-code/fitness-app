@@ -23,7 +23,6 @@ WIP/TODOS:
 
     Secondary: 
     - Add sets and rep schemes for planner
-    - Swap MyPlans and Planner (MyPlans should be front page)
     - Add variety to exercise selector
     - FAQ Page
     - Remove function for Plans
