@@ -5,10 +5,26 @@ success no matter your fitness standards.
 
 Functionality:
     - Calorie Calculator
+    - Diet and Exercise Planner
     - Food & Exercise Tracker
-    - Diet and Exercise Plan Creator
+
 
 Technologies used:
     - HTML and CSS
     - JavaScript
     - React
+
+
+WIP/TODOS:
+    Main:
+    - Stylize Plans
+    - Journal Page and Functions
+    - Profile Page and Functions
+
+    Secondary: 
+    - Add sets and rep schemes for planner
+    - Swap MyPlans and Planner (MyPlans should be front page)
+    - Add variety to exercise selector
+    - FAQ Page
+    - Remove function for Plans
+    - Edit function for Plans
