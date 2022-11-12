@@ -1,6 +1,7 @@
+import React from "react";
 import "../styles/profile.css";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className="container">
             <div className="Profile">
@@ -9,11 +10,9 @@ const Profile = () => {
                 </header>
                 <main>
                     <nav className="profile-nav">
-                        <button>
-                            Analytics
-                        </button>
+                        <button>Analytics</button>
                         <button>Send Feedback</button>
-                        <button>Log Out</button>
+                        <button onClick={props.signOut}>Log Out</button>
                     </nav>
                 </main>
             </div>

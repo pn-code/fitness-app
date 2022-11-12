@@ -8,7 +8,6 @@ const MyPlans = (props) => {
         <Plan planDisplay={plan} />
     ));
 
-    console.log(props.savedPlans)
     return (
         <div className="container">
             <div className="MyPlans">

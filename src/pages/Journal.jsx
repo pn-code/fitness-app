@@ -16,7 +16,6 @@ const Journal = (props) => {
     });
 
     const [savedEntries, setSavedEntries] = React.useState([]);
-    console.log(savedEntries);
 
     const handleChange = (e) => {
         setNewEntry((prevNewEntry) => {
