@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import "../styles/planner.css";
 
 const Planner = (props) => {
-    const [plan, setPlan] = React.useState({});
+    const { setSavedPlans } = props;
+
+    const [plan, setPlan] = React.useState({
+        name: "",
+        type: "",
+    });
 
     const handleChange = (e) => {
         setPlan((prevPlan) => {
@@ -13,24 +18,13 @@ const Planner = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.savePlan(plan);
-        setPlan({});
+        setSavedPlans(prevSavedPlans => [plan, ...prevSavedPlans])
+        setPlan({ name: "", type: "Select an option" });
     };
 
     return (
         <div className="container">
             <main className="Planner">
-                <div className="planner--info">
-                    <h2>Create a Plan</h2>
-                    <div className="my-plans--container">
-                        <Link to="/fitness-app/my-plans">
-                            <span className="saved-plans-amount">
-                                My Plans : {props.savedPlans.length}
-                            </span>
-                        </Link>
-                    </div>
-                </div>
-                <div className="form--container">
                     <form>
                         <legend>Planner</legend>
                         <fieldset>
@@ -282,11 +276,10 @@ const Planner = (props) => {
                             </fieldset>
                         )}
 
-                        <button type="submit" onClick={handleSubmit}>
+                        <button type="button" onClick={handleSubmit}>
                             Submit
                         </button>
                     </form>
-                </div>
             </main>
         </div>
     );

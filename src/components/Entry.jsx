@@ -1,7 +1,7 @@
 import React from "react";
 
 const Entry = (props) => {
-    const { entryInfo, savedPlans } = props;
+    const { entryInfo } = props;
 
     return (
         <div className="Entry">

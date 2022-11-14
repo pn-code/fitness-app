@@ -1,10 +1,6 @@
 import React from "react";
 
 const EntryForm = (props) => {
-    const { savedPlans } = props;
-
-    const renderPlans = savedPlans.map(plan => <option>{plan.name}</option>)
-
     return (
         <div className="EntryForm">
             <form>
@@ -22,7 +18,6 @@ const EntryForm = (props) => {
                     <label>Exercise Plan: </label>
                     <select name="exercisePlan" onChange={props.handleChange}>
                         <option>NONE</option>
-                        {renderPlans}
                     </select>
                     <label>Calorie Intake (kCal)</label>
                     <input

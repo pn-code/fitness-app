@@ -5,8 +5,6 @@ import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
 
 const Journal = (props) => {
-    const { savedPlans } = props;
-
     const [newEntry, setNewEntry] = React.useState({
         date: null,
         exercisePlan: null,
@@ -35,7 +33,7 @@ const Journal = (props) => {
     };
 
     const renderEntries = savedEntries.map((entry) => (
-        <Entry entryInfo={entry} savedPlans={savedPlans}/>
+        <Entry entryInfo={entry} />
     ));
 
     return (
@@ -51,7 +49,6 @@ const Journal = (props) => {
                         <EntryForm
                             handleChange={handleChange}
                             handleSubmit={handleSubmit}
-                            savedPlans={savedPlans}
                         />
                     </Popup>
                 </header>

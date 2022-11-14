@@ -1,31 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Plan from "../components/Plan";
 import "../styles/my-plans.css";
+import Planner from "../components/Planner";
 
-const MyPlans = (props) => {
-    const planElements = props.savedPlans.map((plan) => (
-        <Plan planDisplay={plan} />
-    ));
+const MyPlans = () => {
+    const [savedPlans, setSavedPlans] = React.useState([]);
+    const [renderPlanner, setRenderPlanner] = React.useState(false);
+
+    const planElements = savedPlans.map((plan) => <Plan planDisplay={plan} />);
 
     return (
         <div className="container">
             <div className="MyPlans">
                 <header>
                     <div className="MyPlans--info">
-                        <h2>My Training Plans</h2>
-                        <Link to="/fitness-app/planner">Create New Plan</Link>
+                        <h2>{!renderPlanner ? `My Training Plans` : `Create a Plan`}</h2>
+                        <button
+                            onClick={() =>
+                                setRenderPlanner(
+                                    (prevRenderPlanner) => !prevRenderPlanner
+                                )
+                            }
+                        >
+                            {!renderPlanner
+                                ? `Create New Plan`
+                                : `My Plans: ${savedPlans.length}`}
+                        </button>
                     </div>
-                    <span>
-                        This is where all your training plans are stored.
-                    </span>
                 </header>
-                <main className="plans--container">
-                    {props.savedPlans.length === 0 && (
-                        <h4>You currently have no training plans.</h4>
-                    )}
-                    {planElements}
-                </main>
+                {!renderPlanner && (
+                    <main className="plans--container">
+                        {savedPlans.length === 0 && (
+                            <h4>You currently have no training plans.</h4>
+                        )}
+                        {planElements}
+                    </main>
+                )}
+                {renderPlanner && <Planner setSavedPlans={setSavedPlans} />}
             </div>
         </div>
     );
