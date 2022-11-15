@@ -3,9 +3,16 @@ import Popup from "reactjs-popup";
 import "../styles/journal.css";
 import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../utility/firebase";
+import uniqid from "uniqid";
 
 const Journal = (props) => {
+    const { user, userData, setFetchData } = props;
+
+    const [savedEntries, setSavedEntries] = React.useState([]);
     const [newEntry, setNewEntry] = React.useState({
+        id: uniqid(),
         date: null,
         exercisePlan: null,
         calorieIntake: null,
@@ -13,7 +20,15 @@ const Journal = (props) => {
         notes: null,
     });
 
-    const [savedEntries, setSavedEntries] = React.useState([]);
+    React.useEffect(() => {
+        setFetchData(true)
+    }, [])
+
+    React.useEffect(() => {
+        if (user) {
+            setSavedEntries(userData.journal);
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         setNewEntry((prevNewEntry) => {
@@ -21,9 +36,11 @@ const Journal = (props) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         setSavedEntries((prevSavedEntries) => [newEntry, ...prevSavedEntries]);
+        updateData();
         setNewEntry({
+            id: uniqid(),
             date: null,
             exercisePlan: null,
             calorieIntake: null,
@@ -32,8 +49,46 @@ const Journal = (props) => {
         });
     };
 
+    const updateData = async () => {
+        if (user) {
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+                    journal: [newEntry, ...savedEntries],
+                },
+                { merge: true }
+            );
+        }
+    };
+
+    const removeEntry = async (e) => {
+        // Remove from savedEntries via setSavedEntries
+        setSavedEntries((prevSavedEntries) =>
+            prevSavedEntries.filter((entry) => entry.id !== e.target.className)
+        );
+        // Use setDoc to send data to database
+        if (user) {
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+                    journal: savedEntries.filter(
+                        (entry) => entry.id !== e.target.className
+                    ),
+                },
+                { merge: true }
+            );
+        }
+    };
+
+    const renderPlans = userData.plans.map(plan => <option>{plan.name}</option>)
+
     const renderEntries = savedEntries.map((entry) => (
-        <Entry entryInfo={entry} />
+        <Entry
+            entryInfo={entry}
+            removeEntry={removeEntry}
+            key={entry.id}
+            id={entry.id}
+        />
     ));
 
     return (
@@ -49,6 +104,7 @@ const Journal = (props) => {
                         <EntryForm
                             handleChange={handleChange}
                             handleSubmit={handleSubmit}
+                            renderPlans={renderPlans}
                         />
                     </Popup>
                 </header>

@@ -1,5 +1,5 @@
 const Plan = (props) => {
-    const { planDisplay } = props;
+    const { planDisplay, removePlan, id } = props;
 
     return (
         <div className="plan--container">
@@ -68,6 +68,7 @@ const Plan = (props) => {
                 </div>
             </div>
         )}
+        <button className={id} onClick={removePlan}>Remove Plan</button>
     </div>
     )
 }

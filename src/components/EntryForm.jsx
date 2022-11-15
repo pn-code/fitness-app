@@ -1,6 +1,7 @@
 import React from "react";
 
 const EntryForm = (props) => {
+    const { renderPlans } = props;
     return (
         <div className="EntryForm">
             <form>
@@ -18,6 +19,7 @@ const EntryForm = (props) => {
                     <label>Exercise Plan: </label>
                     <select name="exercisePlan" onChange={props.handleChange}>
                         <option>NONE</option>
+                        {renderPlans}
                     </select>
                     <label>Calorie Intake (kCal)</label>
                     <input
