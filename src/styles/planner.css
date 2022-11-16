@@ -38,3 +38,18 @@ label {
     background-color: white;
     color: #dc2626;
 }
+
+form {
+    background-color: rgb(43, 42, 42);
+    color: white;
+    border-radius: 12px;
+    padding: 2vh;
+}
+
+h3 {
+    margin: .8em 1em .8em 1em;
+}
+
+fieldset {
+    margin-left: .5em;
+}

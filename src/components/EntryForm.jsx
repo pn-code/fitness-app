@@ -6,7 +6,7 @@ const EntryForm = (props) => {
         <div className="EntryForm">
             <form>
                 <div className="entry-form-tab">
-                    <h4>New Entry</h4>
+                    <h4>New Journal Entry</h4>
                     <span onClick={props.close}>X</span>
                 </div>
                 <fieldset>
@@ -45,9 +45,11 @@ const EntryForm = (props) => {
                         onChange={props.handleChange}
                     ></textarea>
                 </fieldset>
-                <button type="button" onClick={props.handleSubmit}>
-                    Submit
-                </button>
+                <div className="btn--container">
+                    <button type="button" onClick={props.handleSubmit}>
+                        Submit
+                    </button>
+                </div>
             </form>
         </div>
     );

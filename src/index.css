@@ -12,6 +12,47 @@ body {
     margin-bottom: 8vh;
 }
 
+button {
+    background-color: var(--nav-clr);
+    color: var(--nav-font-clr);
+    border: none;
+    padding: .5em 1em .5em 1em;
+    border-radius: 12px;
+}
+
+button:hover {
+    background-color: rgb(233, 233, 233);
+    color: var(--nav-clr);
+    border: none;
+    padding: .5em 1em .5em 1em;
+    border-radius: 12px;
+}
+
+form button {
+    margin-top: .5em;
+}
+
+.btn--container {
+    display:flex;
+    justify-content: flex-end;
+    margin-right: .5em;
+}
+
+fieldset {
+   border: none;
+}
+
+input, textarea, select {
+    border-radius: 8px;
+    padding: 4px;
+    margin-block: 4px;
+}
+
+textarea {
+    width: 90%;
+    resize: none;
+}
+
 @media (max-width: 500px) {
     .Navbar ul {
         visibility: collapse;

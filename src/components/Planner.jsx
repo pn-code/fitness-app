@@ -28,7 +28,7 @@ const Planner = (props) => {
         <div className="container">
             <main className="Planner">
                 <form>
-                    <legend>Planner</legend>
+                    <h3>Planner</h3>
                     <fieldset>
                         <label>Plan Name: </label>
                         <input
@@ -275,10 +275,11 @@ const Planner = (props) => {
                             </select>
                         </fieldset>
                     )}
-
-                    <button type="button" onClick={handleSubmit}>
-                        Submit
-                    </button>
+                    <div className="btn--container">
+                        <button type="button" onClick={handleSubmit}>
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </main>
         </div>

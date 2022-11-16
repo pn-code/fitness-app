@@ -47,19 +47,19 @@
     display: inline;
 }
 
-.metric-btn, .calculate-btn {
+/* .metric-btn, .calculate-btn {
     background-color: white;
     border-radius: 4px;
     border: 2px solid rgb(95, 95, 95);
     padding: 4px 8px 4px 8px;
     font-weight: 500;
-}
+} */
 
-.metric-btn:hover, .calculate-btn:hover {
+/* .metric-btn:hover, .calculate-btn:hover {
     cursor: pointer;
     background-color: black;
     color: white;
-}
+} */
 
 #weight--input {
     padding: 4px;
@@ -74,7 +74,7 @@
     gap: 24px;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
     .calorie-plans--container {
         display: flex;
         justify-content: center;
@@ -104,7 +104,7 @@
 }
 
 .CaloriePlan:hover {
-    background-color: gray;
+    background-color: #dc2626;
     color: white;
 }
 

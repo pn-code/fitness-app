@@ -56,7 +56,9 @@ const Calculator = () => {
                                 </button>
                             </div>
                         </nav>
-                        <label className="weight--label">Weight: </label>
+                        <label className="weight--label">
+                            Weight in {metric ? "kilograms" : "pounds"}:{" "}
+                        </label>
                         <input
                             id="weight--input"
                             placeholder={`weight in ${
