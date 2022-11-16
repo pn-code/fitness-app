@@ -85,6 +85,10 @@ body {
     border-bottom: 2px white solid;
 }
 
+a {
+    cursor: pointer;
+}
+
 button {
     cursor: pointer;
 }

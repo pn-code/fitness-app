@@ -2,8 +2,8 @@ import React from "react";
 import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
 
-
-const Navbar = () => {
+const Navbar = (props) => {
+    const { signIn } = props;
     return (
         <nav className="Navbar">
             <h1 className="logo">

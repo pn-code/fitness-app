@@ -53,7 +53,7 @@ const App = () => {
         <div className="App">
             <Navbar signIn={googleLogin} />
             <Routes>
-                <Route path="/fitness-app/" element={<Home />} />
+                <Route path="/fitness-app/" element={<Home user={user}/>} />
                 <Route
                     path="/fitness-app/calculator"
                     element={<Calculator />}
