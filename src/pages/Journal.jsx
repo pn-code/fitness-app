@@ -80,7 +80,11 @@ const Journal = (props) => {
         }
     };
 
-    const renderPlans = userData.plans.map(plan => <option>{plan.name}</option>)
+    const renderPlans = () => {
+        if (userData) {
+            return userData.plans.map(plan => <option>{plan.name}</option>)
+        }
+    } 
 
     const renderEntries = savedEntries.map((entry) => (
         <Entry

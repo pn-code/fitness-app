@@ -8,6 +8,41 @@ body {
     margin: 0;
 }
 
+.App {
+    margin-bottom: 8vh;
+}
+
+@media (max-width: 500px) {
+    .Navbar ul {
+        visibility: collapse;
+    }
+    footer .media-full {
+        visibility: collapse;
+    }
+
+    footer .nav-links li {
+        height: 40px;
+        width: 40px;
+        list-style: none;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(107%) contrast(101%);
+    }
+    
+    footer .nav-links li:hover {
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(107%) contrast(101%);
+    }
+    
+}
+
+@media (min-width: 501px) {
+    .Navbar ul {
+        visibility: visible;
+    }
+    footer .nav-links {
+        height: 0;
+        visibility: collapse;
+    }
+}
+
 .Navbar {
     display: flex;
     justify-content: space-between;
@@ -17,7 +52,7 @@ body {
 }
 
 .Navbar ul, .logo {
-    margin-inline: 16px;
+    margin-inline: 3vh;
 }
 
 .Navbar h1 a {
@@ -54,21 +89,15 @@ button {
     cursor: pointer;
 }
 
-footer {
+footer .nav-links {
+    display: flex;
+    justify-content: space-evenly;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: var(--nav-clr);
-    padding: 4px;
+    padding: 12px;
     text-align: center;
-}
-
-footer a {
-    color: var(--nav-font-clr);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
+    margin: 0;
 }

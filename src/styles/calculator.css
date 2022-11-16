@@ -1,5 +1,31 @@
+.calculator--form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    gap: 8px;
+    padding: 4vh;
+    border-radius: 4px;
+    overflow: hidden;
+}
 
-.form--container {
+.calculator--form input, .calculator--form button {
+    max-width: 200px;
+}
+
+.calculator-change-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 2vh 0;
+    border-bottom: 1px solid gray;
+}
+
+.calculator--form h3 {
+    margin: 0;
+    padding-bottom: .5vh;
+}
+
+.form--wrapper {
     border: 1px solid gray;
     border-radius: 4px;
     padding: 20px;
@@ -42,8 +68,52 @@
     margin-right: 2px;
 }
 
-.calorie-plan {
-    border-top: 1px solid gray;
+.calorie-plans--container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+@media (max-width: 920px) {
+    .calorie-plans--container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .CaloriePlan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px;
+
+    }
+}
+
+.CaloriePlan {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    min-width: 200px;
+    border-radius: 12px;
+    padding: 32px 52px 48px 52px;
+}
+
+.CaloriePlan:hover {
+    background-color: gray;
+    color: white;
+}
+
+.CaloriePlan h3 {
+    margin: 0 0 8px 0;
+}
+
+.CaloriePlan span {
+    margin-top: 10px;
 }
 
 h4 {

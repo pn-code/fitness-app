@@ -1,9 +1,12 @@
+import React from "react";
+import NavLinks from "./NavLinks";
+
 const Footer = () => {
     return (
         <footer>
-            <a target="about:blank" href="https://github.com/pn-code/">Created by Philip Nguyen</a>
+            <NavLinks />
         </footer>
-    )
-}
+    );
+};
 
 export default Footer;
