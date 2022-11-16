@@ -46,6 +46,7 @@ input, textarea, select {
     border-radius: 8px;
     padding: 4px;
     margin-block: 4px;
+    width: 80%;
 }
 
 textarea {

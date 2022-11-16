@@ -44,6 +44,7 @@ form {
     color: white;
     border-radius: 12px;
     padding: 2vh;
+    overflow: hidden;
 }
 
 h3 {
