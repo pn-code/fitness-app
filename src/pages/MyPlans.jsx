@@ -60,9 +60,9 @@ const MyPlans = (props) => {
             <div className="MyPlans">
                 <header>
                     <div className="MyPlans--info">
-                        <h2>
+                        <h2 className="page-header">
                             {!renderPlanner
-                                ? `My Training Plans`
+                                ? `Training Plans`
                                 : `Create a Plan`}
                         </h2>
                         <button

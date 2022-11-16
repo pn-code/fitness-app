@@ -28,3 +28,20 @@ input, textarea, select {
     border-radius: 12px;
     padding: 2vh;
 }
+
+.journal-entries--container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.entry-form-tab span {
+    padding: 4px 10px 4px 10px;
+    border-radius: 50%;
+}
+
+.entry-form-tab span:hover {
+    cursor: pointer;
+    background-color: white;
+    color:rgb(43, 42, 42);
+}

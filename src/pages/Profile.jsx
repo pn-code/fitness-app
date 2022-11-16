@@ -6,7 +6,7 @@ const Profile = (props) => {
         <div className="container">
             <div className="Profile">
                 <header>
-                    <h1>Profile</h1>
+                    <h2 className="page-header">Profile</h2>
                 </header>
                 <main>
                     <nav className="profile-nav">

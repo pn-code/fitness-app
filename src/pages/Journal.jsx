@@ -1,5 +1,4 @@
 import React from "react";
-import Popup from "reactjs-popup";
 import "../styles/journal.css";
 import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
@@ -21,8 +20,8 @@ const Journal = (props) => {
     });
 
     React.useEffect(() => {
-        setFetchData(true)
-    }, [])
+        setFetchData(true);
+    }, []);
 
     React.useEffect(() => {
         if (user) {
@@ -82,9 +81,9 @@ const Journal = (props) => {
 
     const renderPlans = () => {
         if (userData) {
-            return userData.plans.map(plan => <option>{plan.name}</option>)
+            return userData.plans.map((plan) => <option>{plan.name}</option>);
         }
-    } 
+    };
 
     const renderEntries = savedEntries.map((entry) => (
         <Entry
@@ -99,18 +98,12 @@ const Journal = (props) => {
         <div className="container">
             <main className="Journal">
                 <header className="journal--info">
-                    <h2>Journal</h2>
-                    <Popup
-                        trigger={<button>Add Entry</button>}
-                        position="center center"
-                        modal
-                    >
-                        <EntryForm
-                            handleChange={handleChange}
-                            handleSubmit={handleSubmit}
-                            renderPlans={renderPlans}
-                        />
-                    </Popup>
+                    <h2 className="page-header">Journal</h2>
+                    <EntryForm
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                        renderPlans={renderPlans}
+                    />
                 </header>
                 <main className="journal-entries--container">
                     {savedEntries.length === 0 && (

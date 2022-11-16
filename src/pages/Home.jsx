@@ -8,12 +8,12 @@ const Home = (props) => {
         <div className="container">
             <main className="Home">
                 <section className="introduction">
-                    <h1>Hello!</h1>
-
-<h3>
-                    {!user ? `If this is your first time here, please read this...` : `Welcome ${user.displayName}`}
-                </h3>
-                {}
+                    <h2>
+                        {!user
+                            ? `If this is your first time here, please read this...`
+                            : `Welcome ${user.displayName},`}
+                    </h2>
+                    {}
                     <p>
                         This fitness app was developed to access fundamental
                         fitness tools required for achieve success no matter
