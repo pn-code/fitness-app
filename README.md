@@ -6,27 +6,20 @@ success no matter your fitness standards.
 Functionality:
     - Calorie Calculator
     - Diet and Exercise Planner
-    - Food & Exercise Tracker
+    - Diet and Exercise Journal
 
 
 Technologies used:
     - HTML and CSS
     - JavaScript
     - React
+    - Firebase (Auth & Firestore)
 
 
 WIP/TODOS:
-    Currently Working On:
-    - Responsive Design
-
-    Main:
-    - Adding Firebase ?
-    - Stylize Plans
-    - Profile Functions
-
-    Secondary: 
+    Optional Add-Ons: 
+    - Add functionality to analytics in profile
+    - Allow users to send feedback
     - Add sets and rep schemes for planner
     - Add variety to exercise selector
     - FAQ Page
-    - Remove function for Plans
-    - Edit function for Plans

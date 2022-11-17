@@ -6,8 +6,26 @@ const Planner = (props) => {
     const { setSavedPlans, updateData } = props;
 
     const [plan, setPlan] = React.useState({
-        id: uniqid(),
+        ab_1: "",
+        ab_2: "",
+        ab_3: "",
+        ant_delt: "",
+        back_1: "",
+        back_2: "",
+        biceps: "",
+        calves: "",
+        chest_1: "",
+        chest_2: "",
+        hams_1: "",
+        hips: "",
+        id: "",
+        lat_delt: "",
         name: "",
+        post_delt: "",
+        quads_1: "",
+        split: "",
+        style: "",
+        triceps: "",
         type: "",
     });
 
@@ -17,11 +35,32 @@ const Planner = (props) => {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
         updateData(plan);
-        setPlan({ id: uniqid(), name: "", type: "" });
+        setPlan({
+            ab_1: "",
+            ab_2: "",
+            ab_3: "",
+            ant_delt: "",
+            back_1: "",
+            back_2: "",
+            biceps: "",
+            calves: "",
+            chest_1: "",
+            chest_2: "",
+            hams_1: "",
+            hips: "",
+            id: uniqid(),
+            lat_delt: "",
+            name: "",
+            post_delt: "",
+            quads_1: "",
+            split: "",
+            style: "",
+            triceps: "",
+            type: "",
+        });
     };
 
     return (
@@ -276,7 +315,7 @@ const Planner = (props) => {
                         </fieldset>
                     )}
                     <div className="btn--container">
-                        <button type="button" onClick={handleSubmit}>
+                        <button type="submit" onClick={handleSubmit}>
                             Submit
                         </button>
                     </div>
