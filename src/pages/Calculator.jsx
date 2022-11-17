@@ -40,7 +40,7 @@ const Calculator = () => {
                 <form className="calculator--form">
                     <nav className="calculator-change-nav">
                         {" "}
-                        <h3>Calorie Calculator</h3>
+                        <h3 className="calculator-app-header">Calorie Calculator</h3>
                         <div className="metric--container">
                             <button
                                 className="metric-btn"
@@ -54,7 +54,7 @@ const Calculator = () => {
                         </div>
                     </nav>
                     <label className="weight--label">
-                        Weight in {metric ? "kilograms" : "pounds"}:{" "}
+                        Weight {metric ? "(kg)" : "(lb)"}:{" "}
                     </label>
                     <input
                         id="weight--input"

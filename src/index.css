@@ -54,6 +54,14 @@ textarea {
     resize: none;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 8px;
+}
+
 @media (max-width: 500px) {
     .Navbar ul {
         visibility: collapse;

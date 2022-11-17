@@ -21,8 +21,12 @@
 }
 
 h3 {
-    margin: 1em 0 0 0;
+    margin: 1em 0 1em 0;
     padding-bottom: .5vh;
+}
+
+.calculator-app-header {
+    margin-bottom: 18.72
 }
 
 p {
@@ -94,18 +98,18 @@ p {
     min-width: 200px;
     border-radius: 12px;
     padding: 32px 52px 48px 52px;
+    max-width: 300px;
 }
 
 .CaloriePlan:hover {
     background-color: #dc2626;
-    color: white;
+    color: #ffffff;
 }
 
 .CaloriePlan:hover strong{
     background-color: #dc2626;
     color: white;
 }
-
 
 .CaloriePlan h3 {
     margin: 0 0 8px 0;

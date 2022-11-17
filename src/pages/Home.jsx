@@ -2,18 +2,15 @@ import React from "react";
 import "../styles/home.css";
 
 const Home = (props) => {
-    const { user } = props;
+    const { user, signIn } = props;
 
     return (
         <div className="container">
             <main className="Home">
                 <section className="introduction">
-                    <h2>
-                        {!user
-                            ? `If this is your first time here, please read this...`
-                            : `Welcome ${user.displayName},`}
-                    </h2>
+                    <h2>{`Welcome ${user ? user.displayName : "Guest"},`}</h2>
                     {}
+                    <h3>About</h3>
                     <p>
                         This fitness app was developed to access fundamental
                         fitness tools required for achieve success no matter
@@ -38,6 +35,24 @@ const Home = (props) => {
                         </li>
                     </ul>
                 </section>
+                {!user && (
+                    <section className="sign-up--section">
+                        <h2>Sign-Up</h2>
+                        <p>
+                            <strong>
+                                If you want to get your fitness goals in line,
+                                then look no further.{" "}
+                            </strong>
+                            <br />
+                            <br />
+                            Create an account with us to make significant
+                            progress towards your fitness goals.
+                        </p>
+                        <div className="sign-up--container">
+                            <button onClick={signIn}>Sign In</button>
+                        </div>
+                    </section>
+                )}
             </main>
         </div>
     );

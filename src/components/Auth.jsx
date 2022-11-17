@@ -13,6 +13,7 @@ const googleLogin = () =>
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert(`An error has occurred: ${errorCode} & ${errorMessage}`)
             const email = error.customData.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
         });

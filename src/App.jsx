@@ -53,14 +53,23 @@ const App = () => {
         <div className="App">
             <Navbar signIn={googleLogin} />
             <Routes>
-                <Route path="/fitness-app/" element={<Home user={user}/>} />
+                <Route
+                    path="/fitness-app/"
+                    element={<Home user={user} signIn={googleLogin} />}
+                />
                 <Route
                     path="/fitness-app/calculator"
                     element={<Calculator />}
                 />
                 <Route
                     path="/fitness-app/journal"
-                    element={<Journal user={user} userData={userData} setFetchData={setFetchData}/>}
+                    element={
+                        <Journal
+                            user={user}
+                            userData={userData}
+                            setFetchData={setFetchData}
+                        />
+                    }
                 />
                 <Route
                     path="/fitness-app/profile"
@@ -74,7 +83,13 @@ const App = () => {
                 />
                 <Route
                     path="/fitness-app/my-plans"
-                    element={<MyPlans user={user} userData={userData} setFetchData={setFetchData}/>}
+                    element={
+                        <MyPlans
+                            user={user}
+                            userData={userData}
+                            setFetchData={setFetchData}
+                        />
+                    }
                 />
             </Routes>
             <Footer />
