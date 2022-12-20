@@ -2,13 +2,12 @@ import React from "react";
 import "../styles/home.css";
 
 const Home = (props) => {
-    const { user, signIn } = props;
 
     return (
         <div className="container">
             <main className="Home">
                 <section className="introduction">
-                    <h2>{`Welcome ${user ? user.displayName : "Guest"},`}</h2>
+                    <h2>{`Welcome Guest,`}</h2>
                     {}
                     <h3>About</h3>
                     <p>
@@ -35,7 +34,6 @@ const Home = (props) => {
                         </li>
                     </ul>
                 </section>
-                {!user && (
                     <section className="sign-up--section">
                         <h2>Sign-Up</h2>
                         <p>
@@ -49,10 +47,9 @@ const Home = (props) => {
                             progress towards your fitness goals.
                         </p>
                         <div className="sign-up--container">
-                            <button onClick={signIn}>Sign In</button>
+                            <button>Sign In</button>
                         </div>
                     </section>
-                )}
             </main>
         </div>
     );

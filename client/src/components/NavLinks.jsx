@@ -4,8 +4,6 @@ import calculatorIcon from "../images/navbar/calculator.svg";
 import plannerIcon from "../images/navbar/planner.svg";
 import journalIcon from "../images/navbar/journal.svg";
 import profileIcon from "../images/navbar/profile.svg";
-import { googleLogin } from "./Auth";
-import { auth } from "../utility/firebase";
 import { Link } from "react-router-dom";
 
 const NavLinks = (props) => {
@@ -31,8 +29,8 @@ const NavLinks = (props) => {
                     <img src={journalIcon} />
                 </Link>
             </li>
-            <li>
-                {!auth.currentUser && (
+            {/* <li> */}
+                {/* {!auth.currentUser && (
                     <a className="login-btn" onClick={() => googleLogin()}>
                         <img src={profileIcon} />
                     </a>
@@ -42,7 +40,7 @@ const NavLinks = (props) => {
                         <img src={profileIcon} />
                     </Link>
                 )}
-            </li>
+            </li> */}
         </ul>
     );
 };
