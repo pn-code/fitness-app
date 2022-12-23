@@ -1,33 +1,10 @@
 import React from "react";
 import "../styles/planner.css";
-import uniqid from "uniqid";
 
 const Planner = (props) => {
     const { setSavedPlans, updateData } = props;
-
-    const [plan, setPlan] = React.useState({
-        ab_1: "",
-        ab_2: "",
-        ab_3: "",
-        ant_delt: "",
-        back_1: "",
-        back_2: "",
-        biceps: "",
-        calves: "",
-        chest_1: "",
-        chest_2: "",
-        hams_1: "",
-        hips: "",
-        id: "",
-        lat_delt: "",
-        name: "",
-        post_delt: "",
-        quads_1: "",
-        split: "",
-        style: "",
-        triceps: "",
-        type: "",
-    });
+    const [plan, setPlan] = React.useState({});
+    const API = "http://localhost:3000/api/plans/"
 
     const handleChange = (e) => {
         setPlan((prevPlan) => {
@@ -35,292 +12,201 @@ const Planner = (props) => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        // Save to array
         setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
-        updateData(plan);
-        setPlan({
-            ab_1: "",
-            ab_2: "",
-            ab_3: "",
-            ant_delt: "",
-            back_1: "",
-            back_2: "",
-            biceps: "",
-            calves: "",
-            chest_1: "",
-            chest_2: "",
-            hams_1: "",
-            hips: "",
-            id: uniqid(),
-            lat_delt: "",
-            name: "",
-            post_delt: "",
-            quads_1: "",
-            split: "",
-            style: "",
-            triceps: "",
-            type: "",
-        });
+        // Reset Form
+        setPlan({});
     };
 
     return (
         <div className="container">
-            <main className="Planner">
-                <form>
-                    <h3>Planner</h3>
-                    <fieldset>
-                        <label>Plan Name: </label>
-                        <input
-                            name="name"
-                            placeholder="Plan Name"
-                            onChange={handleChange}
-                            value={plan.name}
-                            required
-                        />
-                        <label>Type of Training: </label>
-                        <select
-                            name="type"
-                            value={plan.type}
-                            onChange={handleChange}
-                        >
-                            <option default>Select an option</option>
-                            <option>Resistance</option>
-                            <option>Cardio</option>
-                        </select>
-                    </fieldset>
+            <form action={API} method="POST">
+                <div className="plan--header">
+                    <label htmlFor="name">Plan Name: </label>
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        onChange={handleChange}
+                    />
 
-                    {plan.type === "Resistance" && (
-                        <fieldset>
-                            <label>Style of Training: </label>
-                            <select
-                                name="style"
-                                value={plan.style}
-                                onChange={handleChange}
-                            >
-                                {" "}
-                                <option>SELECT STYLE</option>
-                                <option>Strength</option>
-                                <option>Hypertrophy</option>
-                                <option>Endurance</option>
-                            </select>
-                            <label>Training Split: </label>
-                            <select
-                                name="split"
-                                value={plan.split}
-                                onChange={handleChange}
-                            >
-                                <option>SELECT SPLIT</option>
-                                <option>Upper / Lower</option>
-                                <option>Full Body</option>
-                            </select>
-                        </fieldset>
-                    )}
-                    {plan.type === "Cardio" && (
-                        <fieldset>
-                            <label>Style of Training: </label>
-                            <select
-                                name="style"
-                                value={plan.style}
-                                onChange={handleChange}
-                            >
-                                <option>Select Intensity</option>
-                                <option>Low Intensity</option>
-                                <option>High Intensity</option>
-                                <option>Mixed Intensities</option>
-                            </select>
-                        </fieldset>
-                    )}
-                    {plan.type === "Resistance" && (
-                        <fieldset>
-                            <label>Anterior Deltoids: </label>
-                            <select
-                                name="ant_delt"
-                                value={plan["ant_delt"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Overhead Press</option>
-                                <option>Military Press</option>
-                                <option>DB Press</option>
-                            </select>
-                            <label>Lateral Deltoids: </label>
-                            <select
-                                name="lat_delt"
-                                value={plan["lat_delt"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Lateral Raises</option>
-                                <option>Banded Face Pulls</option>
-                                <option>Upright Row</option>
-                            </select>
-                            <label>Posterior Deltoids: </label>
-                            <select
-                                name="post_delt"
-                                onChange={handleChange}
-                                value={plan["post_delt"]}
-                            >
-                                <option>NONE</option>
-                                <option>Reverse Fly</option>
-                                <option>Rear Delt Machine</option>
-                                <option>Banded Face Pulls</option>
-                            </select>
-                            <label>Chest: </label>
-                            <select
-                                name="chest_1"
-                                value={plan["chest_1"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Bench Press</option>
-                                <option>Dips</option>
-                                <option>Push-ups</option>
-                            </select>
-                            <label>Supplementary Chest: </label>
-                            <select
-                                name="chest_2"
-                                value={plan["chest_2"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Bench Press</option>
-                                <option>Incline Bench Press</option>
-                                <option>Decline Bench Press</option>
-                                <option>Push-ups</option>
-                                <option>Dips</option>
-                            </select>
-                            <label>Back: </label>
-                            <select
-                                name="back_1"
-                                value={plan["back_1"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Pull-up</option>
-                                <option>Bent-over Row</option>
-                                <option>Machine Row</option>
-                            </select>
-                            <label>Supplementary Back: </label>
-                            <select
-                                name="back_2"
-                                value={plan["back_2"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Pull-up</option>
-                                <option>Bent-over Row</option>
-                                <option>Machine Row</option>
-                                <option>T-Bar Rows</option>
-                                <option>Pull-overs</option>
-                            </select>
-                            <label>Abdominals: </label>
-                            <select
-                                name="ab_1"
-                                value={plan["ab_1"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Sit-ups</option>
-                                <option>Leg Raises</option>
-                                <option>Ab Rollers</option>
-                            </select>
-                            <label>Supplementary Abdominals 1: </label>
-                            <select
-                                name="ab_2"
-                                value={plan["ab_2"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Sit-ups</option>
-                                <option>Leg Raises</option>
-                                <option>Ab Rollers</option>
-                            </select>
-                            <label>Supplementary Abdominals 2: </label>
-                            <select
-                                name="ab_3"
-                                value={plan["ab_3"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Sit-ups</option>
-                                <option>Leg Raises</option>
-                                <option>Ab Rollers</option>
-                            </select>
-                            <label>Biceps: </label>
-                            <select
-                                name="biceps"
-                                value={plan.biceps}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>EZ-bar Curls</option>
-                                <option>Barbell Curls</option>
-                                <option>DB Curls</option>
-                            </select>
-                            <label>Triceps: </label>
-                            <select
-                                name="triceps"
-                                value={plan.triceps}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Bench Dips</option>
-                                <option>Tricep Pushdowns</option>
-                                <option>Skull Crushers</option>
-                            </select>
-                            <label>Hips: </label>
-                            <select
-                                name="hips"
-                                value={plan.hips}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Hip Thrusts</option>
-                            </select>
-                            <label>Quadriceps: </label>
-                            <select
-                                name="quads_1"
-                                value={plan["quads_1"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Squats</option>
-                                <option>ATG Split Squats</option>
-                                <option>Leg Press</option>
-                                <option>Sissy Squats</option>
-                                <option>Pistol Squats</option>
-                            </select>
-                            <label>Hamstrings: </label>
-                            <select
-                                name="hams_1"
-                                value={plan["hams_1"]}
-                                onChange={handleChange}
-                            >
-                                <option>NONE</option>
-                                <option>Deadlifts</option>
-                                <option>RDL</option>
-                                <option>Nordic Curls</option>
-                            </select>
-                            <label>Calves and Tibs: </label>
-                            <select
-                                name="calves"
-                                value={plan.calves}
-                                onChange={handleChange}
-                            >
-                                <option value="None">No, I'm scared...</option>
-                                <option value="Calf & Tib Raises">
-                                    Yes, please!
-                                </option>
-                            </select>
-                        </fieldset>
-                    )}
-                    <div className="btn--container">
-                        <button type="submit" onClick={handleSubmit}>
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </main>
+                    <label htmlFor="emphasis">Emphasis: </label>
+                    <input
+                        id="emphasis"
+                        name="emphasis"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="plan--exercises">
+                    <h4>Exercise 1</h4>
+                    <label htmlFor="exercise1_name">Exercise Name: </label>
+                    <input
+                        id="exercise1_name"
+                        name="exercise1_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise1_sets">Sets: </label>
+                    <input
+                        id="exercise1_sets"
+                        name="exercise1_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise1_reps">Reps: </label>
+                    <input
+                        id="exercise1_reps"
+                        name="exercise1_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 2</h4>
+                    <label htmlFor="exercise2_name">Exercise Name: </label>
+                    <input
+                        id="exercise2_name"
+                        name="exercise2_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise2_sets">Sets: </label>
+                    <input
+                        id="exercise2_sets"
+                        name="exercise2_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise2_reps">Reps: </label>
+                    <input
+                        id="exercise2_reps"
+                        name="exercise2_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 3</h4>
+                    <label htmlFor="exercise3_name">Exercise Name: </label>
+                    <input
+                        id="exercise3_name"
+                        name="exercise3_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise3_sets">Sets: </label>
+                    <input
+                        id="exercise3_sets"
+                        name="exercise3_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise3_reps">Reps: </label>
+                    <input
+                        id="exercise3_reps"
+                        name="exercise3_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 4</h4>
+                    <label htmlFor="exercise1_name">Exercise Name: </label>
+                    <input
+                        id="exercise4_name"
+                        name="exercise4_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise4_sets">Sets: </label>
+                    <input
+                        id="exercise4_sets"
+                        name="exercise4_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise4_reps">Reps: </label>
+                    <input
+                        id="exercise4_reps"
+                        name="exercise4_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 5</h4>
+                    <label htmlFor="exercise5_name">Exercise Name: </label>
+                    <input
+                        id="exercise5_name"
+                        name="exercise5_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise5_sets">Sets: </label>
+                    <input
+                        id="exercise5_sets"
+                        name="exercise5_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise5_reps">Reps: </label>
+                    <input
+                        id="exercise5_reps"
+                        name="exercise5_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 6</h4>
+                    <label htmlFor="exercise6_name">Exercise Name: </label>
+                    <input
+                        id="exercise6_name"
+                        name="exercise6_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise6_sets">Sets: </label>
+                    <input
+                        id="exercise6_sets"
+                        name="exercise6_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise6_reps">Reps: </label>
+                    <input
+                        id="exercise6_reps"
+                        name="exercise6_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+
+                    <h4>Exercise 7</h4>
+                    <label htmlFor="exercise7_name">Exercise Name: </label>
+                    <input
+                        id="exercise7_name"
+                        name="exercise7_name"
+                        type="text"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise7_sets">Sets: </label>
+                    <input
+                        id="exercise7_sets"
+                        name="exercise7_set"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="exercise7_reps">Reps: </label>
+                    <input
+                        id="exercise7_reps"
+                        name="exercise7_reps"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="btn--container">
+                    <button type="submit" onClick={handleSubmit}>
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
     );
 };

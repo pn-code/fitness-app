@@ -7,8 +7,11 @@ const bodyParser = require("body-parser");
 const Plan = require("./models/Plan");
 require("dotenv").config();
 
+const client = "http://localhost:5173/fitness-app/"
+
 // Set up default mongoose connection
 const mongoDB = process.env.MONGO_URL;
+mongoose.set('strictQuery', false);
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
@@ -40,7 +43,7 @@ app.get("/api/plans", (req, res, next) => {
 
 app.post("/api/plans", (req, res, next) => {
   const planDetail = {
-    title: req.body.title,
+    name: req.body.name,
     emphasis: req.body.emphasis,
     exercises: [
       {
@@ -84,13 +87,25 @@ app.post("/api/plans", (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      res.json({
-        status: "Success",
-        planDetail,
-      });
+      // res.json({
+      //   status: "Success",
+      //   planDetail,
+      // });
+      res.redirect(client+"my-plans")
     }
   });
 });
+
+app.delete("/api/plans/:planId", async (req, res) => {
+  const planId = req.params.planId;
+  // find and delete a plan
+  const plan = await Plan.findByIdAndDelete(planId);
+  // return json
+  res.json({
+    status: "Successful",
+    plan
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}.`);

@@ -1,10 +1,9 @@
 const Plan = (props) => {
-  const { plan, id } = props;
-  console.log(plan)
+  const { plan, id, deletePlan } = props;
 
   return (
     <div className="plan--container">
-      <h3 className="plan-title">{plan.title}</h3>
+      <h3 className="plan-title">{plan.name}</h3>
 
       <div className="plan-settings">
         <h4>Emphasis: {plan.emphasis}</h4>
@@ -27,7 +26,7 @@ const Plan = (props) => {
       </ul>
 
       <div className="btn--container">
-        <button className={id}>Remove Plan</button>
+        <button className={id} onClick={() => deletePlan(id)}>Remove Plan</button>
       </div>
     </div>
   );
