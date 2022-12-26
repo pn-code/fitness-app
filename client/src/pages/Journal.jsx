@@ -6,25 +6,11 @@ import EntryForm from "../components/EntryForm";
 const Journal = (props) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [savedEntries, setSavedEntries] = React.useState([]);
-    const [newEntry, setNewEntry] = React.useState({
-        date: null,
-        exercisePlan: null,
-        calorieIntake: null,
-        macro: null,
-        notes: null,
-    });
-
-    const handleChange = (e) => {
-        setNewEntry((prevNewEntry) => {
-            return { ...prevNewEntry, [e.target.name]: e.target.value };
-        });
-    };
 
     // const handleSubmit = () => {
     //     setSavedEntries((prevSavedEntries) => [newEntry, ...prevSavedEntries]);
     //     updateData();
     //     setNewEntry({
-    //         id: uniqid(),
     //         date: null,
     //         exercisePlan: null,
     //         calorieIntake: null,
