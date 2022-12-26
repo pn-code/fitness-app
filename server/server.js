@@ -174,6 +174,10 @@ app.delete("/api/plans/:planId", async (req, res) => {
     });
 });
 
+app.get("/api/journal", (req, res) => {
+    
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);
 });

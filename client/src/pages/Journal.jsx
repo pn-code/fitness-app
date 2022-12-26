@@ -2,12 +2,11 @@ import React from "react";
 import "../styles/journal.css";
 import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
-import uniqid from "uniqid";
 
 const Journal = (props) => {
+    const [addEntry, setAddEntry] = React.useState(false);
     const [savedEntries, setSavedEntries] = React.useState([]);
     const [newEntry, setNewEntry] = React.useState({
-        id: uniqid(),
         date: null,
         exercisePlan: null,
         calorieIntake: null,
@@ -15,16 +14,11 @@ const Journal = (props) => {
         notes: null,
     });
 
-    // React.useEffect(() => {
-    //     setFetchData(true);
-    // }, []);
-
-
-    // const handleChange = (e) => {
-    //     setNewEntry((prevNewEntry) => {
-    //         return { ...prevNewEntry, [e.target.name]: e.target.value };
-    //     });
-    // };
+    const handleChange = (e) => {
+        setNewEntry((prevNewEntry) => {
+            return { ...prevNewEntry, [e.target.name]: e.target.value };
+        });
+    };
 
     // const handleSubmit = () => {
     //     setSavedEntries((prevSavedEntries) => [newEntry, ...prevSavedEntries]);
@@ -37,18 +31,6 @@ const Journal = (props) => {
     //         macro: null,
     //         notes: null,
     //     });
-    // };
-
-    // const updateData = async () => {
-    //     if (user) {
-    //         await setDoc(
-    //             doc(db, "users", user.uid),
-    //             {
-    //                 journal: [newEntry, ...savedEntries],
-    //             },
-    //             { merge: true }
-    //         );
-    //     }
     // };
 
     // const removeEntry = async (e) => {
@@ -70,38 +52,42 @@ const Journal = (props) => {
     //     }
     // };
 
-    // const renderPlans = () => {
-    //     if (userData) {
-    //         return userData.plans.map((plan) => <option>{plan.name}</option>);
-    //     }
-    // };
-
-    // const renderEntries = savedEntries.map((entry) => (
-    //     <Entry
-    //         entryInfo={entry}
-    //         removeEntry={removeEntry}
-    //         key={entry.id}
-    //         id={entry.id}
-    //     />
-    // ));
+    const renderEntries = savedEntries.map((entry) => (
+        <Entry
+            entryInfo={entry}
+            removeEntry={removeEntry}
+            key={entry.id}
+            id={entry.id}
+        />
+    ));
 
     return (
         <div className="container">
             <main className="Journal">
                 <header className="journal--info">
                     <h2 className="page-header">Journal</h2>
-                    <EntryForm
-                        // handleChange={handleChange}
-                        // handleSubmit={handleSubmit}
-                        // renderPlans={renderPlans}
-                    />
+                    <button
+                        type="button"
+                        onClick={() => setAddEntry((prevState) => !prevState)}
+                    >
+                        {addEntry ? "Return to Journal" : "Add Entry"}
+                    </button>
                 </header>
-                <main className="journal-entries--container">
-                    {/* {savedEntries.length === 0 && (
-                        <h4>You have no saved journal entries.</h4>
-                    )}
-                    {savedEntries.length > 0 && renderEntries} */}
-                </main>
+                {addEntry && (
+                    <EntryForm
+                    // handleChange={handleChange}
+                    // handleSubmit={handleSubmit}
+                    // renderPlans={renderPlans}
+                    />
+                )}
+                {!addEntry && (
+                    <main className="journal-entries--container">
+                        {savedEntries.length === 0 && (
+                            <h4>You have no saved journal entries.</h4>
+                        )}
+                        {savedEntries.length > 0 && renderEntries}
+                    </main>
+                )}
             </main>
         </div>
     );
