@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/home.css";
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
-
     return (
         <div className="container">
             <main className="Home">
@@ -34,22 +34,24 @@ const Home = (props) => {
                         </li>
                     </ul>
                 </section>
-                    <section className="sign-up--section">
-                        <h2>Sign-Up</h2>
-                        <p>
-                            <strong>
-                                If you want to get your fitness goals in line,
-                                then look no further.{" "}
-                            </strong>
-                            <br />
-                            <br />
-                            Create an account with us to make significant
-                            progress towards your fitness goals.
-                        </p>
-                        <div className="sign-up--container">
-                            <button>Sign In</button>
-                        </div>
-                    </section>
+                <section className="sign-up--section">
+                    <h2>Sign-Up</h2>
+                    <p>
+                        <strong>
+                            If you want to get your fitness goals in line, then
+                            look no further.{" "}
+                        </strong>
+                        <br />
+                        <br />
+                        Create an account with us to make significant progress
+                        towards your fitness goals.
+                    </p>
+                    <div className="sign-up--container">
+                        <Link to="/fitness-app/sign-up">
+                            <button>Sign Up</button>
+                        </Link>
+                    </div>
+                </section>
             </main>
         </div>
     );

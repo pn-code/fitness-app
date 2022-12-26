@@ -8,8 +8,9 @@ const Plan = (props) => {
       <div className="plan-settings">
         <h4>Emphasis: {plan.emphasis}</h4>
       </div>
+
         {plan.exercises.map(exercise => {
-            if (typeof exercise.name != "undefined") {
+            if (exercise.name !== "") {
                 return (                
                     <ul className="exercise-item">
                         <div>
@@ -21,9 +22,6 @@ const Plan = (props) => {
                 }
             }
         )}
-      <ul className="exercise-list">
-
-      </ul>
 
       <div className="btn--container">
         <button className={id} onClick={() => deletePlan(id)}>Remove Plan</button>

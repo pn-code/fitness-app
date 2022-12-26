@@ -26,6 +26,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("Hello World.");
@@ -103,68 +104,66 @@ app.get("/api/plans", (req, res, next) => {
 });
 
 // Protected Routes
-app.post("/api/plans", verifyToken, (req, res, next) => {
-    jwt.verify(req.token, "secretkey", (err, authData) => {
+app.post("/api/plans", (req, res, next) => {
+    // jwt.verify(req.token, "secretkey", (err, authData) => {
+    //     if (err) {
+    //         res.sendStatus(403);
+    //     } else {
+    const planDetail = {
+        name: req.body.name,
+        emphasis: req.body.emphasis,
+        exercises: [
+            {
+                name: req.body.exercise1_name,
+                sets: req.body.exercise1_sets,
+                reps: req.body.exercise1_reps,
+            },
+            {
+                name: req.body.exercise2_name,
+                sets: req.body.exercise2_sets,
+                reps: req.body.exercise2_reps,
+            },
+            {
+                name: req.body.exercise3_name,
+                sets: req.body.exercise3_sets,
+                reps: req.body.exercise3_reps,
+            },
+            {
+                name: req.body.exercise4_name,
+                sets: req.body.exercise4_sets,
+                reps: req.body.exercise4_reps,
+            },
+            {
+                name: req.body.exercise5_name,
+                sets: req.body.exercise5_sets,
+                reps: req.body.exercise5_reps,
+            },
+            {
+                name: req.body.exercise6_name,
+                sets: req.body.exercise6_sets,
+                reps: req.body.exercise6_reps,
+            },
+            {
+                name: req.body.exercise7_name,
+                sets: req.body.exercise7_sets,
+                reps: req.body.exercise7_reps,
+            },
+        ],
+    };
+    const plan = new Plan(planDetail).save((err) => {
         if (err) {
-            res.sendStatus(403);
+            next(err);
         } else {
-            const planDetail = {
-                name: req.body.name,
-                emphasis: req.body.emphasis,
-                exercises: [
-                    {
-                        name: req.body.exercise1_name,
-                        sets: req.body.exercise1_sets,
-                        reps: req.body.exercise1_reps,
-                    },
-                    {
-                        name: req.body.exercise2_name,
-                        sets: req.body.exercise2_sets,
-                        reps: req.body.exercise2_reps,
-                    },
-                    {
-                        name: req.body.exercise3_name,
-                        sets: req.body.exercise3_sets,
-                        reps: req.body.exercise3_reps,
-                    },
-                    {
-                        name: req.body.exercise4_name,
-                        sets: req.body.exercise4_sets,
-                        reps: req.body.exercise4_reps,
-                    },
-                    {
-                        name: req.body.exercise5_name,
-                        sets: req.body.exercise5_sets,
-                        reps: req.body.exercise5_reps,
-                    },
-                    {
-                        name: req.body.exercise6_name,
-                        sets: req.body.exercise6_sets,
-                        reps: req.body.exercise6_reps,
-                    },
-                    {
-                        name: req.body.exercise7_name,
-                        sets: req.body.exercise7_sets,
-                        reps: req.body.exercise7_reps,
-                    },
-                ],
-            };
-            const plan = new Plan(planDetail).save((err) => {
-                if (err) {
-                    next(err);
-                } else {
-                    // res.json({
-                    //   status: "Success",
-                    //   planDetail,
-                    // });
-                    res.redirect(client + "my-plans");
-                }
-            });
+            // res.json({
+            //   status: "Success",
+            //   planDetail,
+            // });
+            res.redirect(client + "my-plans");
         }
     });
 });
 
-app.delete("/api/plans/:planId", verifyToken, async (req, res) => {
+app.delete("/api/plans/:planId", async (req, res) => {
     const planId = req.params.planId;
     // find and delete a plan
     const plan = await Plan.findByIdAndDelete(planId);

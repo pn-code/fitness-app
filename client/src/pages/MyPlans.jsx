@@ -11,6 +11,7 @@ const MyPlans = (props) => {
     const [savedPlans, setSavedPlans] = React.useState([]);
     const [renderPlanner, setRenderPlanner] = React.useState(false);
 
+    // Loads savedPlans on start with information from database
     useEffect(() => {
         fetch(API)
             .then((res) => res.json())
@@ -25,8 +26,8 @@ const MyPlans = (props) => {
         // // Delete selected plan from database
         fetch(API + id, { method: "DELETE" });
     };
-    console.log(savedPlans)
 
+    // Map over savedPlans and display on the page
     const planElements = savedPlans.map((plan) => (
         <Plan
             plan={plan}
