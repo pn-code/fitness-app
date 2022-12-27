@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const Plan = require("./models/Plan");
 const User = require("./models/User");
+const Entry = require("./models/Entry");
 require("dotenv").config();
 
 const client = "http://localhost:5173/fitness-app/";
@@ -174,9 +175,32 @@ app.delete("/api/plans/:planId", async (req, res) => {
     });
 });
 
-app.get("/api/journal", (req, res) => {
-    
-})
+app.get("/api/journal", async (req, res) => {
+    const entries = await Entry.find();
+    res.json({
+        status: "Success",
+        entries,
+    });
+});
+
+app.post("/api/journal", async (req, res) => {
+    const entryDetail = {
+        date: new Date(),
+        plan: req.body.plan,
+        calories: req.body.calories,
+        macros: req.body.macros,
+        notes: req.body.notes,
+    };
+    const entry = new Entry(entryDetail).save((err) => {
+        if (err) {
+            next(err);
+        }
+    });
+    res.json({
+        status: "Success",
+        entry: entryDetail,
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);
