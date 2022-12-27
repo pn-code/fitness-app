@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
 const Plan = require("./models/Plan");
 const User = require("./models/User");
 const Entry = require("./models/Entry");
@@ -60,36 +59,13 @@ app.post("/api/register", async (req, res, next) => {
     }
 });
 
-app.post("/api/login", async (req, res) => {
-    const user = await User.findOne({ username: req.body.username });
-    if (user.password === req.body.password) {
-        jwt.sign({ user }, "secretkey", { expiresIn: "24h" }, (err, token) => {
-            res.json({
-                token,
-            });
-        });
-    }
-});
-
-// Verify Token
-function verifyToken(req, res, next) {
-    // Get auth header value
-    const bearerHeader = req.headers["authorization"];
-    // Check if bearer is undefined
-    if (typeof bearerHeader !== "undefined") {
-        // Split at the space
-        const bearer = bearerHeader.split(" ");
-        // Get token from array
-        const bearerToken = bearer[1];
-        // Set the token
-        req.token = bearerToken;
-        // Next middleware
-        next();
-    } else {
-        // Forbidden
-        res.sendStatus(403);
-    }
-}
+app.post(
+    "/api/login",
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/"
+    })
+  );
 
 app.get("/api/plans", (req, res, next) => {
     Plan.find({}, (err, plans) => {
@@ -106,10 +82,6 @@ app.get("/api/plans", (req, res, next) => {
 
 // Protected Routes
 app.post("/api/plans", (req, res, next) => {
-    // jwt.verify(req.token, "secretkey", (err, authData) => {
-    //     if (err) {
-    //         res.sendStatus(403);
-    //     } else {
     const planDetail = {
         name: req.body.name,
         emphasis: req.body.emphasis,
@@ -207,9 +179,50 @@ app.delete("/api/journal/:journalId", async (req, res) => {
     const entry = await Entry.findByIdAndDelete(journalId);
     res.json({
         status: "Success",
-        entry
+        entry,
+    });
+});
+
+// Passport
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
+// Passport functions
+
+passport.use(
+    new LocalStrategy((username, password, done) => {
+        User.findOne({ username: username }, (err, user) => {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, { message: "Incorrect username" });
+            }
+            if (user.password !== password) {
+                return done(null, false, { message: "Incorrect password" });
+            }
+            return done(null, user);
+        });
     })
-})
+);
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
+
+// Passport initialization and session
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);
