@@ -1,7 +1,19 @@
 import React from "react";
 
 const Entry = (props) => {
-    const { entryInfo } = props;
+    const { entryInfo, id, setEntries, API_URL } = props;
+
+    const deleteEntry = async (id) => {
+        // Remove from entries array
+        setEntries((prevEntries) =>
+            prevEntries.filter((entry) => id != entry._id)
+        );
+        // findAndDelete from db
+        fetch(API_URL + id, {
+            method: "DELETE",
+            headers: { "Content-Type": "json/application" }
+        })
+    };
 
     return (
         <div className="Entry">
@@ -19,12 +31,7 @@ const Entry = (props) => {
                 <div>Additional Notes: {entryInfo.notes}</div>
             </section>
             <div className="btn--container">
-                <button
-                    className={entryInfo.id}
-                    onClick={(e) => props.removeEntry(e)}
-                >
-                    Remove
-                </button>
+                <button onClick={() => deleteEntry(id)}>Remove</button>
             </div>
         </div>
     );
