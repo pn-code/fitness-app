@@ -202,6 +202,15 @@ app.post("/api/journal", async (req, res) => {
     });
 });
 
+app.delete("/api/journal/:journalId", async (req, res) => {
+    const journalId = req.params.journalId;
+    const entry = await Entry.findByIdAndDelete(journalId);
+    res.json({
+        status: "Success",
+        entry
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);
 });
