@@ -7,26 +7,14 @@ import { useEffect } from "react";
 const Journal = (props) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [entries, setEntries] = React.useState([]);
-    const API_URL = "http://localhost:3000/api/journal/"
+    const API_URL = "http://localhost:3000/api/journal/";
 
     // Checks database for entries array
     useEffect(() => {
         fetch(API_URL)
-        .then(res => res.json())
-        .then(res => setEntries(res.entries))
-    }, [])
-
-    // const handleSubmit = () => {
-    //     setSavedEntries((prevSavedEntries) => [newEntry, ...prevSavedEntries]);
-    //     updateData();
-    //     setNewEntry({
-    //         date: null,
-    //         exercisePlan: null,
-    //         calorieIntake: null,
-    //         macro: null,
-    //         notes: null,
-    //     });
-    // };
+            .then((res) => res.json())
+            .then((res) => setEntries(res.entries));
+    }, []);
 
     const renderEntries = entries.map((entry) => (
         <Entry
@@ -50,13 +38,7 @@ const Journal = (props) => {
                         {addEntry ? "Return to Journal" : "Add Entry"}
                     </button>
                 </header>
-                {addEntry && (
-                    <EntryForm
-                    // handleChange={handleChange}
-                    // handleSubmit={handleSubmit}
-                    // renderPlans={renderPlans}
-                    />
-                )}
+                {addEntry && <EntryForm setEntries={setEntries} API_URL={API_URL}/>}
                 {!addEntry && (
                     <main className="journal-entries--container">
                         {entries.length === 0 && (

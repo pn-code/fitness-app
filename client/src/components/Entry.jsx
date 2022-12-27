@@ -11,8 +11,8 @@ const Entry = (props) => {
         // findAndDelete from db
         fetch(API_URL + id, {
             method: "DELETE",
-            headers: { "Content-Type": "json/application" }
-        })
+            headers: { "Content-Type": "json/application" },
+        });
     };
 
     return (
@@ -21,14 +21,14 @@ const Entry = (props) => {
                 <h4>{entryInfo.date}</h4>
             </section>
             <section className="diet--container">
-                <div>Calorie Consumption: {entryInfo.calorieIntake} Cal</div>
-                <div>Macronutrients (C/F/P): {entryInfo.macro}</div>
+                <div>Calorie Consumption: {entryInfo.calories} Cal</div>
+                <div>Macronutrients (C/F/P): {entryInfo.macros}</div>
             </section>
             <section className="exercise--container">
-                <div>Exercise Plan: {entryInfo.exercisePlan}</div>
+                <div>Exercise Plan: {entryInfo.plan}</div>
             </section>
             <section className="notes--container">
-                <div>Additional Notes: {entryInfo.notes}</div>
+                <div>Notes: {entryInfo.notes}</div>
             </section>
             <div className="btn--container">
                 <button onClick={() => deleteEntry(id)}>Remove</button>

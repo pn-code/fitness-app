@@ -1,6 +1,8 @@
 import React from "react";
 
 const EntryForm = (props) => {
+    const { setEntries, API_URL } = props;
+
     const [entry, setEntry] = React.useState({
         date: null,
         plan: null,
@@ -15,12 +17,24 @@ const EntryForm = (props) => {
         });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Add entry to entries array
+        setEntries((prevEntries) => [entry, ...prevEntries]);
+        // Reset entry state
+        setEntry({
+            date: null,
+            plan: null,
+            calories: null,
+            macros: null,
+            notes: null,
+        });
+    };
+
     return (
         <div className="EntryForm">
-            <form>
-                <div className="entry-form-tab">
-                    <h4>New Journal Entry</h4>
-                </div>
+            <form action={API_URL} method="POST">
+                <h4>New Journal Entry</h4>
                 <fieldset>
                     <label htmlFor="date">Date: </label>
                     <input

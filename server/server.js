@@ -185,7 +185,7 @@ app.get("/api/journal", async (req, res) => {
 
 app.post("/api/journal", async (req, res) => {
     const entryDetail = {
-        date: new Date(),
+        date: req.body.date,
         plan: req.body.plan,
         calories: req.body.calories,
         macros: req.body.macros,
