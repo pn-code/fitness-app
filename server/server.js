@@ -1,13 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
+const cookieParser = require("cookie-parser");
 const Plan = require("./models/Plan");
-const User = require("./models/User");
+// const User = require("./models/User");
 const Entry = require("./models/Entry");
 require("dotenv").config();
 
-const client = "http://localhost:5173/fitness-app/";
+const client = "http://localhost:5173";
 
 const app = express();
 const PORT = 3000;
@@ -23,50 +24,18 @@ const db = mongoose.connection;
 // Bind connection to error event (to get notification of connection errors)
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.json());
-
-app.get("/", (req, res) => {
-    res.send("Hello World.");
-});
-
-// User registration
-app.post("/api/register", async (req, res, next) => {
-    const userExists = await User.findOne({ username: req.body.username });
-    const emailRegistered = await User.findOne({ email: req.body.email });
-
-    if (userExists || emailRegistered) {
-        res.send(
-            "Email or username already exist in database. Please enter a different email/username."
-        );
-    } else if (req.body.password != req.body.confirm_password) {
-        res.send("Password and confirmed password are not the same.");
-    } else {
-        const userDetails = {
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-        };
-        const user = new User(userDetails).save((err) => next(err));
-        res.json({
-            status: "Success",
-            user: userDetails,
-        });
-    }
-});
-
-app.post(
-    "/api/login",
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/"
+app.use(
+    cors({
+        origin: client,
+        credentials: true,
     })
-  );
+);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+// PROTECTED ROUTES
+
+// Training Planner
 app.get("/api/plans", (req, res, next) => {
     Plan.find({}, (err, plans) => {
         if (err) {
@@ -80,7 +49,6 @@ app.get("/api/plans", (req, res, next) => {
     });
 });
 
-// Protected Routes
 app.post("/api/plans", (req, res, next) => {
     const planDetail = {
         name: req.body.name,
@@ -147,6 +115,7 @@ app.delete("/api/plans/:planId", async (req, res) => {
     });
 });
 
+// Daily Journals
 app.get("/api/journal", async (req, res) => {
     const entries = await Entry.find();
     res.json({
@@ -184,45 +153,82 @@ app.delete("/api/journal/:journalId", async (req, res) => {
 });
 
 // Passport
-
+const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+require("./passportConfig")(passport);
 
-// Passport functions
-
-passport.use(
-    new LocalStrategy((username, password, done) => {
-        User.findOne({ username: username }, (err, user) => {
-            if (err) {
-                return done(err);
-            }
-            if (!user) {
-                return done(null, false, { message: "Incorrect username" });
-            }
-            if (user.password !== password) {
-                return done(null, false, { message: "Incorrect password" });
-            }
-            return done(null, user);
-        });
+// Passport initialization and session
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
     })
 );
+app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(passport.initialize());
+app.use(passport.session());
 
-passport.serializeUser(function (user, done) {
-    done(null, user.id);
+// User registration
+app.post("/api/register", async (req, res, next) => {
+    const userExists = await User.findOne({ username: req.body.username });
+    const emailRegistered = await User.findOne({ email: req.body.email });
+
+    if (userExists || emailRegistered) {
+        res.send(
+            "Email or username already exist in database. Please enter a different email/username."
+        );
+    } else if (req.body.password != req.body.confirm_password) {
+        res.send("Password and confirmed password are not the same.");
+    } else {
+        bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+            if (err) {
+                next(err);
+            } else {
+                const userDetails = {
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: hashedPassword,
+                };
+                const user = new User(userDetails).save((err) => next(err));
+                res.json({
+                    status: "Success",
+                    user: userDetails,
+                });
+            }
+        });
+    }
 });
 
-passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-        done(err, user);
+app.post("/api/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+        if (err) throw err;
+        if (!user) res.send("User does not exist.");
+        if (user) {
+            req.logIn(user, (err) => {
+                if (err) throw err;
+                res.redirect(client)
+            });
+        }
+    })(req, res, next);
+});
+
+app.get("/api/profile", (req, res) => {
+    res.json({
+        user: req.user,
     });
 });
 
-// Passport initialization and session
-
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
+app.get("/log-out", (req, res, next) => {
+    req.logOut(function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.send("logged-out");
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);

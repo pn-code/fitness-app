@@ -3,11 +3,13 @@ import "../styles/home.css";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
+    const { user } = props;
+
     return (
         <div className="container">
             <main className="Home">
                 <section className="introduction">
-                    <h2>{`Welcome Guest,`}</h2>
+                    <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
                     {}
                     <h3>About</h3>
                     <p>
@@ -34,24 +36,29 @@ const Home = (props) => {
                         </li>
                     </ul>
                 </section>
-                <section className="sign-up--section">
-                    <h2>Sign-Up</h2>
-                    <p>
-                        <strong>
-                            If you want to get your fitness goals in line, then
-                            look no further.{" "}
-                        </strong>
-                        <br />
-                        <br />
-                        Create an account with us to make significant progress
-                        towards your fitness goals.
-                    </p>
-                    <div className="sign-up--container">
-                        <Link to="/fitness-app/sign-up">
-                            <button>Sign Up</button>
-                        </Link>
-                    </div>
-                </section>
+                {!user && (
+                    <section className="sign-up--section">
+                        <h2>Sign-Up</h2>
+                        <p>
+                            <strong>
+                                If you want to get your fitness goals in line,
+                                then look no further.{" "}
+                            </strong>
+                            <br />
+                            <br />
+                            Create an account with us to make significant
+                            progress towards your fitness goals.
+                        </p>
+                        <div className="sign-up--container">
+                            <Link to="/fitness-app/sign-up">
+                                <button>Sign Up</button>
+                            </Link>
+                            <Link to="/fitness-app/login">
+                                <button>Login</button>
+                            </Link>
+                        </div>
+                    </section>
+                )}
             </main>
         </div>
     );
