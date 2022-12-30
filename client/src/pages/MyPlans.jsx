@@ -4,7 +4,7 @@ import Plan from "../components/Plan";
 import "../styles/my-plans.css";
 import Planner from "../components/Planner";
 
-const API = `http://localhost:3000/api/plans/`;
+const API = `http://localhost:3000/plans/`;
 
 const MyPlans = (props) => {
     const { user, userData, setFetchData } = props;

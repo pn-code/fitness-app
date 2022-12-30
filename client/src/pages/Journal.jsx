@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const Journal = (props) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [entries, setEntries] = React.useState([]);
-    const API_URL = "http://localhost:3000/api/journal/";
+    const API_URL = "http://localhost:3000/journal/";
 
     // Checks database for entries array
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-    const API = "http://localhost:3000/api/register";
+    const API = "http://localhost:3000/register";
 
     return (
         <div>

@@ -11,22 +11,28 @@ import Login from "./pages/Login";
 import { Routes, Route, redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const App = () => {
-    const API_URL = "http://localhost:3000/api";
+    const API_URL = "http://localhost:3000";
+
     const [user, setUser] = useState(null);
+    
     // Check if user is signed in
     useEffect(() => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: 'http://localhost:3000/api/profile'
+            url: 'http://localhost:3000/profile'
         }).then(res => setUser(res.data.user))
     }, []);
 
     return (
         <div className="App">
-            <Navbar />
+            <Navbar user={user}/>
             <Routes>
                 <Route path="/fitness-app/" element={<Home user={user}/>} />
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />

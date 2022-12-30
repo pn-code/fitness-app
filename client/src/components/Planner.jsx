@@ -4,7 +4,7 @@ import "../styles/planner.css";
 const Planner = (props) => {
     const { setSavedPlans, updateData } = props;
     const [plan, setPlan] = React.useState({});
-    const API = "http://localhost:3000/api/plans/";
+    const API = "http://localhost:3000/plans";
 
     const handleChange = (e) => {
         setPlan((prevPlan) => {

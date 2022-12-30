@@ -3,7 +3,6 @@ import "../styles/profile.css";
 import axios from "axios";
 
 const Profile = (props) => {
-
     const { user, setUser } = props
 
     const handleLogOut = async () => {

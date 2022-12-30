@@ -7,6 +7,8 @@ import profileIcon from "../images/navbar/profile.svg";
 import { Link } from "react-router-dom";
 
 const NavLinks = (props) => {
+    const { user } = props;
+
     return (
         <ul className="nav-links">
             <li>
@@ -29,18 +31,18 @@ const NavLinks = (props) => {
                     <img src={journalIcon} />
                 </Link>
             </li>
-            {/* <li> */}
-                {/* {!auth.currentUser && (
-                    <a className="login-btn" onClick={() => googleLogin()}>
+            <li>
+                {!user && (
+                    <Link to="/fitness-app/login">
                         <img src={profileIcon} />
-                    </a>
+                    </Link>
                 )}
-                {auth.currentUser && (
+                {user && (
                     <Link to="/fitness-app/profile">
                         <img src={profileIcon} />
                     </Link>
                 )}
-            </li> */}
+            </li>
         </ul>
     );
 };

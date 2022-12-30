@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom"
 
 const Login = (props) => {
-    const { API_URL } = props;
-
     return (
         <div>
             <h1>Login</h1>
-            <form method="POST" action={`${API_URL}/login`}>
+            <form method="POST" action={`http://localhost:3000/login`}>
                 <label htmlFor="username">Username: </label>
                 <input id="username" name="username" type="text" />
                 <label htmlFor="password">Password: </label>
