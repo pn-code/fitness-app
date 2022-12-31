@@ -1,7 +1,10 @@
 import React from "react";
+import { DateTime } from "luxon";
 
 const Entry = (props) => {
     const { entryInfo, id, setEntries, API_URL } = props;
+
+    const formattedDate = DateTime.fromISO(entryInfo.date).toFormat('LLL dd, yyyy')
 
     const deleteEntry = async (id) => {
         // Remove from entries array
@@ -18,10 +21,10 @@ const Entry = (props) => {
     return (
         <div className="Entry">
             <section className="date--container">
-                <h4>{entryInfo.date}</h4>
+                <h4>{formattedDate}</h4>
             </section>
             <section className="diet--container">
-                <div>Calorie Consumption: {entryInfo.calories} Cal</div>
+                <div>Calorie Intake: {entryInfo.calories} Cal</div>
                 <div>Macronutrients (C/F/P): {entryInfo.macros}</div>
             </section>
             <section className="exercise--container">

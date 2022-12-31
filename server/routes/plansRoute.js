@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Plan = require("../models/Plan");
 
-const client = "http://localhost:5173/fitness-app/"
+const client = "http://localhost:5173/fitness-app/";
 
 router.get("/", (req, res, next) => {
     if (req.user) {
@@ -15,8 +15,6 @@ router.get("/", (req, res, next) => {
                 });
             }
         });
-    } else {
-        res.sendStatus(403);
     }
 });
 
@@ -71,27 +69,17 @@ router.post("/", (req, res, next) => {
                 res.redirect(client + "my-plans");
             }
         });
-    } else {
-        res.sendStatus(403);
     }
 });
 
 router.delete("/:planId", async (req, res) => {
     if (req.user) {
         const planId = req.params.planId;
-        const plan = await Plan.findById(planId);
-        // Prevent Plan delete if authors do not match...
-        if (req.user._id != plan.author) {
-            res.sendStatus(403);
-        } else if (req.user._id == plan.author) {
-            Plan.findByIdAndDelete(planId)
-            res.json({
-                status: "Successful",
-                plan,
-            });
-        }
-    } else {
-        res.sendStatus(403);
+        const plan = await Plan.findByIdAndDelete(planId);
+        res.json({
+            status: "Successful",
+            plan,
+        });
     }
 });
 

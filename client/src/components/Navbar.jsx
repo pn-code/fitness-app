@@ -14,7 +14,7 @@ const Navbar = (props) => {
                     <h1 className="logo-text">Fitness</h1>
                 </Link>
             </div>
-            <NavLinks user={user}/>
+            {user && <NavLinks user={user}/>}
         </nav>
     );
 };

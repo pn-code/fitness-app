@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model("User")
 
 const client = `http://localhost:5173/`
+
 router.post("/register", async (req, res, next) => {
     const userExists = await User.findOne({ username: req.body.username });
     const emailRegistered = await User.findOne({ email: req.body.email });

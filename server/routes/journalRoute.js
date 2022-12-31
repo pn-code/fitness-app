@@ -1,18 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const Entry = require("../models/Entry");
-const passport = require("passport");
+const { DateTime } = require("luxon");
+
+const client = 'http://localhost:5173/fitness-app/journal'
 
 router.get("/", async (req, res) => {
-    if (req.user) {
-        const entries = await Entry.find();
-        res.json({
-            status: "Success",
-            entries,
-        });
-    } else {
-        res.sendStatus(403);
-    }
+    const entries = await Entry.find();
+    res.json({
+        status: "Success",
+        entries,
+    });
 });
 
 router.post("/", async (req, res) => {
@@ -30,32 +28,22 @@ router.post("/", async (req, res) => {
                 next(err);
             }
         });
-        res.json({
-            status: "Success",
-            entry: entryDetail,
-        });
-    } else {
-        res.sendStatus(403);
+        res.redirect(client);
+        // res.json({
+        //     status: "Success",
+        //     entry: entryDetail,
+        // });
     }
 });
 
 router.delete("/:journalId", async (req, res) => {
     if (req.user) {
         const journalId = req.params.journalId;
-        const entry = await Entry.findById(journalId);
-        // If currentUser does not match Entry Creator's User, do not allow delete action.
-        if (req.user._id != entry.author) {
-            return res.statusCode(403);
-        } else if (req.user._id == entry.author) {
-        // If currentUser and entry creator match, delete entry...
-            Entry.findByIdAndDelete(journalId);
-            res.json({
-                status: "Success",
-                entry,
-            });
-        }
-    } else {
-        res.sendStatus(403);
+        const entry = await Entry.findByIdAndDelete(journalId);
+        res.json({
+            status: "Success",
+            entry,
+        });
     }
 });
 
