@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/profile.css";
 import axios from "axios";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Profile = (props) => {
-    const { user, setUser } = props
+    const { user, setUser } = props;
 
     const handleLogOut = async () => {
         axios({
@@ -23,7 +25,7 @@ const Profile = (props) => {
                 <main>
                     <nav className="profile-nav">
                         <button>Analytics</button>
-                        <button>Send Feedback</button>
+                        <Link to="/fitness-app/feedback">Send Feedback</Link>
                         <button onClick={handleLogOut}>Log Out</button>
                     </nav>
                 </main>

@@ -48,6 +48,7 @@ app.use(passport.session());
 const indexRoute = require("./routes/indexRoute");
 const plansRoute = require("./routes/plansRoute");
 const journalRoute = require("./routes/journalRoute");
+const feedbackRoute = require("./routes/feedbackRoute");
 
 // Index - User Auth
 app.use("/", indexRoute);
@@ -57,6 +58,9 @@ app.use("/plans", plansRoute);
 
 // Daily Journals
 app.use("/journal", journalRoute);
+
+// Feedback
+app.use("/feedback", feedbackRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);

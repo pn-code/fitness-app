@@ -3,7 +3,7 @@ const router = express.Router();
 const Entry = require("../models/Entry");
 const { DateTime } = require("luxon");
 
-const client = 'http://localhost:5173/fitness-app/journal'
+const client = "http://localhost:5173/fitness-app/journal";
 
 router.get("/", async (req, res) => {
     const entries = await Entry.find();
@@ -37,14 +37,12 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:journalId", async (req, res) => {
-    if (req.user) {
-        const journalId = req.params.journalId;
-        const entry = await Entry.findByIdAndDelete(journalId);
-        res.json({
-            status: "Success",
-            entry,
-        });
-    }
+    const journalId = req.params.journalId;
+    const entry = await Entry.findByIdAndDelete(journalId);
+    res.json({
+        status: "Success",
+        entry,
+    });
 });
 
 module.exports = router;

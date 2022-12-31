@@ -8,13 +8,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import { Routes, Route, redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Feedback from "./components/Feedback";
 
 const App = () => {
     const API_URL = "http://localhost:3000";
@@ -49,6 +50,7 @@ const App = () => {
                 <Route path="/fitness-app/journal" element={<Journal />} />
                 <Route path="/fitness-app/profile" element={<Profile setUser={setUser} user={user}/>} />
                 <Route path="/fitness-app/my-plans" element={<MyPlans />} />
+                <Route path="/fitness-app/feedback" element={<Feedback user={user}/>} />
             </Routes>
             <Footer />
         </div>

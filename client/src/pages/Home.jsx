@@ -8,9 +8,8 @@ const Home = (props) => {
     return (
         <div className="container">
             <main className="Home">
-                <section className="introduction">
-                    <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
-                    {}
+            <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
+                <section className="about">
                     <h3>About</h3>
                     <p>
                         This fitness app was developed to access fundamental
@@ -38,7 +37,7 @@ const Home = (props) => {
                 </section>
                 {!user && (
                     <section className="sign-up--section">
-                        <h2>Sign-Up</h2>
+                        <h3>Sign-Up</h3>
                         <p>
                             <strong>
                                 If you want to get your fitness goals in line,
