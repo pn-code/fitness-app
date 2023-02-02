@@ -1,13 +1,14 @@
 import React from "react";
 import { BsCalculatorFill, BsJournalRichtext } from "react-icons/bs";
 import { BiRun } from "react-icons/bi";
+import previewImage from "../images/fitness-preview.jpg"
 
 const LandingPage = () => {
     return (
         // Container
-        <div className="flex flex-col bg-[#040324] text-white px-10">
+        <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
             {/* HERO SECTION */}
-            <div className="flex flex-col justify-center items-center my-6 mb-10">
+            <div className="flex flex-col justify-center items-center mt-10">
                 <h2 className="font-semibold text-[16px] mb-2">
                     DISCOVER YOUR INNER STRENGTH
                 </h2>
@@ -19,25 +20,27 @@ const LandingPage = () => {
                     guaranteed to work!
                 </span>
                 <div>
-                    <button className="px-5 py-2 rounded-sm bg-[#272626]">
+                    <button className="px-5 py-2 rounded-sm bg-[#272626] font-semibold">
                         JOIN NOW
                     </button>
                 </div>
             </div>
 
             {/* IMAGE SECTION */}
-            <div></div>
+            <div>
+                <img src={previewImage}/>
+            </div>
 
             {/* FEATURES SECTION */}
-            <div className="flex flex-col gap-8 my-10">
+            <div className="flex flex-col gap-8">
                 {/* CALCULATE */}
                 <div className="flex gap-8">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] rounded-xl">
                         <BsCalculatorFill size={60} color="#6184FE" />
                     </div>
                     <div>
-                        <h2>CALCULATE</h2>
-                        <span>Find your starting point.</span>
+                        <h2 className="text-[20px] font-bold">CALCULATE</h2>
+                        <span className="text-[12px]">Find your starting point.</span>
                     </div>
                 </div>
                 {/* PLAN */}
@@ -46,8 +49,8 @@ const LandingPage = () => {
                         <BiRun size={60} color="#6184FE" />
                     </div>
                     <div>
-                        <h2>PLAN</h2>
-                        <span>Take control of your workouts.</span>
+                        <h2 className="text-[20px] font-bold">PLAN</h2>
+                        <span className="text-[12px]">Take control of your workouts.</span>
                     </div>
                 </div>
                 {/* TRACK */}
@@ -57,8 +60,8 @@ const LandingPage = () => {
                     </div>
 
                     <div>
-                        <h2>TRACK</h2>
-                        <span>Add success to your to do list.</span>
+                        <h2 className="text-[20px] font-bold">TRACK</h2>
+                        <span className="text-[12px]">Add success to your to do list.</span>
                     </div>
                 </div>
             </div>
@@ -66,7 +69,7 @@ const LandingPage = () => {
             {/* FOOTER SECTION */}
             <div className="flex flex-col justify-center items-center gap-4">
                 <span className="font-semibold text-[16px]">So what are you waiting for?</span>
-                <button className="px-5 py-2 rounded-sm bg-[#272626]">JOIN NOW</button>
+                <button className="px-5 py-2 rounded-sm bg-[#272626] font-semibold">JOIN NOW</button>
                 <h2 className="text-[#FDCA15] text-[20px] font-black mb-10">SUCCESS GUARANTEED!</h2>
             </div>
         </div>
