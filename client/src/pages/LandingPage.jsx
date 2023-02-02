@@ -34,7 +34,7 @@ const LandingPage = () => {
             {/* FEATURES SECTION */}
             <div className="flex flex-col gap-8">
                 {/* CALCULATE */}
-                <div className="flex gap-8">
+                <div className="flex gap-8 hover:scale-105 duration-200 ease-linear">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] rounded-xl">
                         <BsCalculatorFill size={60} color="#6184FE" />
                     </div>
@@ -44,7 +44,7 @@ const LandingPage = () => {
                     </div>
                 </div>
                 {/* PLAN */}
-                <div className="flex gap-8">
+                <div className="flex gap-8 hover:scale-105 duration-200 ease-linear">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] rounded-xl">
                         <BiRun size={60} color="#6184FE" />
                     </div>
@@ -54,7 +54,7 @@ const LandingPage = () => {
                     </div>
                 </div>
                 {/* TRACK */}
-                <div className="flex gap-8">
+                <div className="flex gap-8 hover:scale-105 duration-200 ease-linear">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] rounded-xl">
                         <BsJournalRichtext size={60} color="#6184FE" />
                     </div>
@@ -67,7 +67,7 @@ const LandingPage = () => {
             </div>
 
             {/* FOOTER SECTION */}
-            <div className="flex flex-col justify-center items-center gap-4">
+            <div className="flex flex-col justify-center items-center gap-4 mb-20">
                 <span className="font-semibold text-[16px]">So what are you waiting for?</span>
                 <button className="px-5 py-2 rounded-sm bg-[#272626] font-semibold">JOIN NOW</button>
                 <h2 className="text-[#FDCA15] text-[20px] font-black mb-10">SUCCESS GUARANTEED!</h2>
