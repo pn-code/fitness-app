@@ -8,19 +8,19 @@ const LandingPage = () => {
         // Container
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
             {/* HERO SECTION */}
-            <div className="flex flex-col justify-center items-center mt-10">
-                <h2 className="font-semibold text-[16px] mb-2">
+            <div className="flex flex-col justify-center items-center mt-10 sm:my-80 gap-2 sm:gap-4">
+                <h2 className="font-semibold text-[16px] mb-2 sm:text-5xl">
                     DISCOVER YOUR INNER STRENGTH
                 </h2>
-                <span className="text-[12px] mb-2">
+                <span className="text-[12px] sm:text-3xl">
                     Your dream body has never been easier to reach.
                 </span>
-                <span className="text-[12px] mx-4 mb-6 text-[#FDCA15]">
+                <span className="text-[12px] text-[#FDCA15] sm:text-2xl">
                     Sign up now and enjoy fundamental fitness tools that are
                     guaranteed to work!
                 </span>
                 <div>
-                    <button className="px-5 py-2 rounded-sm bg-[#272626] font-semibold">
+                    <button className="px-5 py-2 sm:px-8 sm:py-4 mt-3 rounded-sm bg-[#272626] font-semibold sm:text-3xl hover:bg-white hover:text-gray-800">
                         JOIN NOW
                     </button>
                 </div>
