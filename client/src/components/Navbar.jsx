@@ -20,14 +20,14 @@ const Navbar = (props) => {
             {/* LOGO */}
             <div>
                 <Link style={{ textDecoration: "none" }} to="/fitness-app/">
-                    <h1 className="text-2xl font-black text-white">FITNESS</h1>
+                    <h1 className="text-[20px] font-black text-white">FITNESS</h1>
                 </Link>
             </div>
 
             {/* MOBILE -> HAMBURGER MENU */}
             <div className="relative sm:hidden cursor-pointer">
                 <button className="bg-[#040324]" onClick={handleClick}>
-                    <GiHamburgerMenu size={32} color="white" />
+                    <GiHamburgerMenu size={28} color="white" />
                 </button>
                 {open && <NavMenu setOpen={setOpen}/>}
             </div>
