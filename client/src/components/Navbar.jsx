@@ -1,11 +1,13 @@
 import React from "react";
-import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
-import logoIcon from "../images/navbar/lightning.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
+import { IoIosJournal } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = (props) => {
-    const { user } = props;
+    // const { user } = props;
+    const user = true;
 
     return (
         <nav className="flex justify-between items-center p-5 flex-row bg-[#040324]">
@@ -17,11 +19,45 @@ const Navbar = (props) => {
             </div>
 
             {/* MOBILE -> HAMBURGER MENU */}
-            <div>
-                <GiHamburgerMenu size={32} color="white"/>
+            <div className="sm:hidden">
+                <GiHamburgerMenu size={32} color="white" />
             </div>
 
-            {/* {user && <NavLinks user={user}/>} */}
+            {/* NAVLINKS */}
+            {user && (
+                <ul className="hidden sm:flex text-white gap-5">
+                    <li>
+                        <Link className="flex gap-1 justify-center items-center" to="/fitness-app/">
+                            <AiFillHome size={16} color="white"/>
+                            <span>HOME</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link  className="flex gap-1 justify-center items-center" to="/fitness-app/calculator">
+                            <AiFillCalculator size={16} color="white"/>
+                            <span>CALCULATE</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="flex gap-1 justify-center items-center" to="/fitness-app/my-plans">
+                            <AiFillBuild size={16} color="white"/>
+                            <span>PLANS</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="flex gap-1 justify-center items-center" to="/fitness-app/journal">
+                            <IoIosJournal size={16} color="white"/>
+                            <span>JOURNAL</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="flex gap-1 justify-center items-center" to="/fitness-app/profile">
+                            <CgProfile size={16} color="white"/>
+                            <span>PROFILE</span>
+                        </Link>
+                    </li>
+                </ul>
+            )}
         </nav>
     );
 };
