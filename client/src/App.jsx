@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
 import MyPlans from "./pages/MyPlans";
 import Calculator from "./pages/Calculator";
 import Journal from "./pages/Journal";
@@ -35,7 +36,8 @@ const App = () => {
         <div className="App">
             <Navbar user={user}/>
             <Routes>
-                <Route path="/fitness-app/" element={<Home user={user}/>} />
+                {/* <Route path="/fitness-app/" element={<Home user={user}/>} /> */}
+                <Route path="/fitness-app/" element={<LandingPage />} />
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />
                 <Route
                     path="/fitness-app/login"
