@@ -2,19 +2,26 @@ import React from "react";
 import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
 import logoIcon from "../images/navbar/lightning.svg";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = (props) => {
     const { user } = props;
 
     return (
-        <nav className="Navbar">
-            <div className="logo">
-                <Link to="/fitness-app/">
-                    <img className="logo-img" src={logoIcon} alt="lightning" />
-                    <h1 className="logo-text">Fitness</h1>
+        <nav className="flex justify-between items-center p-5 flex-row bg-[#040324]">
+            {/* LOGO */}
+            <div>
+                <Link style={{ textDecoration: "none" }} to="/fitness-app/">
+                    <h1 className="text-2xl font-black text-white">FITNESS</h1>
                 </Link>
             </div>
-            {user && <NavLinks user={user}/>}
+
+            {/* MOBILE -> HAMBURGER MENU */}
+            <div>
+                <GiHamburgerMenu size={32} color="white"/>
+            </div>
+
+            {/* {user && <NavLinks user={user}/>} */}
         </nav>
     );
 };
