@@ -20,7 +20,7 @@ const Navbar = (props) => {
             {/* LOGO */}
             <div>
                 <Link style={{ textDecoration: "none" }} to="/fitness-app/">
-                    <h1 className="text-[20px] font-black text-white">FITNESS</h1>
+                    <h1 className="text-[20px] font-black text-white sm:text-3xl">FITNESS</h1>
                 </Link>
             </div>
 
@@ -37,49 +37,49 @@ const Navbar = (props) => {
             {/* NAVLINKS */}
             {user && (
                 <ul className="hidden sm:flex text-white gap-5">
-                    <li>
+                    <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
                             to="/fitness-app/"
                         >
                             <AiFillHome size={16} color="white" />
-                            <span>HOME</span>
+                            <span className="sm:text-lg">HOME</span>
                         </Link>
                     </li>
-                    <li>
+                    <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
                             to="/fitness-app/calculator"
                         >
                             <AiFillCalculator size={16} color="white" />
-                            <span>CALCULATE</span>
+                            <span className="sm:text-lg">CALCULATE</span>
                         </Link>
                     </li>
-                    <li>
+                    <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
                             to="/fitness-app/my-plans"
                         >
                             <AiFillBuild size={16} color="white" />
-                            <span>PLANS</span>
+                            <span className="sm:text-lg">PLANS</span>
                         </Link>
                     </li>
-                    <li>
+                    <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
                             to="/fitness-app/journal"
                         >
                             <IoIosJournal size={16} color="white" />
-                            <span>JOURNAL</span>
+                            <span className="sm:text-lg">JOURNAL</span>
                         </Link>
                     </li>
-                    <li>
+                    <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
                             to="/fitness-app/profile"
                         >
                             <CgProfile size={16} color="white" />
-                            <span>PROFILE</span>
+                            <span className="sm:text-lg">PROFILE</span>
                         </Link>
                     </li>
                 </ul>
