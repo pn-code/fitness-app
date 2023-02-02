@@ -8,11 +8,7 @@
     font-family: "Jost";
 }
 
-body {
+html {
     margin: 0;
-}
-
-.App {
-    margin-bottom: 16vh;
 }
 
