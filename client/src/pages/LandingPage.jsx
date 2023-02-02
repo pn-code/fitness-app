@@ -29,7 +29,7 @@ const LandingPage = () => {
             <div></div>
 
             {/* FEATURES SECTION */}
-            <div className="flex flex-col gap-8 mb-10">
+            <div className="flex flex-col gap-8 my-10">
                 {/* CALCULATE */}
                 <div className="flex gap-8">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] rounded-xl">
@@ -61,6 +61,13 @@ const LandingPage = () => {
                         <span>Add success to your to do list.</span>
                     </div>
                 </div>
+            </div>
+
+            {/* FOOTER SECTION */}
+            <div className="flex flex-col justify-center items-center gap-4">
+                <span className="font-semibold text-[16px]">So what are you waiting for?</span>
+                <button className="px-5 py-2 rounded-sm bg-[#272626]">JOIN NOW</button>
+                <h2 className="text-[#FDCA15] text-[20px] font-black mb-10">SUCCESS GUARANTEED!</h2>
             </div>
         </div>
     );
