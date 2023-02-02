@@ -4,12 +4,17 @@ import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
-const NavMenu = () => {
+const NavMenu = ({ setOpen }) => {
+    const handleClick = () => {
+        setOpen(false);
+    };
+
     return (
         <div className="absolute -right-5 top-10 bg-black w-[200px] h-[920px] rounded-md">
             <ul className="pt-10 p-5 bg-black/85 flex flex-col items-start justify-end text-white gap-16">
                 <li>
                     <Link
+                        onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
                         to="/fitness-app/"
                     >
@@ -19,6 +24,7 @@ const NavMenu = () => {
                 </li>
                 <li>
                     <Link
+                        onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
                         to="/fitness-app/calculator"
                     >
@@ -28,6 +34,7 @@ const NavMenu = () => {
                 </li>
                 <li>
                     <Link
+                        onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
                         to="/fitness-app/my-plans"
                     >
@@ -37,6 +44,7 @@ const NavMenu = () => {
                 </li>
                 <li>
                     <Link
+                        onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
                         to="/fitness-app/journal"
                     >
@@ -46,6 +54,7 @@ const NavMenu = () => {
                 </li>
                 <li>
                     <Link
+                        onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
                         to="/fitness-app/profile"
                     >
