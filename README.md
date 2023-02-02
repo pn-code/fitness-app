@@ -1,4 +1,4 @@
-# fitness-app
+# fitness-app / firebase branch
 
 This fitness app was developed to access fundamental fitness tools required for achieve
 success no matter your fitness standards.
