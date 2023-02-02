@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BsCalculatorFill, BsJournalRichtext } from "react-icons/bs";
 import { BiRun } from "react-icons/bi";
 import previewImage from "../images/fitness-preview.jpg";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
     const [matches, setMatches] = useState(
@@ -30,9 +31,11 @@ const LandingPage = () => {
                     guaranteed to work!
                 </span>
                 <div>
-                    <button className="px-5 py-2 sm:px-8 sm:py-4 mt-3 rounded-sm bg-[#272626] font-semibold sm:text-3xl hover:bg-white hover:text-gray-800">
-                        JOIN NOW
-                    </button>
+                    <Link to="/sign-up">
+                        <button className="px-5 py-2 sm:px-8 sm:py-4 mt-3 rounded-sm bg-[#272626] font-semibold sm:text-3xl hover:bg-white hover:text-gray-800">
+                            JOIN NOW
+                        </button>
+                    </Link>
                 </div>
             </div>
 
@@ -43,7 +46,9 @@ const LandingPage = () => {
 
             {/* FEATURES SECTION */}
             <div className="flex flex-col gap-8 my-5 sm: sm:my-20 sm:gap-20 lg:items-center">
-                <h1 className="font-black text-2xl sm:text-5xl sm:mb-10">USE OUR TOOLS TO:</h1>
+                <h1 className="font-black text-2xl sm:text-5xl sm:mb-10">
+                    USE OUR TOOLS TO:
+                </h1>
                 {/* CALCULATE */}
                 <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear lg:w-[575px]">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] sm:h-52 sm:w-52 rounded-xl">
@@ -100,9 +105,11 @@ const LandingPage = () => {
                 <span className="font-semibold text-[16px] sm:text-5xl">
                     What are you waiting for?
                 </span>
-                <button className="px-5 py-2 sm:px-20 sm:py-8 rounded-md bg-[#272626] font-semibold sm:text-5xl hover:bg-white hover:text-gray-800">
-                    JOIN NOW
-                </button>
+                <Link to="/sign-up">
+                    <button className="px-5 py-2 sm:px-20 sm:py-8 rounded-md bg-[#272626] font-semibold sm:text-5xl hover:bg-white hover:text-gray-800">
+                        JOIN NOW
+                    </button>
+                </Link>
                 <h2 className="text-[#FDCA15] text-[20px] font-black mb-10 sm:text-2xl">
                     SUCCESS GUARANTEED!
                 </h2>

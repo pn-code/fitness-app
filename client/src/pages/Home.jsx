@@ -1,14 +1,16 @@
 import React from "react";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const Home = (props) => {
     const { user } = props;
+    const redirect = user == null;
 
     return (
         <div className="container">
+            {redirect && <Navigate replace to="/fitness-app/landing" />}
             <main className="Home">
-            <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
+                <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
                 <section className="about">
                     <h3>About</h3>
                     <p>

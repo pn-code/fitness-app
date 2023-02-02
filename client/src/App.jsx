@@ -35,8 +35,8 @@ const App = () => {
         <div className="App">
             <Navbar user={user}/>
             <Routes>
-                {/* <Route path="/fitness-app/" element={<Home user={user}/>} /> */}
-                <Route path="/fitness-app/" element={<LandingPage />} />
+                <Route path="/fitness-app/" element={<Home user={user}/>} />
+                <Route path="/fitness-app/landing" element={<LandingPage />} />
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />
                 <Route
                     path="/fitness-app/login"

@@ -8,8 +8,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Navbar = (props) => {
     const [open, setOpen] = useState(false);
-    // const { user } = props;
-    const user = true;
+    const { user } = props;
 
     const handleClick = () => {
         setOpen((open) => !open);
@@ -20,7 +19,9 @@ const Navbar = (props) => {
             {/* LOGO */}
             <div>
                 <Link style={{ textDecoration: "none" }} to="/fitness-app/">
-                    <h1 className="text-[20px] font-black text-white sm:text-3xl">FITNESS</h1>
+                    <h1 className="text-[20px] font-black text-white sm:text-3xl">
+                        FITNESS
+                    </h1>
                 </Link>
             </div>
 
@@ -29,10 +30,8 @@ const Navbar = (props) => {
                 <button className="bg-[#040324]" onClick={handleClick}>
                     <GiHamburgerMenu size={28} color="white" />
                 </button>
-                {open && <NavMenu setOpen={setOpen}/>}
+                {open && <NavMenu setOpen={setOpen} />}
             </div>
-
-
 
             {/* NAVLINKS */}
             {user && (
