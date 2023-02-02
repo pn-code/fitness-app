@@ -42,9 +42,9 @@ const LandingPage = () => {
             </div>
 
             {/* FEATURES SECTION */}
-            <div className="flex flex-col gap-8 my-5 sm:gap-20 lg:items-center">
+            <div className="flex flex-col gap-8 my-5 sm:gap-20 lg:mx-20">
                 {/* CALCULATE */}
-                <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear">
+                <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear h-">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] sm:h-52 sm:w-52 rounded-xl">
                         <BsCalculatorFill
                             size={matches ? 180 : 60}
@@ -52,7 +52,7 @@ const LandingPage = () => {
                         />
                     </div>
                     <div>
-                        <h2 className="text-[20px] font-bold sm:text-5xl mb-8">
+                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">
                             CALCULATE
                         </h2>
                         <span className="text-[12px] sm:text-2xl">
@@ -66,7 +66,7 @@ const LandingPage = () => {
                         <BiRun size={matches ? 180 : 60} color="#6184FE" />
                     </div>
                     <div>
-                        <h2 className="text-[20px] font-bold sm:text-5xl mb-8">PLAN</h2>
+                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">PLAN</h2>
                         <span className="text-[12px] sm:text-2xl">
                             Take control of your workouts.
                         </span>
@@ -79,7 +79,7 @@ const LandingPage = () => {
                     </div>
 
                     <div>
-                        <h2 className="text-[20px] font-bold sm:text-5xl mb-8">TRACK</h2>
+                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">TRACK</h2>
                         <span className="text-[12px] sm:text-2xl">
                             Add success to your to do list.
                         </span>
@@ -88,14 +88,14 @@ const LandingPage = () => {
             </div>
 
             {/* FOOTER SECTION */}
-            <div className="flex flex-col justify-center items-center gap-4 mb-20">
-                <span className="font-semibold text-[16px]">
-                    So what are you waiting for?
+            <div className="flex flex-col justify-center items-center gap-4 mb-20 sm:my-60 sm:gap-16">
+                <span className="font-semibold text-[16px] sm:text-5xl">
+                    What are you waiting for?
                 </span>
-                <button className="px-5 py-2 rounded-sm bg-[#272626] font-semibold">
+                <button className="px-5 py-2 sm:px-20 sm:py-8 rounded-md bg-[#272626] font-semibold sm:text-5xl hover:bg-white hover:text-gray-800">
                     JOIN NOW
                 </button>
-                <h2 className="text-[#FDCA15] text-[20px] font-black mb-10">
+                <h2 className="text-[#FDCA15] text-[20px] font-black mb-10 sm:text-2xl">
                     SUCCESS GUARANTEED!
                 </h2>
             </div>
