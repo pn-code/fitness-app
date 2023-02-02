@@ -42,9 +42,10 @@ const LandingPage = () => {
             </div>
 
             {/* FEATURES SECTION */}
-            <div className="flex flex-col gap-8 my-5 sm:gap-20 lg:mx-20">
+            <div className="flex flex-col gap-8 my-5 sm: sm:my-20 sm:gap-20 lg:items-center">
+                <h1 className="font-black text-2xl sm:text-5xl sm:mb-10">USE OUR TOOLS TO:</h1>
                 {/* CALCULATE */}
-                <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear h-">
+                <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear lg:w-[575px]">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] sm:h-52 sm:w-52 rounded-xl">
                         <BsCalculatorFill
                             size={matches ? 180 : 60}
@@ -66,7 +67,9 @@ const LandingPage = () => {
                         <BiRun size={matches ? 180 : 60} color="#6184FE" />
                     </div>
                     <div>
-                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">PLAN</h2>
+                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">
+                            PLAN
+                        </h2>
                         <span className="text-[12px] sm:text-2xl">
                             Take control of your workouts.
                         </span>
@@ -75,11 +78,16 @@ const LandingPage = () => {
                 {/* TRACK */}
                 <div className="flex gap-8 sm:gap-16 hover:scale-105 duration-200 ease-linear">
                     <div className="flex justify-center items-center bg-white w-[70px] h-[70px] sm:h-52 sm:w-52 rounded-xl">
-                        <BsJournalRichtext size={matches ? 180 : 60} color="#6184FE" />
+                        <BsJournalRichtext
+                            size={matches ? 180 : 60}
+                            color="#6184FE"
+                        />
                     </div>
 
                     <div>
-                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">TRACK</h2>
+                        <h2 className="text-[20px] font-bold sm:text-5xl mb-2">
+                            TRACK
+                        </h2>
                         <span className="text-[12px] sm:text-2xl">
                             Add success to your to do list.
                         </span>
