@@ -6,7 +6,6 @@ import Calculator from "./pages/Calculator";
 import Journal from "./pages/Journal";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
@@ -54,7 +53,6 @@ const App = () => {
                 <Route path="/fitness-app/my-plans" element={<MyPlans />} />
                 <Route path="/fitness-app/feedback" element={<Feedback user={user}/>} />
             </Routes>
-            <Footer />
         </div>
     );
 };
