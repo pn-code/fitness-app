@@ -33,15 +33,17 @@ const Calculator = () => {
     };
     // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
-        <div className="text-white mx-10 my-5 flex flex-col gap-4">
+        <div className="text-white mx-10 my-5 flex flex-col gap-2">
             {/* HEADER */}
             <div>
                 <h2 className="text-xl font-bold">Calorie Calculator</h2>
             </div>
 
-            <form className="flex flex-col gap-2">
+            <form className="flex flex-col gap-4 rounded-md">
                 <div className="flex justify-between items-center">
-                    <span className="text-md font-semibold">Find your starting point.</span>
+                    <span className="text-md font-semibold">
+                        Find your starting point.
+                    </span>
                     <div className="metric--container">
                         <button
                             className="bg-[#4b46c7] px-3 py-1 rounded-lg text-white hover:text-[#4b46c7] hover:bg-gray-200"
@@ -52,8 +54,9 @@ const Calculator = () => {
                         </button>
                     </div>
                 </div>
+
                 {/* Weight Input */}
-                <div>
+                <div className="flex flex-col gap-2">
                     <label htmlFor="input">
                         Weight ({metric ? `in kilograms` : `in pounds`}):
                     </label>
@@ -67,9 +70,41 @@ const Calculator = () => {
                         onChange={handleChange}
                     />
                 </div>
-                {/* Gender Input */}
-                <div>
-                    
+
+                {/* Age Input */}
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="age">Age:</label>
+                    <input
+                        className="input-bl"
+                        id="age"
+                        type="number"
+                        placeholder="age"
+                    />
+                </div>
+
+                {/* Gender */}
+                <div className="flex flex-col mt-2 gap-2">
+                    <span htmlFor="gender">Gender:</span>
+                    <div className="flex gap-8">
+                        <div className="flex items-center justify-center">
+                            <input
+                                id="gender-male"
+                                name="gender"
+                                className="w-4 mr-2"
+                                type="radio"
+                            />
+                            <label htmlFor="">Male</label>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <input
+                                id="gender-female"
+                                name="gender"
+                                className="w-4 mr-2"
+                                type="radio"
+                            />
+                            <label htmlFor="">Female</label>
+                        </div>
+                    </div>
                 </div>
 
                 <button
