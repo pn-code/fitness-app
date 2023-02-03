@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import CaloriePlan from "../components/CaloriePlan";
 import bulkIcon from "../images/bulk.svg";
 import cutIcon from "../images/cut.svg";
 import maintainIcon from "../images/maintain.svg";
 
 const Calculator = () => {
-    const [metric, setMetric] = React.useState(false);
-    const [calories, setCalories] = React.useState(null);
-    const [weight, setWeight] = React.useState(0);
+    const [metric, setMetric] = useState(false);
+    const [calories, setCalories] = useState(null);
 
-    const handleChange = (e) => {
-        setWeight(e.target.value);
-    };
+    const [weight, setWeight] = useState(0);
+    const [age, setAge] = useState("");
+    const [gender, setGender] = useState("");
 
     const calculateCal = () => {
         if (
@@ -31,6 +30,7 @@ const Calculator = () => {
     const changeMetric = () => {
         setMetric((metric) => !metric);
     };
+
     // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
         <div className="text-white mx-10 my-5 flex flex-col gap-2">
@@ -39,20 +39,11 @@ const Calculator = () => {
                 <h2 className="text-xl font-bold">Calorie Calculator</h2>
             </div>
 
-            <form className="flex flex-col gap-4 rounded-md">
-                <div className="flex justify-between items-center">
+            <form className="flex flex-col gap-4 rounded-md justify-center items-center">
+                <div className="flex flex-col justify-between items-center gap-2">
                     <span className="text-md font-semibold">
                         Find your starting point.
                     </span>
-                    <div className="metric--container">
-                        <button
-                            className="bg-[#4b46c7] px-3 py-1 rounded-lg text-white hover:text-[#4b46c7] hover:bg-gray-200"
-                            type="button"
-                            onClick={changeMetric}
-                        >
-                            Change Units
-                        </button>
-                    </div>
                 </div>
 
                 {/* Weight Input */}
@@ -62,12 +53,14 @@ const Calculator = () => {
                     </label>
                     <input
                         className="input-bl mb-3"
-                        id="input"
+                        id="weight"
+                        name="weight"
                         placeholder={`weight in ${
                             metric ? "kilograms" : "pounds"
                         }`}
                         type="number"
-                        onChange={handleChange}
+                        onChange={(e) => setWeight(e.target.value)}
+                        value={weight}
                     />
                 </div>
 
@@ -77,17 +70,22 @@ const Calculator = () => {
                     <input
                         className="input-bl"
                         id="age"
+                        name="age"
                         type="number"
                         placeholder="age"
+                        onChange={(e) => setAge(e.target.value)}
+                        value={age}
                     />
                 </div>
 
                 {/* Gender */}
-                <div className="flex flex-col mt-2 gap-2">
+                <div className="flex flex-col mt-2 gap-2 sm:w-[240px]">
                     <span htmlFor="gender">Gender:</span>
                     <div className="flex gap-8">
                         <div className="flex items-center justify-center">
                             <input
+                                onChange={(e) => setGender(e.target.value)}
+                                value="male"
                                 id="gender-male"
                                 name="gender"
                                 className="w-4 mr-2"
@@ -97,6 +95,8 @@ const Calculator = () => {
                         </div>
                         <div className="flex items-center justify-center">
                             <input
+                                onChange={(e) => setGender(e.target.value)}
+                                value="female"
                                 id="gender-female"
                                 name="gender"
                                 className="w-4 mr-2"
@@ -107,13 +107,22 @@ const Calculator = () => {
                     </div>
                 </div>
 
-                <button
-                    className="calculate-btn"
-                    type="button"
-                    onClick={calculateCal}
-                >
-                    Calculate
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        className="btn-blue-light"
+                        type="button"
+                        onClick={changeMetric}
+                    >
+                        Change Units
+                    </button>
+                    <button
+                        className="btn-blue"
+                        type="button"
+                        onClick={calculateCal}
+                    >
+                        Calculate
+                    </button>
+                </div>
             </form>
             {calories && (
                 <div className="calculator--output">
