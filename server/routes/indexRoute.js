@@ -2,21 +2,24 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const mongoose = require('mongoose')
-const User = mongoose.model("User")
+const mongoose = require("mongoose");
+const User = mongoose.model("User");
 
-const client = `http://localhost:5173/`
+const client = `http://localhost:5173/`;
 
 router.post("/register", async (req, res, next) => {
     const userExists = await User.findOne({ username: req.body.username });
     const emailRegistered = await User.findOne({ email: req.body.email });
 
     if (userExists || emailRegistered) {
-        res.send(
-            "Email or username already exist in database. Please enter a different email/username."
-        );
+        res.json({
+            message:
+                "Email or username are taken. Please enter a different email/username.",
+        });
     } else if (req.body.password != req.body.confirm_password) {
-        res.send("Password and confirmed password are not the same.");
+        res.json({
+            message: "Password and confirmed password are not the same.",
+        });
     } else {
         bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
             if (err) {
