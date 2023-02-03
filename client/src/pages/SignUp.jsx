@@ -12,25 +12,31 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPw, setConfirmPw] = useState("");
     const [message, setMessage] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const registerUser = async () => {
+        setLoading(true);
+
         const user = {
             firstName,
             lastName,
             email,
             username,
             password,
+            confirmPw,
         };
 
         // If password & confirm password are equvalent, proceed with API call
         if (confirmPw === password) {
             try {
                 const res = await axios.post(API, user);
-                setMessage(res.data.message)
+                console.log(res)
+                setMessage(res.data.message);
             } catch (err) {
                 console.log(err);
             }
         }
+        setLoading(false)
     };
 
     return (
@@ -111,6 +117,7 @@ const SignUp = () => {
                 </div>
 
                 <button
+                    disabled={loading}
                     onClick={registerUser}
                     className="bg-[#3731e0] text-white mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
                     type="button"
