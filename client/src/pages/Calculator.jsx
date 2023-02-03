@@ -20,9 +20,13 @@ const Calculator = () => {
     const [feet, setFeet] = useState("");
     const [inch, setInch] = useState("");
 
-    const handleSubmit = () => {};
-
-    console.log(weight);
+    const handleSubmit = () => {
+        if (gender == "male") {
+            setCalories(10 * weight + 6.25 * height - 5 * age + 5);
+        } else if (gender == "female") {
+            setCalories(10 * weight + 6.25 * height - 5 * age - 161);
+        }
+    };
 
     const handleWeight = (e) => {
         if (e.target.name === "kg") {
@@ -42,16 +46,17 @@ const Calculator = () => {
             setFeet(e.target.value);
             setHeight((Number(e.target.value) * 12 + Number(inch)) * 2.54);
         } else if (e.target.name === "inch") {
-            const total = Number(feet) * 12 + Number(e.target.value)
+            const total = Number(feet) * 12 + Number(e.target.value);
             setInch(e.target.value);
             setHeight(total * 2.54);
         }
     };
 
-
     const changeMetric = () => {
         setMetric((metric) => !metric);
     };
+
+    console.log(calories);
 
     // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
