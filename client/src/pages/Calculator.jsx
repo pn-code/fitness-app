@@ -31,40 +31,47 @@ const Calculator = () => {
     const changeMetric = () => {
         setMetric((metric) => !metric);
     };
-
+    // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
-        <div className="text-white mx-10 my-5">
+        <div className="text-white mx-10 my-5 flex flex-col gap-4">
             {/* HEADER */}
             <div>
                 <h2 className="text-xl font-bold">Calorie Calculator</h2>
-                <span className="text-sm">Find your starting point.</span>
             </div>
 
-            <form className="">
-                <nav className="calculator-change-nav">
-                    {" "}
-                    <h3 className="calculator-app-header">
-                        Calorie Calculator
-                    </h3>
+            <form className="flex flex-col gap-2">
+                <div className="flex justify-between items-center">
+                    <span className="text-md font-semibold">Find your starting point.</span>
                     <div className="metric--container">
                         <button
-                            className="metric-btn"
+                            className="bg-[#4b46c7] px-3 py-1 rounded-lg text-white hover:text-[#4b46c7] hover:bg-gray-200"
                             type="button"
                             onClick={changeMetric}
                         >
-                            {metric === true ? `Metric (kg)` : `Imperial (lb)`}
+                            Change Units
                         </button>
                     </div>
-                </nav>
-                <label className="weight--label">
-                    Weight {metric ? "(kg)" : "(lb)"}:{" "}
-                </label>
-                <input
-                    id="weight--input"
-                    placeholder={`weight in ${metric ? "kilograms" : "pounds"}`}
-                    type="number"
-                    onChange={handleChange}
-                />
+                </div>
+                {/* Weight Input */}
+                <div>
+                    <label htmlFor="input">
+                        Weight ({metric ? `in kilograms` : `in pounds`}):
+                    </label>
+                    <input
+                        className="input-bl mb-3"
+                        id="input"
+                        placeholder={`weight in ${
+                            metric ? "kilograms" : "pounds"
+                        }`}
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                {/* Gender Input */}
+                <div>
+                    
+                </div>
+
                 <button
                     className="calculate-btn"
                     type="button"
