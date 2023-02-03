@@ -14,6 +14,7 @@ const Calculator = () => {
     const [gender, setGender] = useState("");
     const [height, setHeight] = useState("");
 
+    const [cm, setCm] = useState("");
     const [lb, setLb] = useState("");
     const [kg, setKg] = useState("");
     const [feet, setFeet] = useState("");
@@ -32,6 +33,21 @@ const Calculator = () => {
             setWeight(Number(e.target.value) * 0.453592);
         }
     };
+
+    const handleHeight = (e) => {
+        if (e.target.name === "cm") {
+            setCm(e.target.value);
+            setHeight(e.target.value);
+        } else if (e.target.name === "feet") {
+            setFeet(e.target.value);
+            setHeight((Number(e.target.value) * 12 + Number(inch)) * 2.54);
+        } else if (e.target.name === "inch") {
+            const total = Number(feet) * 12 + Number(e.target.value)
+            setInch(e.target.value);
+            setHeight(total * 2.54);
+        }
+    };
+
 
     const changeMetric = () => {
         setMetric((metric) => !metric);
@@ -55,9 +71,7 @@ const Calculator = () => {
                 {/* Weight Input */}
                 {metric ? (
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="input">
-                            Weight in kilograms:
-                        </label>
+                        <label htmlFor="input">Weight in kilograms:</label>
                         <input
                             className="input-bl mb-3"
                             id="kg"
@@ -70,9 +84,7 @@ const Calculator = () => {
                     </div>
                 ) : (
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="input">
-                            Weight in pounds
-                        </label>
+                        <label htmlFor="input">Weight in pounds</label>
                         <input
                             className="input-bl mb-3"
                             id="lb"
@@ -123,7 +135,7 @@ const Calculator = () => {
                                     name="inch"
                                     type="number"
                                     placeholder="inches"
-                                    onChange={(e) => setInch(e.target.value)}
+                                    onChange={(e) => handleHeight(e)}
                                     value={inch}
                                 />
                             </div>
