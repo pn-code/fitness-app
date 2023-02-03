@@ -1,14 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Jost:regular,bold,italic&subset=latin,latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Jost:regular,bold,italic&subset=latin,latin-ext");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 :root {
     font-family: "Jost";
 }
 
-html {
-    margin: 0;
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    background: #040324;
 }
 
+@layer components {
+    .input-bl {
+        @apply text-black rounded-sm px-2 py-1 w-60;
+    }
+}

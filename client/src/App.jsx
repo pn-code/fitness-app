@@ -11,10 +11,6 @@ import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import Feedback from "./components/Feedback";
 
 const App = () => {
