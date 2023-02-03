@@ -13,21 +13,23 @@ const Calculator = () => {
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [height, setHeight] = useState("");
-    const [feet, setFeet] = useState("");
-    const [inch, setInch] = useState("")
 
-    const calculateCal = () => {
-        if (
-            (metric === true && weight < 40) ||
-            (metric === false && weight < 50) ||
-            (metric === true && weight > 400) ||
-            (metric === false && weight > 800)
-        ) {
-            alert("Please enter a valid weight.");
-        } else {
-            setCalories(() =>
-                metric === true ? Math.round(weight * 33.333333) : weight * 15
-            );
+    const [lb, setLb] = useState("");
+    const [kg, setKg] = useState("");
+    const [feet, setFeet] = useState("");
+    const [inch, setInch] = useState("");
+
+    const handleSubmit = () => {};
+
+    console.log(weight);
+
+    const handleWeight = (e) => {
+        if (e.target.name === "kg") {
+            setKg(e.target.value);
+            setWeight(e.target.value);
+        } else if (e.target.name === "lb") {
+            setLb(e.target.value);
+            setWeight(Number(e.target.value) * 0.453592);
         }
     };
 
@@ -51,36 +53,50 @@ const Calculator = () => {
                 </div>
 
                 {/* Weight Input */}
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="input">
-                        Weight ({metric ? `in kilograms` : `in pounds`}):
-                    </label>
-                    <input
-                        className="input-bl mb-3"
-                        id="weight"
-                        name="weight"
-                        placeholder={`weight in ${
-                            metric ? "kilograms" : "pounds"
-                        }`}
-                        type="number"
-                        onChange={(e) => setWeight(e.target.value)}
-                        value={weight}
-                    />
-                </div>
-
-                {/* Height Input */}
-
                 {metric ? (
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="height">Height (cm):</label>
+                        <label htmlFor="input">
+                            Weight in kilograms:
+                        </label>
+                        <input
+                            className="input-bl mb-3"
+                            id="kg"
+                            name="kg"
+                            placeholder="weight in kg"
+                            type="number"
+                            onChange={(e) => handleWeight(e)}
+                            value={kg}
+                        />
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="input">
+                            Weight in pounds
+                        </label>
+                        <input
+                            className="input-bl mb-3"
+                            id="lb"
+                            name="lb"
+                            placeholder="weight in lb"
+                            type="number"
+                            onChange={(e) => handleWeight(e)}
+                            value={lb}
+                        />
+                    </div>
+                )}
+
+                {/* Height Input */}
+                {metric ? (
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="cm">Height (cm):</label>
                         <input
                             className="input-bl"
-                            id="height"
-                            name="height"
+                            id="cm"
+                            name="cm"
                             type="number"
-                            placeholder="height"
-                            onChange={(e) => setHeight(e.target.value)}
-                            value={age}
+                            placeholder="height in cm"
+                            onChange={(e) => handleHeight(e)}
+                            value={cm}
                         />
                     </div>
                 ) : (
@@ -95,8 +111,8 @@ const Calculator = () => {
                                     name="feet"
                                     type="number"
                                     placeholder="feet"
-                                    onChange={(e) => setFeet(e.target.value)}
-                                    value={age}
+                                    onChange={(e) => handleHeight(e)}
+                                    value={feet}
                                 />
                             </div>
                             <div>
@@ -108,7 +124,7 @@ const Calculator = () => {
                                     type="number"
                                     placeholder="inches"
                                     onChange={(e) => setInch(e.target.value)}
-                                    value={age}
+                                    value={inch}
                                 />
                             </div>
                         </div>
@@ -169,7 +185,7 @@ const Calculator = () => {
                     <button
                         className="btn-blue"
                         type="button"
-                        onClick={calculateCal}
+                        onClick={handleSubmit}
                     >
                         Calculate
                     </button>
