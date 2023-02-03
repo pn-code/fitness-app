@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 const SignUp = () => {
     const API = "http://localhost:3000/register";
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPw, setConfirmPw] = useState("");
 
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
@@ -14,6 +23,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="first_name">First Name: </label>
                     <input
+                        onChange={(e) => setFirstName(e.target.value)}
+                        value={firstName}
                         className="input-bl"
                         id="first_name"
                         name="first_name"
@@ -24,6 +35,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="last_name">Last Name: </label>
                     <input
+                        onChange={(e) => setLastName(e.target.value)}
+                        value={lastName}
                         className="input-bl"
                         id="last_name"
                         name="last_name"
@@ -34,6 +47,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="email">Email: </label>
                     <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         className="input-bl"
                         id="email"
                         name="email"
@@ -44,6 +59,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="username">Username: </label>
                     <input
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}
                         className="input-bl"
                         id="username"
                         name="username"
@@ -54,6 +71,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="password">Password: </label>
                     <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                         className="input-bl"
                         id="password"
                         name="password"
@@ -64,6 +83,8 @@ const SignUp = () => {
                 <div className="flex flex-col">
                     <label htmlFor="confirm_password">Confirm Password: </label>
                     <input
+                        onChange={(e) => setConfirmPw(e.target.value)}
+                        value={confirmPw}
                         className="input-bl"
                         id="confirm_password"
                         name="confirm_password"
