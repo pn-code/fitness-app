@@ -16,7 +16,7 @@ router.post("/register", async (req, res, next) => {
             message:
                 "Email or username are taken. Please enter a different email/username.",
         });
-    } else if (req.body.password != req.body.confirm_password) {
+    } else if (req.body.password != req.body.confirmPw) {
         res.json({
             message: "Password and confirmed password are not the same.",
         });
@@ -26,8 +26,8 @@ router.post("/register", async (req, res, next) => {
                 next(err);
             } else {
                 const userDetails = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
+                    first_name: req.body.firstName,
+                    last_name: req.body.lastName,
                     username: req.body.username,
                     email: req.body.email,
                     password: hashedPassword,
