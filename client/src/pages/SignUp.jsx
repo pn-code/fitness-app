@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -12,7 +12,8 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPw, setConfirmPw] = useState("");
     const [message, setMessage] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [register, setRegister] = useState(false);
 
     const registerUser = async () => {
         setLoading(true);
@@ -30,17 +31,20 @@ const SignUp = () => {
         if (confirmPw === password) {
             try {
                 const res = await axios.post(API, user);
-                console.log(res)
                 setMessage(res.data.message);
+                if (res.data.status === "Success") {
+                    setLoading(false);
+                    setRegister(true);
+                }
             } catch (err) {
                 console.log(err);
             }
         }
-        setLoading(false)
     };
 
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
+            {register && <Navigate replace to="/fitness-app/login" />}
             <form className="bg-[#040324] flex flex-col items-center justify-center gap-3">
                 <h2 className="text-3xl text-center mb-4">SIGN UP</h2>
                 <span className="text-red-300">{message && message}</span>
