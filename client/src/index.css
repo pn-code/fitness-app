@@ -16,6 +16,6 @@ body {
 
 @layer components {
     .input-bl {
-        @apply text-black rounded-sm px-2 py-1 w-60;
+        @apply text-black rounded-sm px-2 py-1 sm:w-60;
     }
 }
