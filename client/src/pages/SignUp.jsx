@@ -12,13 +12,28 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPw, setConfirmPw] = useState("");
 
+    const registerUser = async () => {
+        const user = {
+            firstName,
+            lastName,
+            email,
+            username,
+            password,
+        };
+
+        // If password & confirm password are equvalent, proceed with API call
+        if (confirmPw === password) {
+            try {
+                await axios.post(API, user);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
-            <form
-                className="bg-[#040324] flex flex-col items-center justify-center gap-3"
-                action={API}
-                method="POST"
-            >
+            <form className="bg-[#040324] flex flex-col items-center justify-center gap-3">
                 <h2 className="text-3xl text-center mb-4">SIGN UP</h2>
                 <div className="flex flex-col">
                     <label htmlFor="first_name">First Name: </label>
@@ -93,8 +108,9 @@ const SignUp = () => {
                 </div>
 
                 <button
+                    onClick={registerUser}
                     className="bg-[#3731e0] text-white mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
-                    type="submit"
+                    type="button"
                 >
                     Register
                 </button>
