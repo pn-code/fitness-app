@@ -8,9 +8,13 @@ const Calculator = () => {
     const [metric, setMetric] = useState(false);
     const [calories, setCalories] = useState(null);
 
+    // Input States
     const [weight, setWeight] = useState(0);
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
+    const [height, setHeight] = useState("");
+    const [feet, setFeet] = useState("");
+    const [inch, setInch] = useState("")
 
     const calculateCal = () => {
         if (
@@ -63,6 +67,53 @@ const Calculator = () => {
                         value={weight}
                     />
                 </div>
+
+                {/* Height Input */}
+
+                {metric ? (
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="height">Height (cm):</label>
+                        <input
+                            className="input-bl"
+                            id="height"
+                            name="height"
+                            type="number"
+                            placeholder="height"
+                            onChange={(e) => setHeight(e.target.value)}
+                            value={age}
+                        />
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-2">
+                        <span>Height in Imperial Units</span>
+                        <div className="flex gap-5">
+                            <div>
+                                <label htmlFor="inch">Feet:</label>
+                                <input
+                                    className="input-bl w-20"
+                                    id="feet"
+                                    name="feet"
+                                    type="number"
+                                    placeholder="feet"
+                                    onChange={(e) => setFeet(e.target.value)}
+                                    value={age}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="inch">Inches:</label>
+                                <input
+                                    className="input-bl w-20"
+                                    id="inch"
+                                    name="inch"
+                                    type="number"
+                                    placeholder="inches"
+                                    onChange={(e) => setInch(e.target.value)}
+                                    value={age}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Age Input */}
                 <div className="flex flex-col gap-2">
