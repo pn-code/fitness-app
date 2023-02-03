@@ -5,72 +5,64 @@ import { useEffect } from "react";
 
 const Home = (props) => {
     const { user } = props;
-    const [redirect, setRedirect] = useState(false)
+    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             if (!user) {
                 setRedirect(true);
             }
-          }, 1000);
-          return () => clearTimeout(timer);
+        }, 1000);
+        return () => clearTimeout(timer);
     }, [user]);
 
     return (
         <div className="container">
             {redirect && <Navigate replace to="/fitness-app/landing" />}
-            <main className="Home">
-                <h2>{`Welcome ${user ? user.first_name : `Guest`},`}</h2>
-                <section className="about">
-                    <h3>About</h3>
-                    <p>
-                        This fitness app was developed to access fundamental
-                        fitness tools required for achieve success no matter
-                        your fitness standards.
-                        <br></br>
-                        <br></br>
-                        Feel free to try out the functionalities built in to
-                        this website
-                    </p>
-                    <ul>
-                        <li>
-                            Calculator - Determine how you can meet your fitness
-                            goals.
-                        </li>
-                        <li>
-                            Planner - Create exercise plans to attack your
-                            fitness goals!
-                        </li>
-                        <li>
-                            Journal - Keep track of your calories and exercise
-                            each day.
-                        </li>
-                    </ul>
-                </section>
-                {!user && (
-                    <section className="sign-up--section">
-                        <h3>Sign-Up</h3>
-                        <p>
-                            <strong>
-                                If you want to get your fitness goals in line,
-                                then look no further.{" "}
-                            </strong>
+            {user && (
+                <main className="text-white mx-10 my-5 flex flex-col gap-4">
+                    <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.first_name},`}</h2>
+                    <section className="flex flex-col gap-6">
+                        <p className="text-xl">
+                            When I built this website, I had one goal in mind...
                             <br />
                             <br />
-                            Create an account with us to make significant
-                            progress towards your fitness goals.
+                            I wanted to free people all around the world.
+                            <br />
+                            <br />
+                            These fitness tools I've built into this website
+                            will allow for any person to reach their fitness
+                            goals. 
                         </p>
-                        <div className="sign-up--container">
-                            <Link to="/fitness-app/sign-up">
-                                <button>Sign Up</button>
-                            </Link>
-                            <Link to="/fitness-app/login">
-                                <button>Login</button>
-                            </Link>
-                        </div>
+                        <span className="text-[#FDCA15] text-xl font-bold">
+                            Fitness is yours to take.
+                        </span>
                     </section>
-                )}
-            </main>
+                    {!user && (
+                        <section className="sign-up--section">
+                            <h3>Sign-Up</h3>
+                            <p>
+                                <strong>
+                                    If you want to get your fitness goals in
+                                    line, then look no further.{" "}
+                                </strong>
+                                <br />
+                                <br />
+                                Create an account with us to make significant
+                                progress towards your fitness goals.
+                            </p>
+                            <div className="sign-up--container">
+                                <Link to="/fitness-app/sign-up">
+                                    <button>Sign Up</button>
+                                </Link>
+                                <Link to="/fitness-app/login">
+                                    <button>Login</button>
+                                </Link>
+                            </div>
+                        </section>
+                    )}
+                </main>
+            )}
         </div>
     );
 };
