@@ -30,11 +30,14 @@ const LandingPage = () => {
                     Sign up now and enjoy fundamental fitness tools that are
                     guaranteed to work!
                 </span>
-                <div>
-                    <Link to="/sign-up">
+                <div className="flex flex-col gap-2 items-center">
+                    <Link to="/fitness-app/sign-up">
                         <button className="px-5 py-2 sm:px-8 sm:py-4 mt-3 rounded-sm bg-[#272626] font-semibold sm:text-3xl hover:bg-white hover:text-gray-800">
                             JOIN NOW
                         </button>
+                    </Link>
+                    <Link to="/fitness-app/login">
+                        <span className="text-[10px] sm:text-lg hover:text-gray-400">Already have an account? Log In.</span>
                     </Link>
                 </div>
             </div>
