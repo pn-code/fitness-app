@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/home.css";
 import { Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = (props) => {
     const { user } = props;
-    const redirect = user == null;
+    const [redirect, setRedirect] = useState(false)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (!user) {
+                setRedirect(true);
+            }
+          }, 1000);
+          return () => clearTimeout(timer);
+    }, [user]);
 
     return (
         <div className="container">
