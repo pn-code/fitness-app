@@ -242,37 +242,35 @@ const Calculator = () => {
                             is not medical advice...proceed at your own risk.
                         </strong>
                     </p> */}
-                    <h3 className="text-center mb-4 font-bold underline">Choose Your Calorie Plan Below. </h3>
-                    <div className="bg-slate-700 rounded-lg p-5 mb-20">
-                        <div className="flex flex-col justify-center">
+                    <h3 className="text-center mb-4 font-bold underline">
+                        Choose Your Calorie Plan Below.
+                    </h3>
+                    <div className="bg-slate-700 rounded-lg p-5 mb-16">
+                        <div className="flex flex-col gap-2 justify-center">
                             <CaloriePlan
                                 imgSrc={maintainIcon}
                                 planName="Maintain"
-                                planInfo="If you feel that your weight is perfect as it
-                            is, you should aim to hit your maintenance
+                                planInfo="To maintain your weight, you should aim to hit your maintenance
                             calories."
-                                calorieGoal={calories}
+                                calorieGoal={parseInt(calories)}
                             />
                             <CaloriePlan
                                 imgSrc={bulkIcon}
                                 planName="Bulk"
-                                planInfo="If you'd like to gain some weight, you can add
-                                300-500 calories to your daily calorie
-                                consumption. It is not recommended, however, to
-                                go overboard with your calorie surplus."
-                                calorieGoal={`${calories + 300}-${
-                                    calories + 500
-                                }`}
+                                planInfo="To gain weight, add
+                                300-500 calories to your maintenance calories."
+                                calorieGoal={`${
+                                    parseInt(calories) + 300
+                                } - ${parseInt(calories + 500)}`}
                             />
                             <CaloriePlan
                                 imgSrc={cutIcon}
                                 planName="Cut"
-                                planInfo="If you wish to lose weight, you should remove
-                                500 calories from your maintenance calories to
-                                achieve approximately 1 pound per week."
-                                calorieGoal={`${calories - 1000}-${
-                                    calories - 500
-                                }`}
+                                planInfo="To lose weight, remove
+                                500-1000 calories from your maintenance calories."
+                                calorieGoal={`${parseInt(
+                                    calories - 1000
+                                )}-${parseInt(calories - 500)}`}
                             />
                         </div>
                     </div>
