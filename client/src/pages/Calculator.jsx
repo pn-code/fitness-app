@@ -65,7 +65,7 @@ const Calculator = () => {
     return (
         <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
             {/* HEADER */}
-            <div>
+            <div className="mb-5">
                 <h2 className="text-4xl font-bold">Calorie Calculator</h2>
                 <span>Using Mifflin St. Jeor Formula.</span>
             </div>
@@ -222,7 +222,7 @@ const Calculator = () => {
 
                 {/* Activity Caption */}
                 {showActivity && (
-                    <ul className="flex flex-col gap-2 mx-8 sm:text-sm sm:w-[250px]">
+                    <ul className="flex flex-col gap-2 mx-8 w-[180px] sm:text-sm sm:w-[250px]">
                         <li>
                             <span className="text-[#FDCA15]">Sedentary</span> -
                             Little to no exercise, such as a desk job with no
