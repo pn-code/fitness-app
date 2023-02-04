@@ -63,14 +63,14 @@ const Calculator = () => {
     };
 
     return (
-        <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center">
+        <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
             {/* HEADER */}
             <div>
                 <h2 className="text-4xl font-bold">Calorie Calculator</h2>
                 <span>Using Mifflin St. Jeor Formula.</span>
             </div>
 
-            <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-20 w-[400px]">
+            <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-20 sm:w-[540px]">
                 <span className="text-md font-semibold sm:text-2xl">
                     Find your starting point.
                 </span>
@@ -286,11 +286,11 @@ const Calculator = () => {
                         </div>
                     )}
 
-                    <h3 className="text-center mb-4 font-bold underline">
+                    <h3 className="text-center mb-8 font-bold underline">
                         Choose Your Calorie Plan Below.
                     </h3>
-                    <div className="bg-slate-700 rounded-lg p-5 mb-16">
-                        <div className="flex flex-col gap-2 justify-center">
+                    <div className="bg-slate-700 rounded-lg p-5 mb-16 sm:bg-transparent">
+                        <div className="flex flex-col gap-8">
                             <CaloriePlan
                                 imgSrc={maintainIcon}
                                 planName="Maintain"

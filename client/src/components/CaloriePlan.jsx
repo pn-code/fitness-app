@@ -9,26 +9,33 @@ const CaloriePlan = (props) => {
     };
 
     return (
-        <div className="h-72">
+        <div className="h-72 sm:h-96 sm:bg-slate-700 sm:rounded-md">
             {!isClicked ? (
                 <div
-                    className="h-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md"
+                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md"
                     onClick={handleClick}
                 >
-                    <h3 className="text-lg">{planName}</h3>
-                    <img src={imgSrc} />
+                    <h3 className="text-lg mt-4">{planName}</h3>
+                    <div className="h-52 w-52 sm:w-32 sm:h-32">
+                        <img src={imgSrc} />
+                    </div>
                 </div>
             ) : (
-                <div className="h-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md" onClick={handleClick}>
+                <div
+                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md"
+                    onClick={handleClick}
+                >
                     <h4 className="text-lg font-semibold mb-4">{planName}</h4>
                     <p>
                         {planInfo}
                         <br></br>
                         <br></br>
                         <span>GOAL: </span>
-                        <span className="text-[#6d63f7]">{calorieGoal} calories.</span>
-                        
+                        <span className="text-[#6d63f7]">
+                            {calorieGoal} calories.
+                        </span>
                     </p>
+                    <button className="btn-blue mt-10">SELECT PLAN</button>
                 </div>
             )}
         </div>
