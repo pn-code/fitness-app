@@ -63,23 +63,21 @@ const Calculator = () => {
     };
 
     return (
-        <div className="text-white mx-10 my-5 flex flex-col gap-2">
+        <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center">
             {/* HEADER */}
             <div>
-                <h2 className="text-xl font-bold">Calorie Calculator</h2>
+                <h2 className="text-4xl font-bold">Calorie Calculator</h2>
                 <span>Using Mifflin St. Jeor Formula.</span>
             </div>
 
-            <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-12">
-                <div className="flex flex-col justify-between items-center gap-2">
-                    <span className="text-md font-semibold">
-                        Find your starting point.
-                    </span>
-                </div>
+            <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-20 w-[400px]">
+                <span className="text-md font-semibold sm:text-2xl">
+                    Find your starting point.
+                </span>
 
                 {/* Weight Input */}
                 {metric ? (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 sm:px-8">
                         <label htmlFor="input">Weight in kilograms:</label>
                         <input
                             className="input-bl mb-3"
@@ -92,7 +90,7 @@ const Calculator = () => {
                         />
                     </div>
                 ) : (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 sm:px-8">
                         <label htmlFor="input">Weight in pounds</label>
                         <input
                             className="input-bl mb-3"
@@ -108,7 +106,7 @@ const Calculator = () => {
 
                 {/* Height Input */}
                 {metric ? (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 sm:px-8">
                         <label htmlFor="cm">Height (cm):</label>
                         <input
                             className="input-bl"
@@ -123,8 +121,8 @@ const Calculator = () => {
                 ) : (
                     <div className="flex flex-col gap-2">
                         <span>Height in Imperial Units</span>
-                        <div className="flex gap-5">
-                            <div>
+                        <div className="flex gap-5 sm:gap-20">
+                            <div className="">
                                 <label htmlFor="inch">Feet:</label>
                                 <input
                                     className="input-bl w-20"
@@ -136,7 +134,7 @@ const Calculator = () => {
                                     value={feet}
                                 />
                             </div>
-                            <div>
+                            <div className="">
                                 <label htmlFor="inch">Inches:</label>
                                 <input
                                     className="input-bl w-20"
@@ -153,7 +151,7 @@ const Calculator = () => {
                 )}
 
                 {/* Age Input */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 sm:px-8">
                     <label htmlFor="age">Age:</label>
                     <input
                         className="input-bl"
@@ -167,7 +165,7 @@ const Calculator = () => {
                 </div>
 
                 {/* Gender */}
-                <div className="flex flex-col mt-2 gap-2 sm:w-[240px]">
+                <div className="flex flex-col gap-2 sm:px-8 mt-2 sm:flex-row">
                     <span htmlFor="gender">Gender:</span>
                     <div className="flex gap-8">
                         <div className="flex items-center justify-center">
@@ -196,9 +194,9 @@ const Calculator = () => {
                 </div>
 
                 {/* Activity */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                     <div className="flex justify-between">
-                        <label htmlFor="activity">Activity</label>
+                        <label className="mr-[2px]" htmlFor="activity">Activity:</label>
                         <AiFillQuestionCircle
                             onClick={() => setShowActivity((show) => !show)}
                             className="cursor-pointer"
@@ -224,12 +222,10 @@ const Calculator = () => {
 
                 {/* Activity Caption */}
                 {showActivity && (
-                    <ul className="flex flex-col gap-2 mx-8">
+                    <ul className="flex flex-col gap-2 mx-8 sm:text-sm sm:w-[250px]">
                         <li>
-                            <span className="text-[#FDCA15]">
-                                Sedentary
-                            </span>
-                            {" "} - Little to no exercise, such as a desk job with no
+                            <span className="text-[#FDCA15]">Sedentary</span> -
+                            Little to no exercise, such as a desk job with no
                             additional physical activity
                         </li>
                         <li>
@@ -245,9 +241,7 @@ const Calculator = () => {
                             - Moderate exercise 3-5 days/week
                         </li>
                         <li>
-                            <span className="text-[#FDCA15]">
-                                Very Active
-                            </span>{" "}
+                            <span className="text-[#FDCA15]">Very Active</span>{" "}
                             - Hard exercise 6-7 days/week
                         </li>
                         <li>
@@ -291,7 +285,7 @@ const Calculator = () => {
                             </p>
                         </div>
                     )}
-                    
+
                     <h3 className="text-center mb-4 font-bold underline">
                         Choose Your Calorie Plan Below.
                     </h3>
