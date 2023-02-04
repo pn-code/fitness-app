@@ -38,10 +38,19 @@ const Planner = (props) => {
         if (formPage < 2) {
             setFormPage((page) => page + 1);
         } else {
+            const plan = {
+                planTitle,
+                planEmphasis,
+                desc,
+                exercises,
+            };
             // Save to array
             setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
             // Reset Form
-            setPlan({});
+            setPlanTitle("");
+            setPlanEmphasis("");
+            setDesc("");
+            setExercises([]);
         }
     };
 
