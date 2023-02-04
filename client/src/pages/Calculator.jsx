@@ -23,11 +23,14 @@ const Calculator = () => {
 
     const handleSubmit = () => {
         if (gender == "male") {
-            setCalories(10 * weight + 6.25 * height - 5 * age + 5);
+            setCalories((10 * weight + 6.25 * height - 5 * age + 5) * activity);
         } else if (gender == "female") {
-            setCalories(10 * weight + 6.25 * height - 5 * age - 161);
+            setCalories(
+                (10 * weight + 6.25 * height - 5 * age - 161) * activity
+            );
         }
     };
+    console.log(activity);
 
     const handleWeight = (e) => {
         if (e.target.name === "kg") {
@@ -57,8 +60,6 @@ const Calculator = () => {
         setMetric((metric) => !metric);
     };
 
-    console.log(calories);
-
     // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
         <div className="text-white mx-10 my-5 flex flex-col gap-2">
@@ -67,7 +68,7 @@ const Calculator = () => {
                 <h2 className="text-xl font-bold">Calorie Calculator</h2>
             </div>
 
-            <form className="flex flex-col gap-4 rounded-md justify-center items-center">
+            <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-12">
                 <div className="flex flex-col justify-between items-center gap-2">
                     <span className="text-md font-semibold">
                         Find your starting point.
@@ -195,13 +196,18 @@ const Calculator = () => {
                 {/* Activity */}
                 <div className="flex flex-col gap-2">
                     <label htmlFor="activity">Activity</label>
-                    <select className="text-black" name="" id="">
+                    <select
+                        onChange={(e) => setActivity(e.target.value)}
+                        className="text-black"
+                        name="activity"
+                        id="activity"
+                    >
                         <option value="">SELECT AN OPTION</option>
-                        <option value="">Sedentary</option>
-                        <option value="">Lightly Active</option>
-                        <option value="">Moderately Active</option>
-                        <option value="">Very Active</option>
-                        <option value="">Extremely Active</option>
+                        <option value={1.2}>Sedentary</option>
+                        <option value={1.375}>Lightly Active</option>
+                        <option value={1.55}>Moderately Active</option>
+                        <option value={1.725}>Very Active</option>
+                        <option value={1.9}>Extremely Active</option>
                     </select>
                 </div>
 
