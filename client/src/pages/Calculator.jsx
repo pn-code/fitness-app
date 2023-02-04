@@ -62,12 +62,12 @@ const Calculator = () => {
         setMetric((metric) => !metric);
     };
 
-    // The calculation is called the Mifflin-St Jeor equation, a formula that has been shown to be the most accurate way of estimating calorie needs in numerous studies by the ADA (American Dietetic Association).
     return (
         <div className="text-white mx-10 my-5 flex flex-col gap-2">
             {/* HEADER */}
             <div>
                 <h2 className="text-xl font-bold">Calorie Calculator</h2>
+                <span>Using Mifflin St. Jeor Formula.</span>
             </div>
 
             <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-12">
@@ -226,32 +226,32 @@ const Calculator = () => {
                 {showActivity && (
                     <ul className="flex flex-col gap-2 mx-8">
                         <li>
-                            <span className="font-semibold text-[#FDCA15]">
+                            <span className="text-[#FDCA15]">
                                 Sedentary
                             </span>
-                            - Little to no exercise, such as a desk job with no
+                            {" "} - Little to no exercise, such as a desk job with no
                             additional physical activity
                         </li>
                         <li>
-                            <span className="font-semibold text-[#FDCA15]">
+                            <span className="text-[#FDCA15]">
                                 Lightly Active
                             </span>{" "}
                             - Light exercise 1-2 days/week
                         </li>
                         <li>
-                            <span className="font-semibold text-[#FDCA15]">
+                            <span className="text-[#FDCA15]">
                                 Moderately Active
                             </span>{" "}
                             - Moderate exercise 3-5 days/week
                         </li>
                         <li>
-                            <span className="font-semibold text-[#FDCA15]">
+                            <span className="text-[#FDCA15]">
                                 Very Active
                             </span>{" "}
                             - Hard exercise 6-7 days/week
                         </li>
                         <li>
-                            <span className="font-semibold text-[#FDCA15]">
+                            <span className="text-[#FDCA15]">
                                 Extremely Active
                             </span>{" "}
                             - Hard daily exercise and physical job or two times
@@ -291,26 +291,7 @@ const Calculator = () => {
                             </p>
                         </div>
                     )}
-                    {/* <h3>About</h3>
-                    <h4>How </h4>
-                    <p>
-                        This calorie calculator can be used to calculate the
-                        daily calorie consumption a person needs to eat to
-                        maintain, lose, or gain weight.
-                    </p>
-                    <h3>How can I use this information?</h3>
-                    <p>
-                        To ensure adequate progress, make sure you are actively
-                        monitoring your weight loss. Modify your calorie plan to
-                        fit your current weight on at least a monthly basis.
-                        <br />
-                        <br />
-                        <strong>
-                            Please consult your physician before making any
-                            abrupt changes to your diet and exercise plan. This
-                            is not medical advice...proceed at your own risk.
-                        </strong>
-                    </p> */}
+                    
                     <h3 className="text-center mb-4 font-bold underline">
                         Choose Your Calorie Plan Below.
                     </h3>

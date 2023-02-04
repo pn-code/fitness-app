@@ -30,9 +30,8 @@ const Home = (props) => {
                             I wanted to free people all around the world.
                             <br />
                             <br />
-                            These fitness tools I've built into this website
-                            will allow for any person to reach their fitness
-                            goals. 
+                            The fitness tools found here will allow for any
+                            person to reach their fitness goals.
                         </p>
                         <span className="text-[#FDCA15] text-xl font-bold">
                             Fitness is yours to take.
