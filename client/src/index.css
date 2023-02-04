@@ -18,6 +18,9 @@ body {
     .input-bl {
         @apply text-black rounded-sm px-2 py-1 sm:w-60;
     }
+    .input-bl-lg {
+        @apply text-black rounded-sm px-2 py-1 w-60 sm:w-72;
+    }
     .btn-blue {
         @apply bg-[#3731e0] text-white mt-4 px-5 py-2 rounded-lg hover:bg-gray-200 hover:text-[#3731e0] ease-in duration-150
     }
