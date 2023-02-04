@@ -38,16 +38,17 @@ const MyPlans = (props) => {
     ));
 
     return (
-        <div className="container">
+        <div className="text-white mx-10">
             <div className="MyPlans">
                 <header>
-                    <div className="MyPlans--info">
-                        <h2 className="page-header">
+                    <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-2xl mt-3">
                             {!renderPlanner
                                 ? `Training Plans`
                                 : `Create a Plan`}
                         </h2>
                         <button
+                        className="btn-blue-light"
                             onClick={() =>
                                 setRenderPlanner(
                                     (prevRenderPlanner) => !prevRenderPlanner
