@@ -11,6 +11,7 @@ const Planner = (props) => {
     // Plan States
     const [planTitle, setPlanTitle] = useState("");
     const [planEmphasis, setPlanEmphasis] = useState("");
+    const [desc, setDesc] = useState("");
 
     // Exercise States
     const [name, setName] = useState("");
@@ -50,18 +51,14 @@ const Planner = (props) => {
                 The symbol * means that the input field is required.
             </span>
 
-            <form
-                className="flex flex-col gap-4 items-start justify-start sm:items-center sm:justify-center bg-transparent"
-                action={API}
-                method="POST"
-            >
+            <form className="flex flex-col gap-4 items-start justify-start sm:items-center sm:justify-center bg-transparent">
                 {/* PAGE #1 */}
                 {formPage === 0 && (
                     <>
                         <div>
                             <label htmlFor="title">* Plan Title: </label>
                             <input
-                                className="input-bl"
+                                className="input-bl w-60"
                                 id="title"
                                 name="title"
                                 type="text"
@@ -69,12 +66,13 @@ const Planner = (props) => {
                                 value={planTitle}
                                 minLength={4}
                                 required
+                                placeholder="Plan Title"
                             />
                         </div>
                         <div>
                             <label htmlFor="emphasis">* Emphasis: </label>
                             <input
-                                className="input-bl"
+                                className="input-bl w-60"
                                 id="emphasis"
                                 name="emphasis"
                                 type="text"
@@ -84,7 +82,22 @@ const Planner = (props) => {
                                 }
                                 value={planEmphasis}
                                 required
+                                placeholder="Emphasis"
                             />
+                        </div>
+                        <div>
+                            <label htmlFor="desc">Description</label>
+                            <textarea
+                                className="rounded-md text-black px-2 py-1 w-60"
+                                name="desc"
+                                id="desc"
+                                cols="30"
+                                rows="10"
+                                onChange={(e) => setDesc(e.target.value)}
+                                value={desc}
+                                placeholder="Enter a description"
+                                maxLength={200}
+                            ></textarea>
                         </div>
                     </>
                 )}
@@ -170,7 +183,7 @@ const Planner = (props) => {
                     </div>
                 )}
                 {/* Navigation Buttons */}
-                <div className="flex flex-row gap-2">
+                <div className="flex gap-2">
                     {(formPage == 1 || formPage == 2) && (
                         <button
                             className="btn-blue"
