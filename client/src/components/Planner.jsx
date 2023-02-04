@@ -17,18 +17,24 @@ const Planner = (props) => {
     const [sets, setSets] = useState("");
     const [reps, setReps] = useState("");
 
+    const [exercises, setExercises] = useState([]);
+
     const API = "http://localhost:3000/plans";
 
-    const handleExercise = () => {};
-
-    const handleChange = (e) => {
-        setPlan((prevPlan) => {
-            return { ...prevPlan, [e.target.name]: e.target.value };
-        });
+    const handleExercise = () => {
+        const exercise = {
+            name,
+            sets,
+            reps,
+        };
+        setExercises((exercises) => [...exercises, exercise]);
+        setName("");
+        setSets("");
+        setReps("");
     };
 
     const handleSubmit = (e) => {
-        if (formPage < 3) {
+        if (formPage < 2) {
             setFormPage((page) => page + 1);
         } else {
             // Save to array
@@ -82,7 +88,7 @@ const Planner = (props) => {
                         </div>
                     </>
                 )}
-
+                {/* PAGE 2 */}
                 {formPage === 1 && (
                     <>
                         <div>
@@ -95,6 +101,7 @@ const Planner = (props) => {
                                 onChange={(e) => setName(e.target.value)}
                                 minLength={8}
                                 required
+                                value={name}
                             />
                         </div>
                         <div>
@@ -104,7 +111,7 @@ const Planner = (props) => {
                                 id="sets"
                                 name="sets"
                                 type="text"
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => setSets(e.target.value)}
                                 required
                                 value={sets}
                             />
@@ -121,11 +128,6 @@ const Planner = (props) => {
                                 value={reps}
                             />
                         </div>
-                    </>
-                )}
-
-                <div className="flex flex-row gap-2">
-                    {formPage == 1 && (
                         <button
                             className="btn-blue-light"
                             type="button"
@@ -133,15 +135,76 @@ const Planner = (props) => {
                         >
                             Add Exercise
                         </button>
+                    </>
+                )}
+
+                {/* PAGE #3 */}
+                {formPage === 2 && (
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col">
+                            <h2 className="text-xl font-semibold">Title:</h2>
+                            <span>{planTitle}</span>
+                        </div>
+
+                        <div className="flex flex-col">
+                            <h2 className="text-xl font-semibold">
+                                Emphasis:{" "}
+                            </h2>
+                            <span>{planTitle}</span>
+                        </div>
+
+                        <ul className="flex flex-col">
+                            <h2 className="text-xl font-semibold">
+                                Exercise List:
+                            </h2>
+                            {exercises.map((exercise) => (
+                                <li>
+                                    <h5>{exercise.name}</h5>
+                                    <span>
+                                        {exercise.sets} sets of {exercise.reps}{" "}
+                                        reps
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                {/* Navigation Buttons */}
+                <div className="flex flex-row gap-2">
+                    {(formPage == 1 || formPage == 2) && (
+                        <button
+                            className="btn-blue"
+                            type="button"
+                            onClick={() => setFormPage((page) => page - 1)}
+                        >
+                            Back
+                        </button>
                     )}
                     <button
                         className="btn-blue"
                         type="button"
                         onClick={handleSubmit}
                     >
-                        {formPage < 3 ? "Next" : "Submit"}
+                        {formPage < 2 ? "Next" : "Submit"}
                     </button>
                 </div>
+
+                {/* Exercises */}
+                {formPage == 1 && exercises.length > 0 && (
+                    <ul className="flex flex-col gap-2 mt-5">
+                        <h2 className="text-xl font-semibold">
+                            Exercise List:
+                        </h2>
+                        {exercises.map((exercise) => (
+                            <li>
+                                <h5>{exercise.name}</h5>
+                                <span>
+                                    {exercise.sets} sets of {exercise.reps} reps
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </form>
         </div>
     );
