@@ -3,10 +3,12 @@ import CaloriePlan from "../components/CaloriePlan";
 import bulkIcon from "../images/bulk.svg";
 import cutIcon from "../images/cut.svg";
 import maintainIcon from "../images/maintain.svg";
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 const Calculator = () => {
     const [metric, setMetric] = useState(false);
     const [calories, setCalories] = useState(null);
+    const [showActivity, setShowActivity] = useState(false);
 
     // Input States
     const [weight, setWeight] = useState(0);
@@ -195,10 +197,19 @@ const Calculator = () => {
 
                 {/* Activity */}
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="activity">Activity</label>
+                    <div className="flex justify-between">
+                        <label htmlFor="activity">Activity</label>
+                        <AiFillQuestionCircle
+                            onClick={() => setShowActivity((show) => !show)}
+                            className="cursor-pointer"
+                            size={20}
+                            color="#FDCA15"
+                        />
+                    </div>
+
                     <select
                         onChange={(e) => setActivity(e.target.value)}
-                        className="text-black"
+                        className="text-black rounded-sm px-1 py-1"
                         name="activity"
                         id="activity"
                     >
@@ -212,40 +223,42 @@ const Calculator = () => {
                 </div>
 
                 {/* Activity Caption */}
-                <ul className="flex flex-col gap-2 mx-8">
-                    <li>
-                        <span className="font-semibold text-[#FDCA15]">
-                            Sedentary
-                        </span>
-                        - Little to no exercise, such as a desk job with no
-                        additional physical activity
-                    </li>
-                    <li>
-                        <span className="font-semibold text-[#FDCA15]">
-                            Lightly Active
-                        </span>{" "}
-                        - Light exercise 1-2 days/week
-                    </li>
-                    <li>
-                        <span className="font-semibold text-[#FDCA15]">
-                            Moderately Active
-                        </span>{" "}
-                        - Moderate exercise 3-5 days/week
-                    </li>
-                    <li>
-                        <span className="font-semibold text-[#FDCA15]">
-                            Very Active
-                        </span>{" "}
-                        - Hard exercise 6-7 days/week
-                    </li>
-                    <li>
-                        <span className="font-semibold text-[#FDCA15]">
-                            Extremely Active
-                        </span>{" "}
-                        - Hard daily exercise and physical job or two times a
-                        day training
-                    </li>
-                </ul>
+                {showActivity && (
+                    <ul className="flex flex-col gap-2 mx-8">
+                        <li>
+                            <span className="font-semibold text-[#FDCA15]">
+                                Sedentary
+                            </span>
+                            - Little to no exercise, such as a desk job with no
+                            additional physical activity
+                        </li>
+                        <li>
+                            <span className="font-semibold text-[#FDCA15]">
+                                Lightly Active
+                            </span>{" "}
+                            - Light exercise 1-2 days/week
+                        </li>
+                        <li>
+                            <span className="font-semibold text-[#FDCA15]">
+                                Moderately Active
+                            </span>{" "}
+                            - Moderate exercise 3-5 days/week
+                        </li>
+                        <li>
+                            <span className="font-semibold text-[#FDCA15]">
+                                Very Active
+                            </span>{" "}
+                            - Hard exercise 6-7 days/week
+                        </li>
+                        <li>
+                            <span className="font-semibold text-[#FDCA15]">
+                                Extremely Active
+                            </span>{" "}
+                            - Hard daily exercise and physical job or two times
+                            a day training
+                        </li>
+                    </ul>
+                )}
 
                 <div className="flex flex-col sm:flex-row sm:gap-2">
                     <button
