@@ -166,6 +166,13 @@ const Planner = (props) => {
                             <span>{planTitle}</span>
                         </div>
 
+                        <div className="flex flex-col">
+                            <h2 className="text-xl font-semibold">
+                                Description:{" "}
+                            </h2>
+                            <p>{desc}</p>
+                        </div>
+
                         <ul className="flex flex-col">
                             <h2 className="text-xl font-semibold">
                                 Exercise List:
