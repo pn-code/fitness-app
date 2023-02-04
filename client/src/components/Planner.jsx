@@ -4,10 +4,22 @@ import "../styles/planner.css";
 
 const Planner = (props) => {
     const { setSavedPlans, updateData } = props;
+
+    // Page State
     const [formPage, setFormPage] = useState(0);
-    const [plan, setPlan] = useState({});
+
+    // Plan States
+    const [planTitle, setPlanTitle] = useState("");
+    const [planEmphasis, setPlanEmphasis] = useState("");
+
+    // Exercise States
+    const [name, setName] = useState("");
+    const [sets, setSets] = useState("");
+    const [reps, setReps] = useState("");
 
     const API = "http://localhost:3000/plans";
+
+    const handleExercise = () => {};
 
     const handleChange = (e) => {
         setPlan((prevPlan) => {
@@ -16,7 +28,7 @@ const Planner = (props) => {
     };
 
     const handleSubmit = (e) => {
-        if (formPage < 2) {
+        if (formPage < 3) {
             setFormPage((page) => page + 1);
         } else {
             // Save to array
@@ -41,14 +53,15 @@ const Planner = (props) => {
                 {formPage === 0 && (
                     <>
                         <div>
-                            <label htmlFor="name">* Plan Name: </label>
+                            <label htmlFor="title">* Plan Title: </label>
                             <input
                                 className="input-bl"
-                                id="name"
-                                name="name"
+                                id="title"
+                                name="title"
                                 type="text"
-                                onChange={handleChange}
-                                minLength={8}
+                                onChange={(e) => setPlanTitle(e.target.value)}
+                                value={planTitle}
+                                minLength={4}
                                 required
                             />
                         </div>
@@ -59,7 +72,11 @@ const Planner = (props) => {
                                 id="emphasis"
                                 name="emphasis"
                                 type="text"
-                                onChange={handleChange}
+                                minLength={4}
+                                onChange={(e) =>
+                                    setPlanEmphasis(e.target.value)
+                                }
+                                value={planEmphasis}
                                 required
                             />
                         </div>
@@ -75,43 +92,54 @@ const Planner = (props) => {
                                 id="name"
                                 name="name"
                                 type="text"
-                                onChange={handleChange}
+                                onChange={(e) => setName(e.target.value)}
                                 minLength={8}
                                 required
                             />
                         </div>
                         <div>
-                            <label htmlFor="emphasis">Sets: </label>
+                            <label htmlFor="sets">Sets: </label>
                             <input
                                 className="input-bl"
-                                id="emphasis"
-                                name="emphasis"
+                                id="sets"
+                                name="sets"
                                 type="text"
-                                onChange={handleChange}
+                                onChange={(e) => setName(e.target.value)}
                                 required
+                                value={sets}
                             />
                         </div>
                         <div>
-                            <label htmlFor="emphasis">Reps: </label>
+                            <label htmlFor="reps">Reps: </label>
                             <input
                                 className="input-bl"
-                                id="emphasis"
-                                name="emphasis"
+                                id="reps"
+                                name="reps"
                                 type="text"
-                                onChange={handleChange}
+                                onChange={(e) => setReps(e.target.value)}
                                 required
+                                value={reps}
                             />
                         </div>
                     </>
                 )}
 
-                <div className="btn--container">
+                <div className="flex flex-row gap-2">
+                    {formPage == 1 && (
+                        <button
+                            className="btn-blue-light"
+                            type="button"
+                            onClick={handleExercise}
+                        >
+                            Add Exercise
+                        </button>
+                    )}
                     <button
                         className="btn-blue"
                         type="button"
                         onClick={handleSubmit}
                     >
-                        Submit
+                        {formPage < 3 ? "Next" : "Submit"}
                     </button>
                 </div>
             </form>
