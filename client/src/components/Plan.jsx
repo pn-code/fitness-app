@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Plan = (props) => {
-  const { plan, id, deletePlan } = props;
+  const { plan, deletePlan } = props;
   const [view, setView] = useState(false);
 
   const handleView = () => {
@@ -43,7 +43,7 @@ const Plan = (props) => {
 
       {view && (
         <div className="flex flex-col">
-          <button className="bg-red-500 rounded-md mt-4 py-1 hover:bg-red-400" onClick={() => deletePlan(id)}>
+          <button className="bg-red-500 rounded-md mt-4 py-1 hover:bg-red-400" onClick={() => deletePlan(plan._id, plan.userId)}>
             Remove Plan
           </button>
           <span className="text-xs text-center mt-2">Click to Close</span>
