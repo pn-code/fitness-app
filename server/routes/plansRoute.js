@@ -19,8 +19,10 @@ router.post("/", async (req, res, next) => {
 });
 
 router.delete("/:planId", async (req, res) => {
-  if (req.body.userId) {
-    const planId = req.params.planId;
+  const { userId, planUserId } = req.body;
+  const { planId } = req.params;
+
+  if (userId == planUserId) {
     const plan = await Plan.findByIdAndDelete(planId);
     res.json({
       status: "Successful",
