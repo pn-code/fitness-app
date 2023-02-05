@@ -17,7 +17,7 @@ const App = () => {
     const API_URL = "http://localhost:3000";
 
     const [user, setUser] = useState(null);
-    
+
     // Check if user is signed in
     useEffect(() => {
         axios({
@@ -46,7 +46,7 @@ const App = () => {
                 />
                 <Route path="/fitness-app/journal" element={<Journal />} />
                 <Route path="/fitness-app/profile" element={<Profile setUser={setUser} user={user}/>} />
-                <Route path="/fitness-app/my-plans" element={<MyPlans />} />
+                <Route path="/fitness-app/my-plans" element={<MyPlans user={user}/>} />
                 <Route path="/fitness-app/feedback" element={<Feedback user={user}/>} />
             </Routes>
         </div>
