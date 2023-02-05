@@ -108,7 +108,7 @@ const LandingPage = () => {
                 <span className="font-semibold text-[16px] sm:text-5xl">
                     What are you waiting for?
                 </span>
-                <Link to="/sign-up">
+                <Link to="/fitness-app/sign-up">
                     <button className="px-5 py-2 sm:px-20 sm:py-8 rounded-md bg-[#272626] font-semibold sm:text-5xl hover:bg-white hover:text-gray-800">
                         JOIN NOW
                     </button>
