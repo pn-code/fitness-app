@@ -4,17 +4,10 @@ const Plan = require("../models/Plan");
 
 const client = "http://localhost:5173/fitness-app/";
 
-router.get("/", (req, res, next) => {
-  if (req.user.userId) {
-    Plan.find({}, (err, plans) => {
-      if (err) {
-        next(err);
-      } else {
-        res.json({
-          plans,
-        });
-      }
-    });
+router.get("/:userId", async (req, res, next) => {
+  if (req.params.userId) {
+    const plans = await Plan.find({ userId: req.params.userId });
+    res.json({ plans });
   }
 });
 
