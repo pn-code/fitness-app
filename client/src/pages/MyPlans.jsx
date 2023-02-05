@@ -21,15 +21,14 @@ const MyPlans = ({ user, userData, setFetchData }) => {
     }
   }, [user]);
 
-  console.log(user);
+  const deletePlan = async (planId, planUserId) => {
+    // // Delete selected plan from database
+    await axios.delete(API + planId, { data: { userId: user._id, planUserId: planUserId } });
 
-  const deletePlan = async (id) => {
     // Delete from savedEntries via setSavedEntries
     setSavedPlans((prevSavedPlans) =>
-      prevSavedPlans.filter((plan) => id !== plan._id)
+      prevSavedPlans.filter((plan) => planId !== plan._id)
     );
-    // // Delete selected plan from database
-    // fetch(API + id, { method: "DELETE" });
   };
 
   return (
@@ -62,7 +61,6 @@ const MyPlans = ({ user, userData, setFetchData }) => {
                 <Plan
                   plan={plan}
                   key={plan._id}
-                  id={plan._id}
                   deletePlan={deletePlan}
                 />
               ))}
