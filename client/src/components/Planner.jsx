@@ -9,8 +9,8 @@ const Planner = (props) => {
     const [formPage, setFormPage] = useState(0);
 
     // Plan States
-    const [planTitle, setPlanTitle] = useState("");
-    const [planEmphasis, setPlanEmphasis] = useState("");
+    const [title, setTitle] = useState("");
+    const [emphasis, setEmphasis] = useState("");
     const [desc, setDesc] = useState("");
 
     // Exercise States
@@ -40,16 +40,16 @@ const Planner = (props) => {
             setFormPage((page) => page + 1);
         } else {
             const plan = {
-                planTitle,
-                planEmphasis,
+                title,
+                emphasis,
                 desc,
                 exercises,
             };
             // Save to array
             setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
             // Reset Form
-            setPlanTitle("");
-            setPlanEmphasis("");
+            setTitle("");
+            setEmphasis("");
             setDesc("");
             setExercises([]);
         }
@@ -72,8 +72,8 @@ const Planner = (props) => {
                                 id="title"
                                 name="title"
                                 type="text"
-                                onChange={(e) => setPlanTitle(e.target.value)}
-                                value={planTitle}
+                                onChange={(e) => setTitle(e.target.value)}
+                                value={title}
                                 minLength={4}
                                 required
                                 placeholder="Plan Title"
@@ -88,9 +88,9 @@ const Planner = (props) => {
                                 type="text"
                                 minLength={4}
                                 onChange={(e) =>
-                                    setPlanEmphasis(e.target.value)
+                                    setEmphasis(e.target.value)
                                 }
-                                value={planEmphasis}
+                                value={emphasis}
                                 required
                                 placeholder="Emphasis"
                             />
@@ -166,14 +166,14 @@ const Planner = (props) => {
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col">
                             <h2 className="text-xl font-semibold">Title:</h2>
-                            <span>{planTitle}</span>
+                            <span>{title}</span>
                         </div>
 
                         <div className="flex flex-col">
                             <h2 className="text-xl font-semibold">
                                 Emphasis:{" "}
                             </h2>
-                            <span>{planEmphasis}</span>
+                            <span>{emphasis}</span>
                         </div>
 
                         <div className="flex flex-col">
