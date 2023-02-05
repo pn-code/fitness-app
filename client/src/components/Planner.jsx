@@ -34,7 +34,8 @@ const Planner = (props) => {
         setReps("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
+        // Handle Page Increments
         if (formPage < 2) {
             setFormPage((page) => page + 1);
         } else {
@@ -172,7 +173,7 @@ const Planner = (props) => {
                             <h2 className="text-xl font-semibold">
                                 Emphasis:{" "}
                             </h2>
-                            <span>{planTitle}</span>
+                            <span>{planEmphasis}</span>
                         </div>
 
                         <div className="flex flex-col">
