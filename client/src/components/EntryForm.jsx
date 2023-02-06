@@ -41,13 +41,13 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 	};
 
 	return (
-		<div>
-			<form className="flex flex-col justify-center items-center">
+		<div className="mb-5">
+			<form className="flex flex-col justify-center items-center bg-gray-700 py-5 rounded-lg">
 				<h4 className="text-xl font-semibold mb-4">
 					New Journal Entry
 				</h4>
 				<fieldset className="flex flex-col gap-2">
-					<div>
+					<div className="flex flex-col gap-1">
 						<label htmlFor="date">Date: </label>
 						<input
 							className="input-bl-lg w-72"
@@ -60,7 +60,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-1">
 						<label htmlFor="plan">Exercise Plan: </label>
 						<select
 							className="input-bl-lg w-72"
@@ -73,7 +73,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 						</select>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-1">
 						<label htmlFor="calories">Calorie Intake (kCal)</label>
 						<input
 							className="input-bl-lg w-72"
@@ -87,7 +87,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-1">
 						<label htmlFor="macros">
 							Macronutrients (Optional):
 						</label>
@@ -102,7 +102,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-1">
 						<label id="notes">Notes: </label>
 						<textarea
 							className="w-72 rounded-sm text-black p-2"
@@ -110,6 +110,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 							cols="30"
 							rows="10"
 							name="notes"
+							placeholder="Add notes here..."
 							onChange={handleChange}
 							value={entry.notes}
 						></textarea>
