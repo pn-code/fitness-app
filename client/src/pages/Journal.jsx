@@ -3,18 +3,23 @@ import "../styles/journal.css";
 import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
 import { useEffect } from "react";
+import axios from "axios";
 
-const Journal = (props) => {
+const Journal = ({user}) => {
 	const [addEntry, setAddEntry] = React.useState(false);
 	const [entries, setEntries] = React.useState([]);
 	const API_URL = "http://localhost:3000/journal/";
 
-	// Checks database for entries array
+	const fetchEntries = async () => {
+		const res = await axios.get(API_URL + user._id);
+		setEntries(res.data.entries)
+	}
+
 	useEffect(() => {
-		fetch(API_URL)
-			.then((res) => res.json())
-			.then((res) => setEntries(res.entries));
-	}, []);
+		if (user) {
+			fetchEntries();
+		}
+	}, [user]);
 
 	const renderEntries = entries.map((entry) => (
 		<Entry
@@ -42,7 +47,7 @@ const Journal = (props) => {
 				</div>
 
 				{addEntry && (
-					<EntryForm setEntries={setEntries} API_URL={API_URL} />
+					<EntryForm user={user} setEntries={setEntries} API_URL={API_URL} setAddEntry={setAddEntry}/>
 				)}
 				{!addEntry && (
 					<main className="journal-entries--container">
