@@ -25,8 +25,7 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:journalId", async (req, res) => {
-	const journalId = req.params.journalId;
-	const entry = await Entry.findByIdAndDelete(journalId);
+	const entry = await Entry.findByIdAndDelete(req.params.journalId);
 	res.json({
 		status: "Success",
 		entry,
