@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
-const EntryForm = (props) => {
-	const { setEntries, API_URL } = props;
-
+const EntryForm = ({ user, setEntries, setAddEntry, API_URL }) => {
 	const [entry, setEntry] = useState({
-		date: null,
-		plan: null,
-		calories: null,
-		macros: null,
-		notes: null,
+		userId: user._id,
+		date: "",
+		plan: "",
+		calories: 2000,
+		macros: "",
+		notes: "",
 	});
 
 	const handleChange = (e) => {
@@ -17,23 +18,30 @@ const EntryForm = (props) => {
 		});
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+	const handleSubmit = async () => {
+		// Submit data to database
+		const res = await axios.post(API_URL, entry);
+
 		// Add entry to entries array
 		setEntries((prevEntries) => [entry, ...prevEntries]);
+
 		// Reset entry state
 		setEntry({
-			date: null,
-			plan: null,
-			calories: null,
-			macros: null,
-			notes: null,
+			_id: uuidv4() + "hello world",
+			userId: user._id + "user_id",
+			date: "",
+			plan: "",
+			calories: 2000,
+			macros: "",
+			notes: "",
 		});
+
+		setAddEntry(false);
 	};
 
 	return (
 		<div>
-			<form className="flex flex-col justify-center items-center" action={API_URL} method="POST">
+			<form className="flex flex-col justify-center items-center">
 				<h4 className="text-xl font-semibold mb-4">
 					New Journal Entry
 				</h4>
@@ -107,7 +115,11 @@ const EntryForm = (props) => {
 					</div>
 				</fieldset>
 				<div className="flex">
-					<button className="btn-blue w-72" type="submit">
+					<button
+						onClick={handleSubmit}
+						type="button"
+						className="btn-blue w-72"
+					>
 						Submit
 					</button>
 				</div>
