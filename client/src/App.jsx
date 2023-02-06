@@ -44,7 +44,7 @@ const App = () => {
                     path="/fitness-app/calculator"
                     element={<Calculator />}
                 />
-                <Route path="/fitness-app/journal" element={<Journal />} />
+                <Route path="/fitness-app/journal" element={<Journal user={user}/>} />
                 <Route path="/fitness-app/profile" element={<Profile setUser={setUser} user={user}/>} />
                 <Route path="/fitness-app/my-plans" element={<MyPlans user={user}/>} />
                 <Route path="/fitness-app/feedback" element={<Feedback user={user}/>} />
