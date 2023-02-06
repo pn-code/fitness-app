@@ -77,7 +77,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
     };
 
     return (
-        <div className="flex gap-10 mb-6 text-white mx-10 my-5 sm:justify-center sm:mt-16">
+        <div className="flex justify-center gap-10 mb-6 text-white mx-10 my-5 sm:mt-16">
             {/* LEFT SIDE */}
             <div className="hidden sm:flex">
                 <img
@@ -88,9 +88,9 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex flex-col gap-3 text-lg flex-[2] h-[600px]">
+            <div className="flex flex-col gap-3 text-lg h-[600px]">
                 <div className="flex justify-between">
-                    <h2 className="text-4xl font-bold">Create a Plan</h2>
+                    <h2 className="text-4xl font-bold">New Plan</h2>
                     <button
                         className="btn-blue-light mt-0"
                         onClick={() =>
@@ -109,14 +109,14 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                     The symbol * means that the input field is required.
                 </span>
 
-                <form className="flex flex-col gap-4 bg-transparent">
+                <form className="flex flex-col gap-4 bg-transparent w-80 sm:w-96">
                     {/* PAGE #1 */}
                     {formPage === 0 && (
                         <>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="title">* Plan Title: </label>
                                 <input
-                                    className="input-bl w-80"
+                                    className="input-bl w-72 sm:w-96"
                                     id="title"
                                     name="title"
                                     type="text"
@@ -127,10 +127,10 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                                     placeholder="Plan Title"
                                 />
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="emphasis">* Emphasis: </label>
                                 <input
-                                    className="input-bl w-72 w-80"
+                                    className="input-bl w-72 sm:w-96"
                                     id="emphasis"
                                     name="emphasis"
                                     type="text"
@@ -143,10 +143,10 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                                     placeholder="Emphasis"
                                 />
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="desc">Description</label>
                                 <textarea
-                                    className="rounded-md text-black px-2 py-1 w-80"
+                                    className="rounded-md text-black px-2 py-1 w-72 sm:w-96"
                                     name="desc"
                                     id="desc"
                                     cols="30"
@@ -162,10 +162,10 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                     {/* PAGE 2 */}
                     {formPage === 1 && (
                         <>
-                            <div>
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="name">Exercise Name: </label>
                                 <input
-                                    className="input-bl-lg"
+                                    className="input-bl-lg w-72 sm:w-96"
                                     id="name"
                                     name="name"
                                     type="text"
@@ -175,10 +175,10 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                                     value={name}
                                 />
                             </div>
-                            <div>
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="sets">Sets: </label>
                                 <input
-                                    className="input-bl"
+                                    className="input-bl w-72 sm:w-96"
                                     id="sets"
                                     name="sets"
                                     type="text"
@@ -187,10 +187,10 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                                     value={sets}
                                 />
                             </div>
-                            <div>
+                            <div className="flex flex-col gap-1">
                                 <label htmlFor="reps">Reps: </label>
                                 <input
-                                    className="input-bl"
+                                    className="input-bl w-72 sm:w-96"
                                     id="reps"
                                     name="reps"
                                     type="text"
@@ -200,7 +200,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                                 />
                             </div>
                             <button
-                                className="btn-blue-light"
+                                className="btn-blue-light w-72 sm:w-96"
                                 type="button"
                                 onClick={handleExercise}
                             >
@@ -211,7 +211,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
 
                     {/* PAGE #3 */}
                     {formPage === 2 && (
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 justify-start">
                             <div className="flex flex-col">
                                 <h2 className="text-xl font-semibold">
                                     Title:
@@ -250,7 +250,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                         </div>
                     )}
                     {/* Navigation Buttons */}
-                    <div className="flex gap-2 justify-end w-80">
+                    <div className="flex gap-2 justify-end w-72 sm:w-96">
                         {(formPage == 1 || formPage == 2) && (
                             <button
                                 className="btn-blue"
