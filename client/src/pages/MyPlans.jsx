@@ -39,29 +39,27 @@ const MyPlans = ({ user, userData, setFetchData }) => {
 	};
 
 	return (
-		<div className="text-white mx-10">
-			<div className="MyPlans">
-				<header>
-					<div className="flex justify-between items-center mb-6">
-						<h2 className="text-2xl mt-3">
-							{!renderPlanner
-								? `Training Plans`
-								: `Create a Plan`}
-						</h2>
-						<button
-							className="btn-blue-light"
-							onClick={() =>
-								setRenderPlanner(
-									(prevRenderPlanner) => !prevRenderPlanner
-								)
-							}
-						>
-							{!renderPlanner
-								? `Create New Plan`
-								: `My Plans: ${savedPlans.length}`}
-						</button>
-					</div>
-				</header>
+		<div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
+			<div className="mb-5">
+
+				<div className="flex justify-between items-center mb-7">
+					<h2 className="text-4xl font-bold">
+						{!renderPlanner ? `Plans` : `Create a Plan`}
+					</h2>
+					<button
+						className="btn-blue-light mt-0"
+						onClick={() =>
+							setRenderPlanner(
+								(prevRenderPlanner) => !prevRenderPlanner
+							)
+						}
+					>
+						{!renderPlanner
+							? `Create New Plan`
+							: `My Plans: ${savedPlans.length}`}
+					</button>
+				</div>
+
 				{!renderPlanner && (
 					<main className="plans--container">
 						{savedPlans.length === 0 && (
@@ -84,7 +82,7 @@ const MyPlans = ({ user, userData, setFetchData }) => {
 						user={user}
 						setSavedPlans={setSavedPlans}
 						deletePlan={deletePlan}
-            fetchPlans={fetchPlans}
+						fetchPlans={fetchPlans}
 					/>
 				)}
 			</div>
