@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { DateTime } from "luxon";
+import axios from "axios";
 
-const Entry = ({ entryInfo, id, setEntries, API_URL }) => {
+const Entry = ({ entry, setEntries, API_URL }) => {
 	const [viewEntry, setViewEntry] = useState(false);
-	const formattedDate = DateTime.fromISO(entryInfo.date).toFormat(
+	const formattedDate = DateTime.fromISO(entry.date).toFormat(
 		"LLL dd, yyyy"
 	);
 
 	const deleteEntry = async (id) => {
+		// findAndDelete from db
+		await axios.delete(API_URL + id);
+
 		// Remove from entries array
 		setEntries((prevEntries) =>
 			prevEntries.filter((entry) => id != entry._id)
 		);
-		// findAndDelete from db
-		fetch(API_URL + id, {
-			method: "DELETE",
-			headers: { "Content-Type": "json/application" },
-		});
 	};
 
 	return (
@@ -24,9 +23,9 @@ const Entry = ({ entryInfo, id, setEntries, API_URL }) => {
 			<section className="date--container">
 				<h4 className="text-lg font-semibold mb-2">{formattedDate}</h4>
 			</section>
-			<section className="flex justify-between">
-				<div>Calories: {entryInfo.calories} Cal</div>
-				<div>Macros (C/F/P): {entryInfo.macros}</div>
+			<section className="flex justify-between sm:flex-col sm:gap-2">
+				<div>Calories: {entry.calories} Cal</div>
+				<div>Macros (C/F/P): {entry.macros}</div>
 			</section>
 
 			{!viewEntry && (
@@ -42,26 +41,31 @@ const Entry = ({ entryInfo, id, setEntries, API_URL }) => {
 				<>
 					<section className="exercise--container">
 						<div>
-							Exercise Plan:
-							{entryInfo.plan === ""
+							Exercise Plan:{" "}
+							{entry.plan === ""
 								? "NONE SELECTED"
-								: entryInfo.plan}
+								: entry.plan}
 						</div>
 					</section>
 					<section className="notes--container">
-						<div>Notes: {entryInfo.notes}</div>
+						<div>Notes: {entry.notes}</div>
 					</section>
-					<div className="btn--container">
-						<button onClick={() => deleteEntry(id)}>Remove</button>
+					<div className="flex flex-col">
+						<button
+							className="bg-red-600 my-2 py-1 rounded-md hover:bg-red-400"
+							onClick={() => deleteEntry(entry._id)}
+						>
+							Remove
+						</button>
 					</div>
-                    {viewEntry && (
-				<div
-					onClick={() => setViewEntry(false)}
-					className="text-xs text-center mt-4 cursor-pointer"
-				>
-					<span>Click to Close Entry</span>
-				</div>
-			)}
+					{viewEntry && (
+						<div
+							onClick={() => setViewEntry(false)}
+							className="text-xs text-center mt-1 cursor-pointer"
+						>
+							<span>Click to Close Entry</span>
+						</div>
+					)}
 				</>
 			)}
 		</div>
