@@ -19,7 +19,7 @@ const Entry = ({ entry, setEntries, API_URL }) => {
 	};
 
 	return (
-		<div className="flex flex-col gap-2 bg-gray-800 px-5 py-4 rounded-md">
+		<div className="flex flex-col gap-2 bg-gray-700 px-5 py-4 rounded-md">
 			<section className="date--container">
 				<h4 className="text-lg font-semibold mb-2">{formattedDate}</h4>
 			</section>
