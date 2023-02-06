@@ -78,8 +78,8 @@ const Calculator = () => {
         </span>
       </div>
 
-      <form className="flex flex-col gap-4 rounded-md justify-center items-center mb-20 sm:w-[540px]">
-        <span className="text-md font-semibold sm:text-2xl mt-5">
+      <form className="flex flex-col gap-4 rounded-md justify-center items-center py-8 mb-20 sm:w-[500px]">
+        <span className="text-md font-semibold sm:text-2xl">
           Find your starting point.
         </span>
 
