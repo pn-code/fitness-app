@@ -5,8 +5,9 @@ const { DateTime } = require("luxon");
 
 const client = "http://localhost:5173/fitness-app/journal";
 
-router.get("/", async (req, res) => {
-	const entries = await Entry.find();
+router.get("/:userId", async (req, res) => {
+	const { userId } = req.params;
+	const entries = await Entry.find({ userId: userId });
 	res.json({
 		status: "Success",
 		entries,
@@ -18,7 +19,7 @@ router.post("/", async (req, res) => {
 		const entry = await Entry.create(req.body);
 		res.json({
 			status: "Success",
-			entry
+			entry,
 		});
 	}
 });
