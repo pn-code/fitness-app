@@ -88,7 +88,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex flex-col gap-3 text-lg h-[600px]">
+            <div className="flex flex-col gap-3 text-lg h-[700px] rounded-lg px-8 py-5 bg-gray-700">
                 <div className="flex justify-between">
                     <h2 className="text-4xl font-bold">New Plan</h2>
                     <button
@@ -109,7 +109,7 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
                     The symbol * means that the input field is required.
                 </span>
 
-                <form className="flex flex-col gap-4 bg-transparent w-80 sm:w-96">
+                <form className="flex flex-col gap-4 w-80 sm:w-96">
                     {/* PAGE #1 */}
                     {formPage === 0 && (
                         <>

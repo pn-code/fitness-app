@@ -78,7 +78,7 @@ const Calculator = () => {
         </span>
       </div>
 
-      <form className="flex flex-col gap-4 rounded-md justify-center items-center py-8 mb-20 sm:w-[500px]">
+      <form className="flex flex-col gap-4 rounded-md justify-center bg-gray-700 items-center py-8 mb-20 sm:w-[500px]">
         <span className="text-md font-semibold sm:text-2xl">
           Find your starting point.
         </span>
@@ -114,7 +114,7 @@ const Calculator = () => {
 
         {/* Height Input */}
         {metric ? (
-          <div className="flex flex-col gap-2 sm:px-8">
+          <div className="flex flex-col gap-1 sm:px-8">
             <label htmlFor="cm">Height (cm):</label>
             <input
               className="input-bl"
@@ -128,12 +128,11 @@ const Calculator = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-2">
-            <span>Height in Imperial Units</span>
-            <div className="flex gap-5 sm:gap-20">
-              <div className="">
+            <span>Height (ft & in):</span>
+              <div className="flex flex-col gap-1">
                 <label htmlFor="inch">Feet:</label>
                 <input
-                  className="input-bl w-20"
+                  className="input-bl"
                   id="feet"
                   name="feet"
                   type="number"
@@ -142,10 +141,10 @@ const Calculator = () => {
                   value={feet}
                 />
               </div>
-              <div className="">
+              <div className="flex flex-col gap-1">
                 <label htmlFor="inch">Inches:</label>
                 <input
-                  className="input-bl w-20"
+                  className="input-bl"
                   id="inch"
                   name="inch"
                   type="number"
@@ -154,7 +153,6 @@ const Calculator = () => {
                   value={inch}
                 />
               </div>
-            </div>
           </div>
         )}
 
