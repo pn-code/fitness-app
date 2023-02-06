@@ -19,16 +19,16 @@ const Entry = (props) => {
     };
 
     return (
-        <div className="Entry">
+        <div className="flex flex-col gap-2 bg-gray-800 px-5 py-4 rounded-md">
             <section className="date--container">
-                <h4>{formattedDate}</h4>
+                <h4 className="text-lg font-semibold mb-2">{formattedDate}</h4>
             </section>
-            <section className="diet--container">
-                <div>Calorie Intake: {entryInfo.calories} Cal</div>
-                <div>Macronutrients (C/F/P): {entryInfo.macros}</div>
+            <section className="flex justify-between">
+                <div>Calories: {entryInfo.calories} Cal</div>
+                <div>Macros (C/F/P): {entryInfo.macros}</div>
             </section>
             <section className="exercise--container">
-                <div>Exercise Plan: {entryInfo.plan}</div>
+                <div>Exercise Plan: {entryInfo.plan === "" ? "NONE SELECTED" : entryInfo.plan}</div>
             </section>
             <section className="notes--container">
                 <div>Notes: {entryInfo.notes}</div>
