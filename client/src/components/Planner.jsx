@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../styles/planner.css";
 import { v4 as uuidv4 } from "uuid";
 
-const Planner = ({ setSavedPlans, updateData, user }) => {
+const Planner = ({ setSavedPlans, user, fetchPlans }) => {
 	// Page State
 	const [formPage, setFormPage] = useState(0);
 
@@ -60,6 +60,9 @@ const Planner = ({ setSavedPlans, updateData, user }) => {
 				setEmphasis("");
 				setDesc("");
 				setExercises([]);
+        		setFormPage(0);
+
+				fetchPlans();
 			} catch (error) {
 				console.log(error);
 			}
