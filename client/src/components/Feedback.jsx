@@ -1,12 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { useReducer } from "react";
 import { useState } from "react";
 
-const Feedback = (props) => {
-    const { user } = props;
-
-    const client = `http://localhost:3000`;
+const Feedback = ({ user }) => {
+    const API = `http://localhost:3000/feedback`;
 
     const [feedback, setFeedback] = useState({
         author: user._id,
@@ -22,11 +19,7 @@ const Feedback = (props) => {
     };
 
     const handleSubmit = async () => {
-        axios({
-            method: "POST",
-            url: `${client}/feedback`,
-            data: { feedback },
-        }).then((res) => console.log(`Successfully sent message: ${res}`));
+        const res = await axios.post(API, feedback);
     };
 
     return (
@@ -41,6 +34,7 @@ const Feedback = (props) => {
                         name="title"
                         type="text"
                         onChange={handleChange}
+                        value={feedback.title}
                     />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -52,6 +46,7 @@ const Feedback = (props) => {
                         cols="30"
                         rows="10"
                         onChange={handleChange}
+                        value={feedback.text}
                     ></textarea>
                 </div>
 
