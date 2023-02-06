@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-const EntryForm = ({ user, setEntries, setAddEntry, API_URL }) => {
+const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => {
 	const [entry, setEntry] = useState({
 		userId: user._id,
 		date: "",
@@ -37,6 +37,7 @@ const EntryForm = ({ user, setEntries, setAddEntry, API_URL }) => {
 		});
 
 		setAddEntry(false);
+		fetchEntries();
 	};
 
 	return (
