@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import Plan from "../components/Plan";
-import PlannerPage from "./PlannerPage";
+import Planner from "./Planner";
 import axios from "axios";
 
 const API = "http://localhost:3000/plans/";
@@ -41,7 +41,7 @@ const MyPlans = ({ user}) => {
     return (
         <div>
             {renderPlanner ? (
-                <PlannerPage
+                <Planner
                     user={user}
                     fetchPlans={fetchPlans}
                     setRenderPlanner={setRenderPlanner}
