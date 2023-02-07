@@ -45,8 +45,20 @@ const LandingPage = () => {
             </div>
 
             {/* IMAGE SECTION */}
-            <div>
-                <img className="rounded-md" src={previewImage} />
+            <div className="flex flex-col items-center justify-center">
+                <h2 className="font-semibold text-2xl sm:text-5xl mb-5">MANIFEST GREATNESS</h2>
+                <img className="rounded-md mb-3 max-h-[700px]" src={previewImage} />
+                <span className="text-sm sm:text-lg">
+                    Image by{" "}
+                    <a
+                    className="hover:underline"
+                        target="_about"
+                        rel="noreferrer"
+                        href="https://unsplash.com/@alexlperson"
+                    >
+                        Alex Person
+                    </a>
+                </span>
             </div>
 
             {/* FEATURES SECTION */}
