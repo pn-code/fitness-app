@@ -95,6 +95,8 @@ const PlannerPage = ({
                 <span className="text-center my-2">
                     Image by{" "}
                     <a
+                        target="_blank"
+                        rel="noreferrer"
                         className="hover:underline"
                         href="https://unsplash.com/@eduardocanophotoco"
                     >
