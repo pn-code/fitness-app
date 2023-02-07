@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./pages/Home";
-import LandingPage from "./pages/LandingPage";
+import Landing from "./pages/Landing";
 import MyPlans from "./pages/MyPlans";
 import Calculator from "./pages/Calculator";
 import Journal from "./pages/Journal";
@@ -32,7 +32,7 @@ const App = () => {
             <Navbar user={user}/>
             <Routes>
                 <Route path="/fitness-app/" element={<Home user={user}/>} />
-                <Route path="/fitness-app/landing" element={<LandingPage />} />
+                <Route path="/fitness-app/landing" element={<Landing />} />
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />
                 <Route
                     path="/fitness-app/login"

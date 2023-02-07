@@ -4,7 +4,7 @@ import { BiRun } from "react-icons/bi";
 import previewImage from "../images/fitness-preview.png";
 import { Link } from "react-router-dom";
 
-const LandingPage = () => {
+const Landing = () => {
     const [matches, setMatches] = useState(
         window.matchMedia("(min-width: 640px)").matches
     );
@@ -135,4 +135,4 @@ const LandingPage = () => {
     );
 };
 
-export default LandingPage;
+export default Landing;
