@@ -4,7 +4,14 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
 
-const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanner, setRenderPlanner}) => {
+const PlannerPage = ({
+    user,
+    savedPlans,
+    setSavedPlans,
+    fetchPlans,
+    renderPlanner,
+    setRenderPlanner,
+}) => {
     // Page State
     const [formPage, setFormPage] = useState(0);
 
@@ -79,16 +86,25 @@ const PlannerPage = ({ user, savedPlans, setSavedPlans, fetchPlans, renderPlanne
     return (
         <div className="flex justify-center gap-10 mb-6 text-white mx-10 my-5 sm:mt-16">
             {/* LEFT SIDE */}
-            <div className="hidden sm:flex">
+            <div className="hidden lg:flex flex-col gap-2">
                 <img
                     className="object-cover max-w-[460px] rounded-lg"
                     src={barbellImg}
                     alt="barbell in the sunlight"
                 />
+                <span className="text-center my-2">
+                    Image by{" "}
+                    <a
+                        className="hover:underline"
+                        href="https://unsplash.com/@eduardocanophotoco"
+                    >
+                        Eduardo Cano
+                    </a>
+                </span>
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex flex-col gap-3 text-lg h-[700px] rounded-lg px-8 py-5 bg-gray-700">
+            <div className="flex flex-col gap-3 text-lg h-[720px] rounded-lg px-8 py-5 bg-gray-700">
                 <div className="flex justify-between">
                     <h2 className="text-4xl font-bold">New Plan</h2>
                     <button
