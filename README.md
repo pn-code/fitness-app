@@ -10,6 +10,7 @@ https://www.figma.com/file/BL0hjL3hrDiWNbBjCFcaA5/Fitness-App?node-id=0%3A1&t=Yb
     - Calorie Calculator
     - Exercise Planner (complete with sets & reps)
     - Exercise Journal
+    - Send Feedback
 
 
 Technologies used:
@@ -22,5 +23,4 @@ Technologies used:
 
 WIP/TODOS:
     - Add functionality to analytics in profile
-    - Allow users to send feedback
     - FAQ Page
