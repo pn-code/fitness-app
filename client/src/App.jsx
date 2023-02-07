@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Feedback from "./components/Feedback";
+import { Navigate } from "react-router-dom";
 
 const App = () => {
     const API_URL = "http://localhost:3000";
@@ -23,31 +24,80 @@ const App = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: 'http://localhost:3000/profile'
-        }).then(res => setUser(res.data.user))
+            url: "http://localhost:3000/profile",
+        }).then((res) => setUser(res.data.user));
     }, []);
 
     return (
         <div className="App">
-            <Navbar user={user}/>
+            <Navbar user={user} />
             <Routes>
-                <Route path="/fitness-app/" element={<Home user={user}/>} />
                 <Route path="/fitness-app/landing" element={<Landing />} />
+                <Route
+                    path="/fitness-app/"
+                    element={
+                        user ? (
+                            <Home user={user} />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
+                />
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />
                 <Route
                     path="/fitness-app/login"
-                    element={
-                        <Login API_URL={API_URL}/>
-                    }
+                    element={<Login API_URL={API_URL} />}
                 />
                 <Route
                     path="/fitness-app/calculator"
-                    element={<Calculator />}
+                    element={
+                        user ? (
+                            <Calculator />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
                 />
-                <Route path="/fitness-app/journal" element={<Journal user={user}/>} />
-                <Route path="/fitness-app/profile" element={<Profile setUser={setUser} user={user}/>} />
-                <Route path="/fitness-app/my-plans" element={<MyPlans user={user}/>} />
-                <Route path="/fitness-app/feedback" element={<Feedback user={user}/>} />
+                <Route
+                    path="/fitness-app/journal"
+                    element={
+                        user ? (
+                            <Journal user={user} />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
+                />
+                <Route
+                    path="/fitness-app/profile"
+                    element={
+                        user ? (
+                            <Profile setUser={setUser} user={user} />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
+                />
+                <Route
+                    path="/fitness-app/my-plans"
+                    element={
+                        user ? (
+                            <MyPlans user={user} />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
+                />
+                <Route
+                    path="/fitness-app/feedback"
+                    element={
+                        user ? (
+                            <Feedback user={user} />
+                        ) : (
+                            <Navigate to="/fitness-app/landing" />
+                        )
+                    }
+                />
             </Routes>
         </div>
     );
