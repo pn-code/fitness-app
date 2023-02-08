@@ -41,8 +41,8 @@ const EntryForm = ({ user, setEntries, setAddEntry, fetchEntries, API_URL }) => 
 	};
 
 	return (
-		<div className="mb-5">
-			<form className="flex flex-col justify-center items-center bg-gray-700 py-5 rounded-lg">
+		<div className="flex justify-center mb-5">
+			<form className="flex flex-col justify-center items-center p-10 bg-gray-700 py-5 rounded-lg">
 				<h4 className="text-xl font-semibold mb-4">
 					New Journal Entry
 				</h4>
