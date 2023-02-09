@@ -1,19 +1,16 @@
 # fitness-app
 
-This fitness app was developed to access fundamental fitness tools required for achieve success no matter your fitness standards.
-
-## Current Project Status: Updating project design
-https://www.figma.com/file/BL0hjL3hrDiWNbBjCFcaA5/Fitness-App?node-id=0%3A1&t=YbuTlY0PMDfCaQJZ-0
+This fitness app was developed to provide users access to fundamental fitness tools that will enable user to achieve their fitness goals
 
 ## Functionality:
     - User Authentication
     - Calorie Calculator
-    - Exercise Planner (complete with sets & reps)
-    - Exercise Journal
+    - Exercise Planner (Create and View Exercise Plans)
+    - Daily Journal (Create and View Journal Entries)
     - Send Feedback
 
 
-Technologies used:
+## Technologies used:
     - Web Development Fundamentals (HTML, CSS, and JavaScript)
     - ReactJS
     - NodeJS/ExpressJS
@@ -21,6 +18,13 @@ Technologies used:
     - TailwindCSS
 
 
-WIP/TODOS:
+## WIP/TODOS:
     - Add functionality to analytics in profile
     - FAQ Page
+    - Select Plan functionality in caloriePlan component
+
+## Preview:
+
+<img src="./preview/fitness-calculate.png" alt=""/>
+<img src="./preview/fitness-journal.png" alt=""/>
+<img src="./preview/fitness-plans.png" alt=""/>
