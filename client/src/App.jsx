@@ -32,7 +32,12 @@ const App = () => {
         <div className="App">
             <Navbar user={user} />
             <Routes>
-                <Route path="/fitness-app/landing" element={<Landing />} />
+                <Route
+                    path="/fitness-app/landing"
+                    element={
+                        user ? <Navigate to="/fitness-app/" /> : <Landing />
+                    }
+                />
                 <Route
                     path="/fitness-app/"
                     element={
