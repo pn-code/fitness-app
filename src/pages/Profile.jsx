@@ -12,7 +12,7 @@ const Profile = (props) => {
 			method: "GET",
 			withCredentials: true,
 			url: "https://fitness-api-gssp.onrender.com/log-out",
-		}).then((res) => setUser(res.data)).then(navigate("/fitness-app/landing"))
+		}).then((res) => setUser(res.data)).then(navigate("/landing"))
 	};	
 
 	return (

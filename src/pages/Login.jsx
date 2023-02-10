@@ -37,7 +37,7 @@ const Login = () => {
                 </button>
             </form>
 
-            <Link to="/fitness-app/sign-up">
+            <Link to="/sign-up">
                 <span className="text-white text-[12px] sm:text-sm hover:text-gray-400">
                     Don't have an account? Sign up!
                 </span>

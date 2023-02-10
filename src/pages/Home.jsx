@@ -18,7 +18,7 @@ const Home = (props) => {
 
     return (
         <div className="container">
-            {redirect && <Navigate replace to="/fitness-app/landing" />}
+            {redirect && <Navigate replace to="/landing" />}
             {user && (
                 <main className="text-white mx-10 my-5 flex flex-col gap-4">
                     <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.first_name},`}</h2>
@@ -51,10 +51,10 @@ const Home = (props) => {
                                 progress towards your fitness goals.
                             </p>
                             <div className="sign-up--container">
-                                <Link to="/fitness-app/sign-up">
+                                <Link to="/sign-up">
                                     <button>Sign Up</button>
                                 </Link>
-                                <Link to="/fitness-app/login">
+                                <Link to="/login">
                                     <button>Login</button>
                                 </Link>
                             </div>
