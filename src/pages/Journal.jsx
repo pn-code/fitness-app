@@ -5,7 +5,7 @@ import EntryForm from "../components/EntryForm";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Journal = ({ user, API_URL }) => {
+const Journal = ({ user }) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [entries, setEntries] = React.useState([]);
 
