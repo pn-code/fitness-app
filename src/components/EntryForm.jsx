@@ -3,7 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
-const API = "http://localhost:3000/plans/";
+const API = "https://fitness-zp5c.onrender.com/plans/";
 
 const EntryForm = ({
     user,

@@ -27,7 +27,7 @@ const PlannerPage = ({
 
     const [exercises, setExercises] = useState([]);
 
-    const API_URL = "https://fitness-api.onrender.com/plans";
+    const API_URL = "https://fitness-zp5c.onrender.com/plans";
 
     const handleExercise = () => {
         const exercise = {
