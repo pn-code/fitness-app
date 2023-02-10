@@ -15,7 +15,7 @@ import Feedback from "./components/Feedback";
 import { Navigate } from "react-router-dom";
 
 const App = () => {
-    const API_URL = "https://fitness-zp5c.onrender.com/";
+    const API_URL = "https://fitness-api-gssp.onrender.com";
 
     const [user, setUser] = useState(null);
 
@@ -24,7 +24,7 @@ const App = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "https://fitness-zp5c.onrender.com/profile",
+            url: "https://fitness-api-gssp.onrender.com/profile",
         }).then((res) => setUser(res.data.user));
     }, []);
 

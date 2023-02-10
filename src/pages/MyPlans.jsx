@@ -4,7 +4,7 @@ import Plan from "../components/Plan";
 import Planner from "./Planner";
 import axios from "axios";
 
-const API_URL = "https://fitness-zp5c.onrender.com/plans/";
+const API_URL = "https://fitness-api-gssp.onrender.com/plans/";
 
 const MyPlans = ({ user}) => {
     const [savedPlans, setSavedPlans] = React.useState([]);

@@ -7,7 +7,7 @@ const Login = () => {
             <form
                 className="bg-[#040324] flex flex-col items-center justify-center gap-3"
                 method="POST"
-                action={`https://fitness-zp5c.onrender.com/login`}
+                action={`https://fitness-api-gssp.onrender.com/login`}
             >
                 <div className="flex flex-col">
                     <label htmlFor="username">Username: </label>

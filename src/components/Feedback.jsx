@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Feedback = ({ user }) => {
-    const API = `https://fitness-zp5c.onrender.com/feedback`;
+    const API = `https://fitness-api-gssp.onrender.com/feedback`;
 
     const [feedback, setFeedback] = useState({
         author: user._id,

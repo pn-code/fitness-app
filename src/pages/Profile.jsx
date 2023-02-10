@@ -11,7 +11,7 @@ const Profile = (props) => {
 		axios({
 			method: "GET",
 			withCredentials: true,
-			url: "https://fitness-zp5c.onrender.com/log-out",
+			url: "https://fitness-api-gssp.onrender.com/log-out",
 		}).then((res) => setUser(res.data)).then(navigate("/fitness-app/landing"))
 	};	
 

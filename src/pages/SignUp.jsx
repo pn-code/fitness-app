@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const SignUp = () => {
-    const API_URL = "https://fitness-zp5c.onrender.com/register";
+    const API_URL = "https://fitness-api-gssp.onrender.com/register";
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
