@@ -27,7 +27,7 @@ const PlannerPage = ({
 
     const [exercises, setExercises] = useState([]);
 
-    const API = "http://localhost:3000/plans";
+    const API_URL = "https://fitness-api.onrender.com/plans";
 
     const handleExercise = () => {
         const exercise = {
@@ -57,7 +57,7 @@ const PlannerPage = ({
                     userId: user._id,
                 };
 
-                await axios.post(API, plan, { withCredentials: true });
+                await axios.post(API_URL, plan, { withCredentials: true });
 
                 // Save to array (Client-Sided Render)
                 setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);

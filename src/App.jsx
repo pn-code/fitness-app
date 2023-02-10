@@ -15,7 +15,7 @@ import Feedback from "./components/Feedback";
 import { Navigate } from "react-router-dom";
 
 const App = () => {
-    const API_URL = "http://localhost:3000";
+    const API_URL = "https://fitness-api.onrender.com";
 
     const [user, setUser] = useState(null);
 

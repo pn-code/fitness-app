@@ -8,7 +8,7 @@ import axios from "axios";
 const Journal = ({ user }) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [entries, setEntries] = React.useState([]);
-    const API_URL = "http://localhost:3000/journal/";
+    const API_URL = "https://fitness-api.onrender.com/journal/";
 
     const fetchEntries = async () => {
         const res = await axios.get(API_URL + user._id);

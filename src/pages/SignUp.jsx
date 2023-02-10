@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const SignUp = () => {
-    const API = "http://localhost:3000/register";
+    const API_URL = "https://fitness-api.onrender.com/register";
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -30,7 +30,7 @@ const SignUp = () => {
         // If password & confirm password are equvalent, proceed with API call
         if (confirmPw === password) {
             try {
-                const res = await axios.post(API, user);
+                const res = await axios.post(API_URL, user);
                 setMessage(res.data.message);
                 if (res.data.status === "Success") {
                     setLoading(false);

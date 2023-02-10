@@ -4,14 +4,14 @@ import Plan from "../components/Plan";
 import Planner from "./Planner";
 import axios from "axios";
 
-const API = "http://localhost:3000/plans/";
+const API_URL = "https://fitness-api.onrender.com/plans/";
 
 const MyPlans = ({ user}) => {
     const [savedPlans, setSavedPlans] = React.useState([]);
     const [renderPlanner, setRenderPlanner] = React.useState(false);
 
     const fetchPlans = async () => {
-        const res = await axios.get(API + user?._id);
+        const res = await axios.get(API_URL + user?._id);
         setSavedPlans(res.data.plans);
     };
 
@@ -24,7 +24,7 @@ const MyPlans = ({ user}) => {
 
     const deletePlan = async (planId, planUserId) => {
         // // Delete selected plan from database
-        await axios.delete(API, {
+        await axios.delete(API_URL, {
             data: {
                 userId: user._id,
                 planUserId: planUserId,
