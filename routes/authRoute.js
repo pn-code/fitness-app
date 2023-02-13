@@ -5,8 +5,6 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
-const client = "https://fitness.philipnguyen.dev";
-
 router.post("/register", async (req, res, next) => {
     const userExists = await User.findOne({ username: req.body.username });
     const emailRegistered = await User.findOne({ email: req.body.email });
@@ -49,16 +47,18 @@ router.post("/login", (req, res, next) => {
         if (user) {
             req.logIn(user, (err) => {
                 if (err) throw err;
-                res.redirect(client);
+                res.sendStatus(200).json({ status: "Success" });
             });
         }
     })(req, res, next);
 });
 
 router.get("/profile", (req, res) => {
-    res.json({
-        user: req.user,
-    });
+    if (req.user) {
+        res.json({
+            user: req.user,
+        });
+    }
 });
 
 router.get("/log-out", (req, res, next) => {
@@ -66,7 +66,7 @@ router.get("/log-out", (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.redirect(client);
+        res.json({ status: "Success" });
     });
 });
 
