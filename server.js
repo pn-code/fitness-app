@@ -8,7 +8,7 @@ const passport = require("passport");
 require("./passportConfig")(passport);
 require("dotenv").config();
 
-const client = "https://fitness-api-gssp.onrender.com";
+const client = "https://fitness.philipnguyen.dev";
 
 const app = express();
 const PORT = 3000;

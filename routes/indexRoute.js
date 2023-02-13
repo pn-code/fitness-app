@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
-const client = "https://fitness-api-gssp.onrender.com";
+const client = "https://fitness.philipnguyen.dev";
 
 router.post("/register", async (req, res, next) => {
     const userExists = await User.findOne({ username: req.body.username });
