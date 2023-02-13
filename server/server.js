@@ -8,8 +8,6 @@ const passport = require("passport");
 require("./passportConfig")(passport);
 require("dotenv").config();
 
-const client = "http://localhost:5173";
-
 const app = express();
 const PORT = 3000;
 
@@ -27,7 +25,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // Express Middleware
 app.use(
     cors({
-        origin: client,
+        origin: process.env.CLIENT_URI,
         credentials: true,
     })
 );
@@ -45,13 +43,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES
-const indexRoute = require("./routes/indexRoute");
+const authRoute = require("./routes/authRoute");
 const plansRoute = require("./routes/plansRoute");
 const journalRoute = require("./routes/journalRoute");
 const feedbackRoute = require("./routes/feedbackRoute");
 
 // Index - User Auth
-app.use("/", indexRoute);
+app.use("/", authRoute);
 
 // Training Planner
 app.use("/plans", plansRoute);
