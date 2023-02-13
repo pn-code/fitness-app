@@ -51,7 +51,7 @@ const App = () => {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route
                     path="/login"
-                    element={<Login API_URL={API_URL} />}
+                    element={<Login API_URL={API_URL} setUser={setUser}/>}
                 />
                 <Route
                     path="/calculator"
