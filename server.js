@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
+const MemoryStore = require("memorystore")(session);
 require("./passportConfig")(passport);
 require("dotenv").config();
 
@@ -33,6 +34,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
     session({
+        cookie: { maxAge: 86400000 },
+        store: new MemoryStore({
+            checkPeriod: 86400000,
+        }),
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,

@@ -7,31 +7,32 @@
   "license": "ISC",
   "description": "This is the backend portion of the fitness app.",
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/pn-code/fitness-app.git"
+    "type": "git",
+    "url": "git+https://github.com/pn-code/fitness-app.git"
   },
   "bugs": {
-      "url": "https://github.com/pn-code/fitness-app/issues"
+    "url": "https://github.com/pn-code/fitness-app/issues"
   },
   "homepage": "https://github.com/pn-code/fitness-app#readme",
   "dependencies": {
-      "bcryptjs": "^2.4.3",
-      "body-parser": "^1.20.1",
-      "cookie-parser": "^1.4.6",
-      "cors": "^2.8.5",
-      "dotenv": "^16.0.3",
-      "ejs": "^3.1.8",
-      "express": "^4.18.2",
-      "express-session": "^1.17.3",
-      "luxon": "^3.2.0",
-      "mongoose": "^6.8.0",
-      "passport": "^0.6.0",
-      "passport-local": "^1.0.0"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "luxon": "^3.2.0",
+    "memorystore": "^1.6.7",
+    "mongoose": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
-      "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20"
   },
   "scripts": {
-      "start": "nodemon server.js"
+    "start": "nodemon server.js"
   }
 }
