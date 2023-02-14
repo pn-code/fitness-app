@@ -72,7 +72,7 @@ const Feedback = ({ user }) => {
                 <div className="flex flex-col sm:items-center">
                     <span className="sm:text-center">Feedback sent!</span>
                     <button className="btn-blue-light sm:w-96">
-                        <Link to="/fitness-app/profile">Return to Profile</Link>
+                        <Link to="/profile">Return to Profile</Link>
                     </button>
                 </div>
             )}

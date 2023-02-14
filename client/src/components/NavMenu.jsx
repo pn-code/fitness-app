@@ -16,7 +16,7 @@ const NavMenu = ({ setOpen }) => {
                     <Link
                         onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
-                        to="/fitness-app/"
+                        to="/"
                     >
                         <AiFillHome size={30} color="white" />
                         <span className="text-xl">HOME</span>
@@ -26,7 +26,7 @@ const NavMenu = ({ setOpen }) => {
                     <Link
                         onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
-                        to="/fitness-app/calculator"
+                        to="/calculator"
                     >
                         <AiFillCalculator size={30} color="white" />
                         <span className="text-xl">CALCULATE</span>
@@ -36,7 +36,7 @@ const NavMenu = ({ setOpen }) => {
                     <Link
                         onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
-                        to="/fitness-app/my-plans"
+                        to="/my-plans"
                     >
                         <AiFillBuild size={30} color="white" />
                         <span className="text-xl">PLANS</span>
@@ -46,7 +46,7 @@ const NavMenu = ({ setOpen }) => {
                     <Link
                         onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
-                        to="/fitness-app/journal"
+                        to="/journal"
                     >
                         <IoIosJournal size={30} color="white" />
                         <span className="text-xl">JOURNAL</span>
@@ -56,7 +56,7 @@ const NavMenu = ({ setOpen }) => {
                     <Link
                         onClick={handleClick}
                         className="flex gap-4 justify-center items-center"
-                        to="/fitness-app/profile"
+                        to="/profile"
                     >
                         <CgProfile size={30} color="white" />
                         <span className="text-xl">PROFILE</span>

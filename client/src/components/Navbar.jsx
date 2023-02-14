@@ -18,7 +18,7 @@ const Navbar = (props) => {
         <nav className="flex justify-between items-center p-5 flex-row bg-[#040324]">
             {/* LOGO */}
             <div>
-                <Link style={{ textDecoration: "none" }} to="/fitness-app/">
+                <Link style={{ textDecoration: "none" }} to="/">
                     <h1 className="text-[20px] font-black text-white sm:text-3xl">
                         FITNESS
                     </h1>
@@ -39,7 +39,7 @@ const Navbar = (props) => {
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
-                            to="/fitness-app/"
+                            to="/"
                         >
                             <AiFillHome size={16} color="white" />
                             <span className="sm:text-lg">HOME</span>
@@ -48,7 +48,7 @@ const Navbar = (props) => {
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
-                            to="/fitness-app/calculator"
+                            to="/calculator"
                         >
                             <AiFillCalculator size={16} color="white" />
                             <span className="sm:text-lg">CALCULATE</span>
@@ -57,7 +57,7 @@ const Navbar = (props) => {
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
-                            to="/fitness-app/my-plans"
+                            to="/my-plans"
                         >
                             <AiFillBuild size={16} color="white" />
                             <span className="sm:text-lg">PLANS</span>
@@ -66,7 +66,7 @@ const Navbar = (props) => {
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
-                            to="/fitness-app/journal"
+                            to="/journal"
                         >
                             <IoIosJournal size={16} color="white" />
                             <span className="sm:text-lg">JOURNAL</span>
@@ -75,7 +75,7 @@ const Navbar = (props) => {
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
-                            to="/fitness-app/profile"
+                            to="/profile"
                         >
                             <CgProfile size={16} color="white" />
                             <span className="sm:text-lg">PROFILE</span>
