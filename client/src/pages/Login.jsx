@@ -3,54 +3,58 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ setUser, API_URL }) => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     const Navigate = useNavigate();
 
-    const canSubmit = (username !== "" && password !== "") && loading !== true;
+    const canSubmit = email !== "" && password !== "" && loading !== true;
 
     const handleSubmit = async (e) => {
-        setError(false)
-        setLoading(true)
+        setError(false);
+        setLoading(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`${API_URL}/login`, {
-                username,
+            const res = await axios.post(`${API_URL}/auth/login`, {
+                email,
                 password,
             });
-            
-            if (res.data.status == "Success") {
-                setUser(res.data.user);
-                Navigate("/")
+
+            if (res.status === 200) {
+                setUser(res.data);
+                Navigate("/");
             } else {
-                setError(true)
+                setError(true);
             }
         } catch (error) {
             console.error(error);
         }
-        setLoading(false)
+        setLoading(false);
     };
 
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 pt-10 gap-2 items-center mt-10">
             <h1 className="text-3xl text-center">Login</h1>
-            {error && <span className="text-red-400 font-semibold">Wrong Credentials!</span>}
+            {error && (
+                <span className="text-red-400 font-semibold">
+                    Wrong Credentials!
+                </span>
+            )}
             <form
                 onSubmit={handleSubmit}
                 className="bg-[#040324] flex flex-col items-center justify-center gap-3"
             >
                 <div className="flex flex-col">
-                    <label htmlFor="username">Username: </label>
+                    <label htmlFor="email">Email: </label>
                     <input
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         className="input-bl"
-                        id="username"
-                        name="username"
-                        type="text"
+                        id="email"
+                        name="email"
+                        type="email"
                     />
                 </div>
 
