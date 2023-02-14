@@ -26,7 +26,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // Express Middleware
 app.use(
     cors({
-        origin: process.env.CLIENT_URI,
+        origin: process.env.CLIENT_URL,
         credentials: true,
     })
 );
