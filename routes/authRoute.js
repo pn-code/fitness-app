@@ -41,24 +41,22 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
+    passport.authenticate("local", (err, user) => {
         if (err) throw err;
         if (!user) res.send("User does not exist.");
         if (user) {
             req.logIn(user, (err) => {
                 if (err) throw err;
-                res.json({ status: "Success" });
+                res.json({ status: "Success", user });
             });
         }
     })(req, res, next);
 });
 
-router.get("/profile", (req, res) => {
-    if (req.user) {
-        res.json({
-            user: req.user,
-        });
-    }
+router.get("/user", (req, res) => {
+    res.json({
+        user: req.user,
+    });
 });
 
 router.get("/log-out", (req, res, next) => {
