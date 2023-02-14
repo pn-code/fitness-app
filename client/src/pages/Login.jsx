@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, API_URL }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
@@ -15,7 +15,7 @@ const Login = ({ setUser }) => {
         setLoading(true)
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/login", {
+            const res = await axios.post(`${API_URL}/login`, {
                 username,
                 password,
             });
