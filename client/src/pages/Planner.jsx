@@ -11,6 +11,7 @@ const PlannerPage = ({
     fetchPlans,
     renderPlanner,
     setRenderPlanner,
+    planAPI
 }) => {
     // Page State
     const [formPage, setFormPage] = useState(0);
@@ -26,8 +27,6 @@ const PlannerPage = ({
     const [reps, setReps] = useState("");
 
     const [exercises, setExercises] = useState([]);
-
-    const API = "http://localhost:3000/plans";
 
     const handleExercise = () => {
         const exercise = {
@@ -57,7 +56,7 @@ const PlannerPage = ({
                     userId: user._id,
                 };
 
-                await axios.post(API, plan, { withCredentials: true });
+                await axios.post(planAPI, plan);
 
                 // Save to array (Client-Sided Render)
                 setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
