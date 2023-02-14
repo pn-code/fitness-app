@@ -53,8 +53,8 @@ const plansRoute = require("./routes/plansRoute");
 const journalRoute = require("./routes/journalRoute");
 const feedbackRoute = require("./routes/feedbackRoute");
 
-// Index - User Auth
-app.use("/", authRoute);
+// User Auth
+app.use("/auth", authRoute);
 
 // Training Planner
 app.use("/plans", plansRoute);
