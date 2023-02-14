@@ -1,18 +1,17 @@
 import React from "react";
 import "../styles/profile.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Profile = (props) => {
 	const { user, setUser } = props;
-	const navigate = useNavigate()
 
 	const handleLogOut = async () => {
 		axios({
 			method: "GET",
 			withCredentials: true,
-			url: "https://fitness-api-gssp.onrender.com/log-out",
-		}).then((res) => setUser(res.data)).then(navigate("/landing"))
+			url: "http://localhost:3000/log-out",
+		}).then((res) => setUser(res.data)).then(() => window.location.reload(false))
 	};	
 
 	return (
@@ -30,7 +29,7 @@ const Profile = (props) => {
 
 					<Link
 						className="btn-blue text-center"
-						to="/fitness-app/feedback"
+						to="/feedback"
 					>
 						Send Feedback
 					</Link>

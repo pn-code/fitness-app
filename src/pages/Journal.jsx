@@ -5,14 +5,14 @@ import EntryForm from "../components/EntryForm";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Journal = ({ user }) => {
+const Journal = ({ user, API_URL }) => {
     const [addEntry, setAddEntry] = React.useState(false);
     const [entries, setEntries] = React.useState([]);
 
-    const API_URL = "https://fitness-api-gssp.onrender.com/journal/";
+    const journalAPI = `${API_URL}/journal/`;
 
     const fetchEntries = async () => {
-        const res = await axios.get(API_URL + "/journal/" + user._id);
+        const res = await axios.get(`${journalAPI}${user._id}`);
         setEntries(res.data.entries);
     };
 
@@ -40,6 +40,7 @@ const Journal = ({ user }) => {
                     user={user}
                     setEntries={setEntries}
                     API_URL={API_URL}
+                    journalAPI={journalAPI}
                     setAddEntry={setAddEntry}
                     fetchEntries={fetchEntries}
                 />
@@ -55,7 +56,7 @@ const Journal = ({ user }) => {
                                 entry={entry}
                                 key={entry._id}
                                 setEntries={setEntries}
-                                API_URL={API_URL}
+                                journalAPI={journalAPI}
                             />
                         ))}
                 </main>

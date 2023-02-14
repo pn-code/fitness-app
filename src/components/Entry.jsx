@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-const Entry = ({ entry, setEntries, API_URL }) => {
+const Entry = ({ entry, setEntries, journalAPI }) => {
 	const [viewEntry, setViewEntry] = useState(false);
 	const formattedDate = DateTime.fromISO(entry.date).toFormat(
 		"LLL dd, yyyy"
@@ -10,7 +10,7 @@ const Entry = ({ entry, setEntries, API_URL }) => {
 
 	const deleteEntry = async (id) => {
 		// findAndDelete from db
-		await axios.delete(API_URL + id);
+		await axios.delete(journalAPI + id);
 
 		// Remove from entries array
 		setEntries((prevEntries) =>

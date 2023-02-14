@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Feedback = ({ user }) => {
-    const API = `https://fitness-api-gssp.onrender.com/feedback`;
+const Feedback = ({ user, API_URL }) => {
+    const feedbackAPI = `${API_URL}/feedback`;
 
     const [feedback, setFeedback] = useState({
         author: user._id,
@@ -23,7 +23,7 @@ const Feedback = ({ user }) => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        const res = await axios.post(API, feedback);
+        const res = await axios.post(feedbackAPI, feedback);
         setSent(true);
         setLoading(false);
     };

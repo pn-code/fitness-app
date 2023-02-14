@@ -3,13 +3,12 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
-const API = "https://fitness-api-gssp.onrender.com/plans/";
-
 const EntryForm = ({
     user,
     setEntries,
     setAddEntry,
     fetchEntries,
+    journalAPI,
     API_URL,
 }) => {
     const [entry, setEntry] = useState({
@@ -21,10 +20,11 @@ const EntryForm = ({
         notes: "",
     });
 
+    const planAPI = `${API_URL}/plans/`;
     const [plans, setPlans] = useState([]);
 
     const fetchPlans = async () => {
-        const res = await axios.get(API + user?._id);
+        const res = await axios.get(`${planAPI}${user?._id}`);
         setPlans(res.data.plans);
     };
 
@@ -48,15 +48,15 @@ const EntryForm = ({
 
     const handleSubmit = async () => {
         // Submit data to database
-        await axios.post(API_URL, entry);
+        await axios.post(journalAPI, entry);
 
         // Add entry to entries array
         setEntries((prevEntries) => [entry, ...prevEntries]);
 
         // Reset entry state
         setEntry({
-            _id: uuidv4() + "hello world",
-            userId: user._id + "user_id",
+            _id: uuidv4(),
+            userId: user._id,
             date: "",
             plan: "",
             calories: 2000,

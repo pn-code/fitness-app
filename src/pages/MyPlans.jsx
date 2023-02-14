@@ -4,14 +4,14 @@ import Plan from "../components/Plan";
 import Planner from "./Planner";
 import axios from "axios";
 
-const API_URL = "https://fitness-api-gssp.onrender.com/plans/";
-
-const MyPlans = ({ user}) => {
+const MyPlans = ({ user, API_URL }) => {
     const [savedPlans, setSavedPlans] = React.useState([]);
     const [renderPlanner, setRenderPlanner] = React.useState(false);
 
+    const planAPI = `${API_URL}/plans/`;
+
     const fetchPlans = async () => {
-        const res = await axios.get(API_URL + user?._id);
+        const res = await axios.get(`${planAPI}${user?._id}`);
         setSavedPlans(res.data.plans);
     };
 
@@ -24,7 +24,7 @@ const MyPlans = ({ user}) => {
 
     const deletePlan = async (planId, planUserId) => {
         // // Delete selected plan from database
-        await axios.delete(API_URL, {
+        await axios.delete(planAPI, {
             data: {
                 userId: user._id,
                 planUserId: planUserId,
@@ -48,6 +48,7 @@ const MyPlans = ({ user}) => {
                     renderPlanner={renderPlanner}
                     savedPlans={savedPlans}
                     setSavedPlans={setSavedPlans}
+                    planAPI={planAPI}
                 />
             ) : (
                 <div className="text-white mx-10 my-5 flex flex-col gap-2 justify-center sm:justify-left sm:mt-16">
@@ -89,14 +90,6 @@ const MyPlans = ({ user}) => {
                                     ))}
                                 </ul>
                             </main>
-                        )}
-                        {renderPlanner && (
-                            <Planner
-                                user={user}
-                                setSavedPlans={setSavedPlans}
-                                deletePlan={deletePlan}
-                                fetchPlans={fetchPlans}
-                            />
                         )}
                     </div>
                 </div>
