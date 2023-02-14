@@ -8,7 +8,6 @@ const SignUp = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPw, setConfirmPw] = useState("");
     const [message, setMessage] = useState(false);
@@ -22,9 +21,7 @@ const SignUp = () => {
             firstName,
             lastName,
             email,
-            username,
             password,
-            confirmPw,
         };
 
         // If password & confirm password are equvalent, proceed with API call
@@ -81,18 +78,6 @@ const SignUp = () => {
                         id="email"
                         name="email"
                         type="email"
-                    />
-                </div>
-
-                <div className="flex flex-col">
-                    <label htmlFor="username">Username: </label>
-                    <input
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        className="input-bl"
-                        id="username"
-                        name="username"
-                        type="text"
                     />
                 </div>
 
