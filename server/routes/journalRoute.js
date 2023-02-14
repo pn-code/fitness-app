@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Entry = require("../models/Entry");
-const { DateTime } = require("luxon");
-
-const client = "http://localhost:5173/fitness-app/journal";
 
 router.get("/:userId", async (req, res) => {
 	const { userId } = req.params;
