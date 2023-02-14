@@ -44,7 +44,7 @@ const SignUp = () => {
 
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
-            {register && <Navigate replace to="/fitness-app/login" />}
+            {register && <Navigate replace to="/login" />}
             <form className="bg-[#040324] flex flex-col items-center justify-center gap-3">
                 <h2 className="text-3xl text-center mb-4">SIGN UP</h2>
                 <span className="text-red-300">{message && message}</span>
@@ -128,7 +128,7 @@ const SignUp = () => {
                 >
                     Register
                 </button>
-                <Link to="/fitness-app/login">
+                <Link to="/login">
                     <span className="text-white text-[12px] sm:text-sm hover:text-gray-400">
                         Already have an account? Log In.
                     </span>

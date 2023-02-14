@@ -31,12 +31,12 @@ const Landing = () => {
                     work!
                 </span>
                 <div className="flex flex-col gap-2 items-center">
-                    <Link to="/fitness-app/sign-up">
+                    <Link to="/sign-up">
                         <button className="text-xl px-5 py-2 sm:px-8 sm:py-4 mt-3 rounded-sm bg-[#272626] font-semibold sm:text-3xl hover:bg-white hover:text-gray-800">
                             JOIN NOW
                         </button>
                     </Link>
-                    <Link to="/fitness-app/login">
+                    <Link to="/login">
                         <span className="text-sm sm:text-lg hover:text-gray-400">
                             Already have an account? Log In.
                         </span>
@@ -127,7 +127,7 @@ const Landing = () => {
                 <span className="font-semibold text-2xl sm:text-5xl">
                     What are you waiting for?
                 </span>
-                <Link to="/fitness-app/sign-up">
+                <Link to="/sign-up">
                     <button className="text-xl px-5 py-2 sm:px-20 sm:py-8 rounded-md bg-[#272626] font-semibold sm:text-5xl hover:bg-white hover:text-gray-800">
                         JOIN NOW
                     </button>

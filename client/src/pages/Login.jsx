@@ -22,7 +22,7 @@ const Login = ({ setUser }) => {
             
             if (res.data.status == "Success") {
                 setUser(res.data.user);
-                Navigate("/fitness-app/")
+                Navigate("/")
             }
         } catch (error) {
             console.error(error);
@@ -70,7 +70,7 @@ const Login = ({ setUser }) => {
                 </button>
             </form>
 
-            <Link to="/fitness-app/sign-up">
+            <Link to="/sign-up">
                 <span className="text-white text-[12px] sm:text-sm hover:text-gray-400">
                     Don't have an account? Sign up!
                 </span>

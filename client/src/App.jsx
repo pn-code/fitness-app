@@ -24,73 +24,73 @@ const App = () => {
             <Navbar user={user} />
             <Routes>
                 <Route
-                    path="/fitness-app/landing"
+                    path="/landing"
                     element={
-                        user ? <Navigate to="/fitness-app/" /> : <Landing />
+                        user ? <Navigate to="/" /> : <Landing />
                     }
                 />
                 <Route
-                    path="/fitness-app/"
+                    path="/"
                     element={
                         user ? (
                             <Home user={user} />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
-                <Route path="/fitness-app/sign-up" element={<SignUp />} />
+                <Route path="/sign-up" element={<SignUp />} />
                 <Route
-                    path="/fitness-app/login"
+                    path="/login"
                     element={<Login API_URL={API_URL} setUser={setUser}/>}
                 />
                 <Route
-                    path="/fitness-app/calculator"
+                    path="/calculator"
                     element={
                         user ? (
                             <Calculator />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
                 <Route
-                    path="/fitness-app/journal"
+                    path="/journal"
                     element={
                         user ? (
                             <Journal user={user} />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
                 <Route
-                    path="/fitness-app/profile"
+                    path="/profile"
                     element={
                         user ? (
                             <Profile setUser={setUser} user={user} />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
                 <Route
-                    path="/fitness-app/my-plans"
+                    path="/my-plans"
                     element={
                         user ? (
                             <MyPlans user={user} />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
                 <Route
-                    path="/fitness-app/feedback"
+                    path="/feedback"
                     element={
                         user ? (
                             <Feedback user={user} />
                         ) : (
-                            <Navigate to="/fitness-app/landing" />
+                            <Navigate to="/landing" />
                         )
                     }
                 />
