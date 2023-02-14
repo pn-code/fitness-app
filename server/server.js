@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 require("./passportConfig")(passport);
 require("dotenv").config();
+const MemoryStore = require('memorystore')(session)
 
 const app = express();
 const PORT = 3000;
@@ -33,6 +34,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
     session({
+        cookie: { maxAge: 86400000 },
+        store: new MemoryStore({
+            checkPeriod: 86400000
+          }),
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,

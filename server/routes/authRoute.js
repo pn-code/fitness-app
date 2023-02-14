@@ -53,7 +53,7 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-router.get("/profile", (req, res) => {
+router.get("/user", (req, res) => {
     res.json({
         user: req.user,
     });
