@@ -24,7 +24,7 @@ const EntryForm = ({
     const [plans, setPlans] = useState([]);
 
     const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}${user?.id}`);
+        const res = await axios.get(`${planAPI}${user?._id}`);
         setPlans(res.data.plans);
     };
 
