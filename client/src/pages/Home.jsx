@@ -21,7 +21,7 @@ const Home = (props) => {
             {redirect && <Navigate replace to="/landing" />}
             {user && (
                 <main className="text-white mx-10 my-5 flex flex-col gap-4">
-                    <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.first_name},`}</h2>
+                    <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.firstName},`}</h2>
                     <section className="flex flex-col gap-6">
                         <p className="text-xl">
                             When I built this website, I had one goal in mind...
