@@ -6,12 +6,14 @@ const Login = ({ setUser, API_URL }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const Navigate = useNavigate();
 
     const canSubmit = (username !== "" && password !== "") && loading !== true;
 
     const handleSubmit = async (e) => {
+        setError(false)
         setLoading(true)
         e.preventDefault();
         try {
@@ -23,6 +25,8 @@ const Login = ({ setUser, API_URL }) => {
             if (res.data.status == "Success") {
                 setUser(res.data.user);
                 Navigate("/")
+            } else {
+                setError(true)
             }
         } catch (error) {
             console.error(error);
@@ -33,6 +37,7 @@ const Login = ({ setUser, API_URL }) => {
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 pt-10 gap-2 items-center mt-10">
             <h1 className="text-3xl text-center">Login</h1>
+            {error && <span className="text-red-400 font-semibold">Wrong Credentials!</span>}
             <form
                 onSubmit={handleSubmit}
                 className="bg-[#040324] flex flex-col items-center justify-center gap-3"
