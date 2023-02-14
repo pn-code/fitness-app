@@ -1,9 +1,9 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-const SignUp = () => {
-    const API = "http://localhost:3000/register";
+const SignUp = ({API_URL}) => {
+    const API = `${API_URL}/auth/register`;
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -13,6 +13,8 @@ const SignUp = () => {
     const [message, setMessage] = useState(false);
     const [loading, setLoading] = useState(false);
     const [register, setRegister] = useState(false);
+
+    const Navigate = useNavigate();
 
     const registerUser = async () => {
         setLoading(true);
@@ -24,7 +26,7 @@ const SignUp = () => {
             password,
         };
 
-        // If password & confirm password are equvalent, proceed with API call
+        // If password & confirm password are equivalent, proceed with API call
         if (confirmPw === password) {
             try {
                 const res = await axios.post(API, user);
@@ -37,6 +39,8 @@ const SignUp = () => {
                 console.log(err);
             }
         }
+        setLoading(false);
+        Navigate("/login")
     };
 
     return (
