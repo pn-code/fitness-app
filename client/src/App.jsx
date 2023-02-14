@@ -9,8 +9,7 @@ import Navbar from "./components/Navbar";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Feedback from "./components/Feedback";
 import { Navigate } from "react-router-dom";
 
@@ -18,15 +17,7 @@ const App = () => {
     const API_URL = "http://localhost:3000";
 
     const [user, setUser] = useState(null);
-
-    // Check if user is signed in
-    useEffect(() => {
-        axios({
-            method: "GET",
-            withCredentials: true,
-            url: "http://localhost:3000/profile",
-        }).then((res) => setUser(res.data.user));
-    }, []);
+    console.log(user)
 
     return (
         <div className="App">
@@ -51,7 +42,7 @@ const App = () => {
                 <Route path="/fitness-app/sign-up" element={<SignUp />} />
                 <Route
                     path="/fitness-app/login"
-                    element={<Login API_URL={API_URL} />}
+                    element={<Login API_URL={API_URL} setUser={setUser}/>}
                 />
                 <Route
                     path="/fitness-app/calculator"

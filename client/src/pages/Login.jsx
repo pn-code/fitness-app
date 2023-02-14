@@ -1,22 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ setUser }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false)
+
+    const Navigate = useNavigate();
+
+    const canSubmit = (username !== "" && password !== "") && loading !== true;
 
     const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:3000/login", {
                 username,
                 password,
             });
-            console.log(res);
+            
+            if (res.data.status == "Success") {
+                setUser(res.data.user);
+                Navigate("/fitness-app/")
+            }
         } catch (error) {
             console.error(error);
         }
+        setLoading(false)
     };
 
     return (
@@ -51,6 +62,7 @@ const Login = () => {
                 </div>
 
                 <button
+                    disabled={!canSubmit}
                     className="bg-[#3731e0] text-white mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
                     type="submit"
                 >
