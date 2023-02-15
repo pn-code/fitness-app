@@ -105,9 +105,9 @@ const PlannerPage = ({
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex flex-col gap-3 text-lg h-[720px] rounded-lg px-8 py-5 bg-gray-700">
+            <div className="flex flex-col gap-3 text-sm sm:text-lg max-w-[500px] rounded-lg px-8 py-5 bg-gray-700 pt-5">
                 <div className="flex justify-between">
-                    <h2 className="text-4xl font-bold">New Plan</h2>
+                    <h2 className="text-2xl sm:text-4xl font-bold">New Plan</h2>
                     <button
                         className="btn-blue-light mt-0"
                         onClick={() =>
@@ -295,7 +295,7 @@ const PlannerPage = ({
                             </h2>
                             {exercises.map((exercise) => (
                                 <li>
-                                    <div className="flex justify-between w-96">
+                                    <div className="flex justify-between sm:w-96">
                                         <h5>{exercise.name}</h5>
                                         <button
                                             onClick={() =>
