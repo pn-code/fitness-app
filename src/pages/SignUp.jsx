@@ -1,19 +1,20 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-const SignUp = () => {
-    const API = "http://localhost:3000/register";
+const SignUp = ({API_URL}) => {
+    const API = `${API_URL}/auth/register`;
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPw, setConfirmPw] = useState("");
     const [message, setMessage] = useState(false);
     const [loading, setLoading] = useState(false);
     const [register, setRegister] = useState(false);
+
+    const Navigate = useNavigate();
 
     const registerUser = async () => {
         setLoading(true);
@@ -22,12 +23,10 @@ const SignUp = () => {
             firstName,
             lastName,
             email,
-            username,
             password,
-            confirmPw,
         };
 
-        // If password & confirm password are equvalent, proceed with API call
+        // If password & confirm password are equivalent, proceed with API call
         if (confirmPw === password) {
             try {
                 const res = await axios.post(API, user);
@@ -40,6 +39,8 @@ const SignUp = () => {
                 console.log(err);
             }
         }
+        setLoading(false);
+        Navigate("/login")
     };
 
     return (
@@ -81,18 +82,6 @@ const SignUp = () => {
                         id="email"
                         name="email"
                         type="email"
-                    />
-                </div>
-
-                <div className="flex flex-col">
-                    <label htmlFor="username">Username: </label>
-                    <input
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        className="input-bl"
-                        id="username"
-                        name="username"
-                        type="text"
                     />
                 </div>
 
