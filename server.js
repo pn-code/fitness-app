@@ -5,9 +5,9 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
-const MemoryStore = require("memorystore")(session);
 require("./passportConfig")(passport);
 require("dotenv").config();
+const MemoryStore = require('memorystore')(session)
 
 const app = express();
 const PORT = 3000;
@@ -26,7 +26,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // Express Middleware
 app.use(
     cors({
-        origin: "https://fitness.philipnguyen.dev",
+        origin: process.env.CLIENT_URL,
         credentials: true,
     })
 );
@@ -36,8 +36,8 @@ app.use(
     session({
         cookie: { maxAge: 86400000 },
         store: new MemoryStore({
-            checkPeriod: 86400000,
-        }),
+            checkPeriod: 86400000
+          }),
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
@@ -53,8 +53,8 @@ const plansRoute = require("./routes/plansRoute");
 const journalRoute = require("./routes/journalRoute");
 const feedbackRoute = require("./routes/feedbackRoute");
 
-// Index - User Auth
-app.use("/", authRoute);
+// User Auth
+app.use("/auth", authRoute);
 
 // Training Planner
 app.use("/plans", plansRoute);

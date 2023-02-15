@@ -1,19 +1,4 @@
 {
-  "name": "fitness-app-server",
-  "version": "1.0.0",
-  "main": "server.js",
-  "keywords": [],
-  "author": "Philip Nguyen",
-  "license": "ISC",
-  "description": "This is the backend portion of the fitness app.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pn-code/fitness-app.git"
-  },
-  "bugs": {
-    "url": "https://github.com/pn-code/fitness-app/issues"
-  },
-  "homepage": "https://github.com/pn-code/fitness-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
@@ -22,7 +7,9 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.0",
     "luxon": "^3.2.0",
     "memorystore": "^1.6.7",
     "mongoose": "^6.8.0",
@@ -34,5 +21,12 @@
   },
   "scripts": {
     "start": "nodemon server.js"
-  }
+  },
+  "name": "fitness-app-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

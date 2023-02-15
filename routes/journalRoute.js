@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Entry = require("../models/Entry");
-const { DateTime } = require("luxon");
 
 router.get("/:userId", async (req, res) => {
 	const { userId } = req.params;
