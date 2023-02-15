@@ -1,11 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-const passport = require("passport");
-require("./passportConfig")(passport);
 require("dotenv").config();
 const MemoryStore = require('memorystore')(session)
 
@@ -44,8 +41,6 @@ app.use(
     })
 );
 app.use(cookieParser(process.env.SESSION_SECRET));
-app.use(passport.initialize());
-app.use(passport.session());
 
 // ROUTES
 const authRoute = require("./routes/authRoute");
