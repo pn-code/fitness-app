@@ -5,7 +5,7 @@ const {
     loginUser,
     logoutUser,
     getUserData,
-} = require("../controllers/userController");
+} = require("../controllers/authController");
 const { protect } = require("../middleware/authMiddleware");
 
 router.post("/register", registerUser);
