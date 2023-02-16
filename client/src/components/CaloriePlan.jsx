@@ -35,7 +35,6 @@ const CaloriePlan = (props) => {
                             {calorieGoal} calories.
                         </span>
                     </p>
-                    <button className="btn-blue mt-10">SELECT PLAN</button>
                 </div>
             )}
         </div>
