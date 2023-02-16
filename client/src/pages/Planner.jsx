@@ -11,7 +11,7 @@ const PlannerPage = ({
     fetchPlans,
     renderPlanner,
     setRenderPlanner,
-    planAPI
+    planAPI,
 }) => {
     // Page State
     const [formPage, setFormPage] = useState(0);
@@ -28,7 +28,7 @@ const PlannerPage = ({
 
     const [exercises, setExercises] = useState([]);
 
-    const handleExercise = () => {
+    const addExercise = () => {
         const exercise = {
             id: uuidv4(),
             name,
@@ -41,37 +41,35 @@ const PlannerPage = ({
         setReps("");
     };
 
+    const handleNext = () => {
+        setFormPage((page) => page + 1);
+    };
+
     const handleSubmit = async () => {
-        // Handle Page Increments
-        if (formPage < 2) {
-            setFormPage((page) => page + 1);
-        } else {
-            // Submit information to DB
-            try {
-                const plan = {
-                    title,
-                    emphasis,
-                    desc,
-                    exercises,
-                    userId: user._id,
-                };
+        try {
+            const plan = {
+                title,
+                emphasis,
+                desc,
+                exercises,
+                userId: user._id,
+            };
 
-                await axios.post(planAPI, plan);
+            await axios.post(planAPI, plan);
 
-                // Save to array (Client-Sided Render)
-                setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
+            // Save to array (Client-Sided Render)
+            setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
 
-                // Reset Form
-                setTitle("");
-                setEmphasis("");
-                setDesc("");
-                setExercises([]);
-                setFormPage(0);
+            // Reset Form
+            setTitle("");
+            setEmphasis("");
+            setDesc("");
+            setExercises([]);
+            setFormPage(0);
 
-                fetchPlans();
-            } catch (error) {
-                console.log(error);
-            }
+            fetchPlans();
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -82,9 +80,17 @@ const PlannerPage = ({
         setExercises(updatedExercises);
     };
 
+    const addExerciseDisabler = ![name, sets, reps].every(Boolean);
+    const submitDisabler = ![
+        title,
+        emphasis,
+        desc,
+        exercises.length > 0,
+    ].every(Boolean);
+
     return (
         <div className="flex justify-center gap-10 mb-6 text-white mx-10 my-5 sm:mt-16">
-            {/* LEFT SIDE */}
+            {/* LEFT SIDE | IMAGE */}
             <div className="hidden lg:flex flex-col gap-2">
                 <img
                     className="object-cover max-w-[460px] rounded-lg"
@@ -104,7 +110,7 @@ const PlannerPage = ({
                 </span>
             </div>
 
-            {/* RIGHT SIDE */}
+            {/* RIGHT SIDE | FORM */}
             <div className="flex flex-col gap-3 text-sm sm:text-lg max-w-[500px] rounded-lg px-8 py-5 bg-gray-700 pt-5">
                 <div className="flex justify-between">
                     <h2 className="text-2xl sm:text-4xl font-bold">New Plan</h2>
@@ -161,7 +167,7 @@ const PlannerPage = ({
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <label htmlFor="desc">Description</label>
+                                <label htmlFor="desc">* Description</label>
                                 <textarea
                                     className="rounded-md text-black px-2 py-1 w-72 sm:w-96"
                                     name="desc"
@@ -176,6 +182,7 @@ const PlannerPage = ({
                             </div>
                         </>
                     )}
+
                     {/* PAGE 2 */}
                     {formPage === 1 && (
                         <>
@@ -183,6 +190,7 @@ const PlannerPage = ({
                                 <label htmlFor="name">Exercise Name: </label>
                                 <input
                                     className="input-bl-lg w-72 sm:w-96"
+                                    placeholder="Exercise Name"
                                     id="name"
                                     name="name"
                                     type="text"
@@ -200,6 +208,7 @@ const PlannerPage = ({
                                     name="sets"
                                     type="text"
                                     onChange={(e) => setSets(e.target.value)}
+                                    placeholder="Sets"
                                     required
                                     value={sets}
                                 />
@@ -208,6 +217,7 @@ const PlannerPage = ({
                                 <label htmlFor="reps">Reps: </label>
                                 <input
                                     className="input-bl w-72 sm:w-96"
+                                    placeholder="Reps"
                                     id="reps"
                                     name="reps"
                                     type="text"
@@ -217,9 +227,10 @@ const PlannerPage = ({
                                 />
                             </div>
                             <button
+                            disabled={addExerciseDisabler}
                                 className="btn-blue-light w-72 sm:w-96"
                                 type="button"
-                                onClick={handleExercise}
+                                onClick={addExercise}
                             >
                                 Add Exercise
                             </button>
@@ -266,6 +277,7 @@ const PlannerPage = ({
                             </ul>
                         </div>
                     )}
+
                     {/* Navigation Buttons */}
                     <div className="flex gap-2 justify-end w-72 sm:w-96">
                         {(formPage == 1 || formPage == 2) && (
@@ -277,13 +289,28 @@ const PlannerPage = ({
                                 Back
                             </button>
                         )}
-                        <button
-                            className="btn-blue"
-                            type="button"
-                            onClick={handleSubmit}
-                        >
-                            {formPage < 2 ? "Next" : "Submit"}
-                        </button>
+
+                        {formPage < 2 && (
+                            <button
+                                onClick={handleNext}
+                                className="btn-blue"
+                                type="button"
+                            >
+                                Next
+                            </button>
+                        )}
+
+                        {/* Submit Button */}
+                        {formPage === 2 && (
+                            <button
+                                disabled={submitDisabler}
+                                className="btn-blue"
+                                type="button"
+                                onClick={handleSubmit}
+                            >
+                                Submit
+                            </button>
+                        )}
                     </div>
                     {/* END OF PAGES */}
 
