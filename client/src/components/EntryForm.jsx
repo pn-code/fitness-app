@@ -46,7 +46,8 @@ const EntryForm = ({
         });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         // Submit data to database
         await axios.post(journalAPI, entry);
 
@@ -67,6 +68,13 @@ const EntryForm = ({
         setAddEntry(false);
         fetchEntries();
     };
+
+
+    const isSubmitPlanDisabled = ![
+        entry.date,
+        entry.calories,
+    ].every(Boolean);
+
 
     return (
         <div className="flex justify-center mb-5">
@@ -147,8 +155,9 @@ const EntryForm = ({
                 </fieldset>
                 <div className="flex">
                     <button
-                        onClick={handleSubmit}
-                        type="button"
+                        disabled={isSubmitPlanDisabled}
+                        onClick={(e) => handleSubmit(e)}
+                        type="submit"
                         className="btn-blue w-72"
                     >
                         Submit
