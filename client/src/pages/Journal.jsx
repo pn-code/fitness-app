@@ -31,7 +31,7 @@ const Journal = ({ user, API_URL }) => {
                     type="button"
                     onClick={() => setAddEntry((prevState) => !prevState)}
                 >
-                    {addEntry ? "Return to Journal" : "Add Entry"}
+                    {addEntry ? "Back" : "Add Entry"}
                 </button>
             </div>
 
