@@ -10,8 +10,7 @@ const Plan = ({ user, plan, deletePlan }) => {
 	return (
 		// Show this when view is false...
 		<div
-			onClick={handleView}
-			className="bg-slate-700 px-6 py-3 rounded-md cursor-pointer"
+			className="bg-slate-700 px-6 py-3 rounded-md"
 		>
 			<div className="flex flex-col justify-between">
 				<div className="flex justify-between items-center mb-2">
@@ -22,7 +21,7 @@ const Plan = ({ user, plan, deletePlan }) => {
 				</div>
 				<p className="text mb-4">{plan.desc}</p>
 				{!view && (
-					<span className="text-xs text-center">Click to View</span>
+					<span onClick={handleView} className="text-xs text-center cursor-pointer">Click to View</span>
 				)}
 			</div>
 
@@ -54,7 +53,7 @@ const Plan = ({ user, plan, deletePlan }) => {
 							Remove Plan
 						</button>
 					)}
-					<span className="text-xs text-center mt-2">
+					<span onClick={handleView} className=" mt-8 text-xs text-center cursor-pointer">
 						Click to Close
 					</span>
 				</div>

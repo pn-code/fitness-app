@@ -17,14 +17,13 @@ const Profile = (props) => {
 				</header>
 
 				<main className="flex flex-col justify-evenly">
-					<button className="btn-blue">Analytics</button>
-
 					<Link
 						className="btn-blue text-center"
 						to="/feedback"
 					>
 						Send Feedback
 					</Link>
+					<a className="btn-blue-light text-center" href="https://github.com/pn-code">Visit my GitHub</a>
 				</main>
 			</div>
 		</div>

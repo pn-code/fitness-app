@@ -33,7 +33,7 @@ const Entry = ({ entry, setEntries, journalAPI }) => {
 					onClick={() => setViewEntry(true)}
 					className="text-xs text-center mt-4 cursor-pointer"
 				>
-					<span>Click to View Entry</span>
+					<span>Click to View</span>
 				</div>
 			)}
 
@@ -52,7 +52,7 @@ const Entry = ({ entry, setEntries, journalAPI }) => {
 					</section>
 					<div className="flex flex-col">
 						<button
-							className="bg-red-600 my-2 py-1 rounded-md hover:bg-red-400"
+							className="bg-red-500 my-2 py-1 rounded-md hover:bg-red-400"
 							onClick={() => deleteEntry(entry._id)}
 						>
 							Remove
@@ -61,9 +61,9 @@ const Entry = ({ entry, setEntries, journalAPI }) => {
 					{viewEntry && (
 						<div
 							onClick={() => setViewEntry(false)}
-							className="text-xs text-center mt-1 cursor-pointer"
+							className="text-xs text-center mt-8 cursor-pointer"
 						>
-							<span>Click to Close Entry</span>
+							<span>Click to Close</span>
 						</div>
 					)}
 				</>
