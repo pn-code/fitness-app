@@ -6,6 +6,9 @@ const FeedbackSchema = new Schema({
     email: String,
     title: String,
     text: String
+},
+{
+    timestamps: true
 })
 
 module.exports = mongoose.model("Feedback", FeedbackSchema);
