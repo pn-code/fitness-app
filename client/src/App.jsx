@@ -11,11 +11,17 @@ import Login from "./pages/Login";
 import Feedback from "./components/Feedback";
 import { Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const App = () => {
     const API_URL = "http://localhost:3000";
 
     const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        axios.get(`${API_URL}/refresh`, { withCredentials: true }).then((res) => setUser(res.data));
+    }, []);
 
     return (
         <div className="App">
@@ -38,7 +44,13 @@ const App = () => {
                 {/* SIGN UP */}
                 <Route
                     path="/sign-up"
-                    element={user ? <Navigate to="/" /> : <SignUp API_URL={API_URL}/>}
+                    element={
+                        user ? (
+                            <Navigate to="/" />
+                        ) : (
+                            <SignUp API_URL={API_URL} />
+                        )
+                    }
                 />
 
                 {/* LOGIN */}
@@ -79,7 +91,11 @@ const App = () => {
                     path="/profile"
                     element={
                         user ? (
-                            <Profile setUser={setUser} user={user} API_URL={API_URL}/>
+                            <Profile
+                                setUser={setUser}
+                                user={user}
+                                API_URL={API_URL}
+                            />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -89,7 +105,7 @@ const App = () => {
                     path="/my-plans"
                     element={
                         user ? (
-                            <MyPlans user={user} API_URL={API_URL}/>
+                            <MyPlans user={user} API_URL={API_URL} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -99,7 +115,7 @@ const App = () => {
                     path="/feedback"
                     element={
                         user ? (
-                            <Feedback user={user} API_URL={API_URL}/>
+                            <Feedback user={user} API_URL={API_URL} />
                         ) : (
                             <Navigate to="/landing" />
                         )
