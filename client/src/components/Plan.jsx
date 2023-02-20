@@ -28,10 +28,10 @@ const Plan = ({ user, plan, deletePlan }) => {
 			{view && (
 				<ul className="flex flex-col gap-1">
 					<h4 className="font-semibold">Exercises:</h4>
-					{plan.exercises.map((exercise) => {
+					{plan.exercises.map((exercise, idx) => {
 						if (exercise.name !== "") {
 							return (
-								<li>
+								<li key={idx}>
 									<div className="flex justify-between">
 										<h4>{exercise.name}</h4>
 										<p>{`${exercise.sets} x ${exercise.reps}`}</p>
