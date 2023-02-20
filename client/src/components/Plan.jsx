@@ -19,6 +19,7 @@ const Plan = ({ user, plan, deletePlan }) => {
 						{plan.emphasis}
 					</span>
 				</div>
+				<h4 className="font-semibold mt-2">Description: </h4>
 				<p className="text mb-4">{plan.desc}</p>
 				{!view && (
 					<span onClick={handleView} className="text-xs text-center cursor-pointer">Click to View</span>
@@ -26,7 +27,7 @@ const Plan = ({ user, plan, deletePlan }) => {
 			</div>
 
 			{view && (
-				<ul className="flex flex-col gap-1">
+				<ul className="flex flex-col gap-1 pb-2">
 					<h4 className="font-semibold">Exercises:</h4>
 					{plan.exercises.map((exercise, idx) => {
 						if (exercise.name !== "") {
