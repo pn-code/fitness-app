@@ -1,10 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const asyncHandler = require("express-async-handler");
-const mongoose = require("mongoose");
 const User = require("../models/User");
 
-const registerUser = asyncHandler(async (req, res) => {
+const registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
     if (!firstName || !lastName || !email || !password) {
@@ -38,15 +36,14 @@ const registerUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: generateToken(user._id),
         });
     } else {
         res.status(400);
         throw new Error("Invalid user data!");
     }
-});
+};
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     // Check for user email
@@ -54,34 +51,82 @@ const loginUser = asyncHandler(async (req, res) => {
 
     // Check password against hashed password
     if (user && (await bcrypt.compare(password, user.password))) {
+        // Create JWTs
+        const accessToken = jwt.sign(
+            { _id: user._id },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "1200s" }
+        );
+
+        const refreshToken = jwt.sign(
+            { _id: user._id },
+            process.env.REFRESH_TOKEN_SECRET,
+            { expiresIn: "1d" }
+        );
+
+        // Saving Refresh Token with Current User
+        const updatedUser = await User.findByIdAndUpdate(user._id, {
+            ...user,
+            refreshToken,
+        });
+        res.cookie("jwt", refreshToken, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+            secure: true,
+            sameSite: "None",
+        });
         res.json({
             _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: generateToken(user._id),
+            accessToken,
         });
     } else {
         res.status(400);
         throw new Error("Invalid credentials");
     }
-});
+};
 
-const getUserData = asyncHandler(async (req, res) => {
+const getUserData = async (req, res) => {
     const { _id, firstName, lastName, email } = await User.findById(
         req.user._id
     );
     res.json({ _id, firstName, lastName, email });
-});
+};
 
-const logoutUser = asyncHandler(async (req, res) => {
-    res.json({ message: "Logout User" });
-});
+const logoutUser = async (req, res) => {
+    // On client, also delete the accessToken
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: "30d",
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content
+    const refreshToken = cookies.jwt;
+
+    const findUserByToken = await User.find({ refreshToken });
+
+    // If the token is not found in our database, clear this token.
+    if (!findUserByToken) {
+        res.clearCookie("jwt", {
+            httpOnly: true,
+            sameSite: "None",
+            secure: true,
+        });
+        return res.sendStatus(204);
+    }
+
+    // If the token is found in our database, delete this token from db.
+    const updatedUser = await User.findByIdAndUpdate(findUserByToken._id, {
+        ...findUserByToken,
+        refreshToken: "",
     });
+
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+    });
+
+    res.sendStatus(204);
 };
 
 module.exports = { registerUser, loginUser, getUserData, logoutUser };
