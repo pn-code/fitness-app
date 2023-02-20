@@ -17,10 +17,14 @@ const Login = ({ setUser, API_URL }) => {
         setLoading(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`${API_URL}/auth/login`, {
-                email,
-                password,
-            });
+            const res = await axios.post(
+                `${API_URL}/auth/login`,
+                {
+                    email,
+                    password,
+                },
+                { withCredentials: true }
+            );
 
             if (res.status === 200) {
                 setUser(res.data);
@@ -29,7 +33,7 @@ const Login = ({ setUser, API_URL }) => {
                 throw new Error("Invalid Credentials");
             }
         } catch (error) {
-            setFormError(true)
+            setFormError(true);
         }
         setLoading(false);
     };
