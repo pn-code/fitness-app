@@ -26,7 +26,7 @@ app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(cookieParser());
 
 // ROUTES
 app.use("/auth", require("./routes/authRoute"));
