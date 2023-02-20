@@ -51,10 +51,10 @@ const Journal = ({ user, API_URL }) => {
                         <h4>You have no saved journal entries.</h4>
                     )}
                     {entries.length > 0 &&
-                        entries.map((entry) => (
+                        entries.map((entry, idx) => (
                             <Entry
                                 entry={entry}
-                                key={entry._id}
+                                key={entry._id || entries.idx}
                                 setEntries={setEntries}
                                 journalAPI={journalAPI}
                             />
