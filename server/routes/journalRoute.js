@@ -29,4 +29,12 @@ router.delete("/:journalId", async (req, res) => {
 	});
 });
 
+router.put("/:journalId", async (req, res) => {
+	const entry = await Entry.findByIdAndUpdate(req.params.journalId, req.body);
+	res.json({
+		status: "Success",
+		entry,
+	});
+});
+
 module.exports = router;

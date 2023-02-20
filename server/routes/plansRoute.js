@@ -37,7 +37,7 @@ router.put("/", async (req, res) => {
 
   if (userId == planUserId) {
     try {
-      const plan = await Plan.findByIdAndUpdate(currentPlanId);
+      const plan = await Plan.findByIdAndUpdate(currentPlanId, req.body);
       res.json({
         status: "Successful",
         plan,
