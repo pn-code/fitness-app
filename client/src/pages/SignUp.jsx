@@ -29,7 +29,7 @@ const SignUp = ({API_URL}) => {
         if (confirmPw === password) {
             try {
                 const res = await axios.post(API, user);
-                if (res.data.status === "Success") {
+                if (res.status === 201) {
                     setLoading(false);
                     setRegister(true);
                     Navigate("/login")
