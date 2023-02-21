@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import MyPlans from "./pages/MyPlans";
+import EditPlans from "./pages/EditPlans";
 import Calculator from "./pages/Calculator";
 import Journal from "./pages/Journal";
 import Profile from "./pages/Profile";
@@ -20,7 +21,9 @@ const App = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get(`${API_URL}/refresh`, { withCredentials: true }).then((res) => setUser(res.data));
+        axios
+            .get(`${API_URL}/refresh`, { withCredentials: true })
+            .then((res) => setUser(res.data));
     }, []);
 
     return (
@@ -101,6 +104,7 @@ const App = () => {
                         )
                     }
                 />
+
                 <Route
                     path="/my-plans"
                     element={
@@ -111,6 +115,18 @@ const App = () => {
                         )
                     }
                 />
+
+                <Route
+                    path="/edit-plans/:planId"
+                    element={
+                        user ? (
+                            <EditPlans user={user} API_URL={API_URL} />
+                        ) : (
+                            <Navigate to="/landing" />
+                        )
+                    }
+                />
+
                 <Route
                     path="/feedback"
                     element={
