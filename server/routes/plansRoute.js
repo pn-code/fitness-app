@@ -8,6 +8,6 @@ router.post("/", plansController.postPlan);
 
 router.delete("/", plansController.deletePlan);
 
-router.put("/", plansController.updatePlan);
+router.put("/:planId", plansController.updatePlan);
 
 module.exports = router;
