@@ -61,12 +61,16 @@ const EntryForm = ({
         }
     };
 
-    const handleExerciseChanges = (e) => {
-        const updatedExercises = setEntry((prevEntry) => ({
+    const handleExerciseChanges = (e, exerciseId) => {
+        const target = e.target.name;
+        const value = e.target.value;
+        const updatedExercises = entry.exercises.map((exercise) =>
+            exercise.id === exerciseId ? { ...exercise, [target]: value } : exercise
+        );
+        setEntry((prevEntry) => ({
             ...prevEntry,
-            exercises,
+            exercises: updatedExercises,
         }));
-        console.log(updatedExercises)
     };
 
     const handleSubmit = async (e) => {
@@ -175,12 +179,21 @@ const EntryForm = ({
                                                         Sets:
                                                     </label>
                                                     <input
+                                                        onChange={(e) =>
+                                                            handleExerciseChanges(
+                                                                e,
+                                                                exercise.id
+                                                            )
+                                                        }
+                                                        value={
+                                                            entry.exercises[idx]
+                                                                .sets
+                                                        }
                                                         className="input-bl w-16"
                                                         id="sets"
                                                         name="sets"
                                                         type="text"
                                                         placeholder="Sets"
-                                                        value={entry.exercises[idx].sets}
                                                     />
                                                 </div>
                                                 <div className="flex flex-col">
@@ -188,12 +201,21 @@ const EntryForm = ({
                                                         Reps:
                                                     </label>
                                                     <input
+                                                        onChange={(e) =>
+                                                            handleExerciseChanges(
+                                                                e,
+                                                                exercise.id
+                                                            )
+                                                        }
                                                         className="input-bl w-16"
                                                         id="reps"
                                                         name="reps"
                                                         type="text"
                                                         placeholder="Reps"
-                                                        value={entry.exercises[idx].reps}
+                                                        value={
+                                                            entry.exercises[idx]
+                                                                .reps
+                                                        }
                                                     />
                                                 </div>
                                                 <div className="flex flex-col">
@@ -201,12 +223,21 @@ const EntryForm = ({
                                                         Weight:
                                                     </label>
                                                     <input
+                                                        onChange={(e) =>
+                                                            handleExerciseChanges(
+                                                                e,
+                                                                exercise.id
+                                                            )
+                                                        }
                                                         className="input-bl w-20"
                                                         id="weight"
                                                         name="weight"
                                                         type="text"
                                                         placeholder="Weight"
-                                                        value={entry.exercises[idx].weight}
+                                                        value={
+                                                            entry.exercises[idx]
+                                                                .weight
+                                                        }
                                                     />
                                                 </div>
                                             </div>
