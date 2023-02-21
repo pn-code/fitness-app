@@ -24,7 +24,12 @@ const EntryForm = ({
     const [plans, setPlans] = useState([]);
 
     const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}${user?._id}`);
+        const res = await axios.get(`${planAPI}${user?._id}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
         setPlans(res.data.plans);
     };
 
@@ -49,7 +54,12 @@ const EntryForm = ({
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Submit data to database
-        await axios.post(journalAPI, entry);
+        await axios.post(journalAPI, entry, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
 
         // Add entry to entries array
         setEntries((prevEntries) => [entry, ...prevEntries]);
@@ -69,12 +79,7 @@ const EntryForm = ({
         fetchEntries();
     };
 
-
-    const isSubmitPlanDisabled = ![
-        entry.date,
-        entry.calories,
-    ].every(Boolean);
-
+    const isSubmitPlanDisabled = ![entry.date, entry.calories].every(Boolean);
 
     return (
         <div className="flex justify-center mb-5">

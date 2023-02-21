@@ -55,7 +55,12 @@ const PlannerPage = ({
                 userId: user._id,
             };
 
-            await axios.post(planAPI, plan);
+            await axios.post(planAPI, plan, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
 
             // Save to array (Client-Sided Render)
             setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
@@ -81,12 +86,9 @@ const PlannerPage = ({
     };
 
     const addExerciseDisabler = ![name, sets, reps].every(Boolean);
-    const submitDisabler = ![
-        title,
-        emphasis,
-        desc,
-        exercises.length > 0,
-    ].every(Boolean);
+    const submitDisabler = ![title, emphasis, desc, exercises.length > 0].every(
+        Boolean
+    );
 
     return (
         <div className="flex justify-center gap-10 mb-6 text-white mx-10 my-5 sm:mt-16">
@@ -227,7 +229,7 @@ const PlannerPage = ({
                                 />
                             </div>
                             <button
-                            disabled={addExerciseDisabler}
+                                disabled={addExerciseDisabler}
                                 className="btn-blue-light w-72 sm:w-96"
                                 type="button"
                                 onClick={addExercise}

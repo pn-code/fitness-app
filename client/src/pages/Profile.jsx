@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/profile.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Profile = (props) => {

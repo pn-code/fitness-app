@@ -11,7 +11,12 @@ const MyPlans = ({ user, API_URL }) => {
     const planAPI = `${API_URL}/plans/`;
 
     const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}${user?._id}`);
+        const res = await axios.get(`${planAPI}${user?._id}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
         setSavedPlans(res.data.plans);
     };
 
@@ -29,6 +34,10 @@ const MyPlans = ({ user, API_URL }) => {
                 userId: user._id,
                 planUserId: planUserId,
                 currentPlanId: planId,
+            },
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
             },
         });
 

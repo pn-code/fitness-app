@@ -23,7 +23,12 @@ const Feedback = ({ user, API_URL }) => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        const res = await axios.post(feedbackAPI, feedback);
+        const res = await axios.post(feedbackAPI, feedback, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
         setSent(true);
         setLoading(false);
     };

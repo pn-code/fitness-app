@@ -12,7 +12,12 @@ const Journal = ({ user, API_URL }) => {
     const journalAPI = `${API_URL}/journal/`;
 
     const fetchEntries = async () => {
-        const res = await axios.get(`${journalAPI}${user._id}`);
+        const res = await axios.get(`${journalAPI}${user._id}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
         setEntries(res.data.entries);
     };
 
