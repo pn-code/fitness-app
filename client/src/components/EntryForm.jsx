@@ -19,10 +19,12 @@ const EntryForm = ({
         userId: user._id,
         date: "",
         plan: "",
+        exercises: [],
         calories: 2000,
         macros: "",
         notes: "",
     });
+
     const [viewAllExercises, setViewAllExercises] = useState(false);
 
     const planAPI = `${API_URL}/plans/`;
@@ -45,9 +47,26 @@ const EntryForm = ({
     }, []);
 
     const handleChange = (e) => {
-        setEntry((prevEntry) => {
-            return { ...prevEntry, [e.target.name]: e.target.value };
-        });
+        setEntry((prevEntry) => ({
+            ...prevEntry,
+            [e.target.name]: e.target.value,
+        }));
+        if (e.target.name === "plan") {
+            if (e.target.name === "") return;
+            setEntry((prevEntry) => ({
+                ...prevEntry,
+                exercises: plans.filter((plan) => plan._id !== entry.plan)[0]
+                    .exercises,
+            }));
+        }
+    };
+
+    const handleExerciseChanges = (e) => {
+        const updatedExercises = setEntry((prevEntry) => ({
+            ...prevEntry,
+            exercises,
+        }));
+        console.log(updatedExercises)
     };
 
     const handleSubmit = async (e) => {
@@ -143,25 +162,25 @@ const EntryForm = ({
                                     )}
                                 </button>
                             </h4>
-                            {viewAllExercises &&
-                                plans
-                                    .filter(
-                                        (plan) => plan._id === entry.plan
-                                    )[0]
-                                    .exercises.map((exercise) => (
+                            {viewAllExercises && (
+                                <div className="my-2">
+                                    {entry.exercises.map((exercise, idx) => (
                                         <div className="mt-2" key={exercise.id}>
-                                            <h4 className="text-yellow-400">{exercise.name}</h4>
+                                            <h4 className="text-yellow-400">
+                                                {exercise.name}
+                                            </h4>
                                             <div className="flex gap-8">
                                                 <div className="flex flex-col">
                                                     <label htmlFor="sets">
                                                         Sets:
                                                     </label>
                                                     <input
-                                                        className="input-bl w-24"
+                                                        className="input-bl w-16"
                                                         id="sets"
                                                         name="sets"
                                                         type="text"
                                                         placeholder="Sets"
+                                                        value={entry.exercises[idx].sets}
                                                     />
                                                 </div>
                                                 <div className="flex flex-col">
@@ -169,16 +188,32 @@ const EntryForm = ({
                                                         Reps:
                                                     </label>
                                                     <input
-                                                        className="input-bl w-24"
+                                                        className="input-bl w-16"
                                                         id="reps"
                                                         name="reps"
                                                         type="text"
-                                                        placeholder="reps"
+                                                        placeholder="Reps"
+                                                        value={entry.exercises[idx].reps}
+                                                    />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <label htmlFor="weight">
+                                                        Weight:
+                                                    </label>
+                                                    <input
+                                                        className="input-bl w-20"
+                                                        id="weight"
+                                                        name="weight"
+                                                        type="text"
+                                                        placeholder="Weight"
+                                                        value={entry.exercises[idx].weight}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
+                                </div>
+                            )}
                         </div>
                     )}
 
