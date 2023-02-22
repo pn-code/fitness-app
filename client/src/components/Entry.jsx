@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import axios from "axios";
 
@@ -25,7 +26,7 @@ const Entry = ({ user, entry, setEntries, journalAPI }) => {
         <h4 className="text-lg font-semibold mb-2">{formattedDate}</h4>
       </section>
 
-      <section className="flex justify-between sm:flex-col sm:gap-2">
+      <section className="flex flex-col sm:flex-row justify-between sm:gap-2">
         <div className="flex gap-2 items-center my-2">
           <h3 className="font-semibold">Calories:</h3> {entry.calories} Cal
         </div>
@@ -47,7 +48,7 @@ const Entry = ({ user, entry, setEntries, journalAPI }) => {
       {viewEntry && (
         <>
           <section>
-            <div className="flex items-center gap-2 my-2">
+            <div className="flex flex-col sm:items-center sm:flex-row gap-2 my-2">
               <h3 className="font-semibold"> Exercise Plan: </h3>
               <span>{entry.plan === "" ? "NONE SELECTED" : entry.plan}</span>
             </div>
@@ -73,9 +74,16 @@ const Entry = ({ user, entry, setEntries, journalAPI }) => {
               <span>{entry.notes}</span>
             </div>
           </section>
-          <div className="flex flex-col">
+          <div className="flex justify-between gap-[16%]">
+            <Link
+              className="bg-green-600 py-4 rounded-md hover:bg-green-400 text-center flex-1"
+              to={`/edit-entry/${entry._id}`}
+              state={entry}
+            >
+              Edit
+            </Link>
             <button
-              className="bg-red-500 my-2 py-1 rounded-md hover:bg-red-400"
+              className="bg-red-500 py-4 rounded-md hover:bg-red-400 flex-1"
               onClick={() => deleteEntry(entry._id)}
             >
               Remove
