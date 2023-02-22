@@ -28,11 +28,22 @@ const deleteJournalEntry = async (req, res) => {
 };
 
 const updateJournalEntry = async (req, res) => {
-  const entry = await Entry.findByIdAndUpdate(req.params.journalId, req.body);
-  res.json({
-    status: "Success",
-    entry,
-  });
+  if (req.user === req.body.userId) {
+    try {
+      const entry = await Entry.findByIdAndUpdate(
+        req.params.journalId,
+        req.body
+      );
+      res.status(201).json({
+        status: "Success",
+        entry,
+      });
+    } catch (error) {
+      res.sendStatus(500);
+    }
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 module.exports = {
