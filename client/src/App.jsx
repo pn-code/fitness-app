@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Calculator from "./pages/Calculator";
 import MyPlans from "./pages/MyPlans";
+import AllPlans from "./pages/AllPlans"
 import EditPlans from "./pages/EditPlans";
 import Journal from "./pages/Journal";
 import AddEntry from "./pages/AddEntry";
@@ -123,6 +124,17 @@ const App = () => {
             )
           }
         />
+
+<Route
+          path="/all-plans"
+          element={
+            user ? (
+              <AllPlans user={user} API_URL={API_URL} />
+            ) : (
+              <Navigate to="/landing" />
+            )
+          }
+        />     
 
         <Route
           path="/edit-plans/:planId"
