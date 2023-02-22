@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import {
   BsFillArrowUpCircleFill,
   BsFillArrowDownCircleFill,
 } from "react-icons/bs";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 
 const EditEntry = ({ user, API_URL }) => {
   const { entryId } = useParams();
-  const { state: currentEntry } = useLocation();
-  console.log(currentEntry)
+  const { state } = useLocation();
+  const { plans, entry: currentEntry } = state;
+  const Navigate = useNavigate();
+
+  const journalAPI = `${API_URL}/journal/${entryId}`;
 
   const [entry, setEntry] = useState({
+    _id: entryId,
     userId: user._id,
     date: currentEntry.date.substring(0, 10),
     plan: currentEntry.plan,
@@ -21,22 +24,8 @@ const EditEntry = ({ user, API_URL }) => {
     macros: currentEntry.macros,
     notes: currentEntry.notes,
   });
-  console.log(entry.date);
 
   const [viewAllExercises, setViewAllExercises] = useState(false);
-
-  const planAPI = `${API_URL}/plans/`;
-  const [plans, setPlans] = useState([]);
-
-  const fetchPlans = async () => {
-    const res = await axios.get(`${planAPI}${user?._id}`, {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
-    });
-    setPlans(res.data.plans);
-  };
 
   const handleChange = (e) => {
     setEntry((prevEntry) => ({
@@ -67,29 +56,13 @@ const EditEntry = ({ user, API_URL }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Submit data to database
-    await axios.post(journalAPI, entry, {
+    await axios.put(journalAPI, entry, {
       withCredentials: true,
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
       },
     });
-
-    // Add entry to entries array
-    setEntries((prevEntries) => [entry, ...prevEntries]);
-
-    // Reset entry state
-    setEntry({
-      _id: uuidv4(),
-      userId: user._id,
-      date: "",
-      plan: "",
-      calories: 2000,
-      macros: "",
-      notes: "",
-    });
-
-    setAddEntry(false);
-    fetchEntries();
+    Navigate("/journal");
   };
 
   const isSubmitPlanDisabled = ![entry.date, entry.calories].every(Boolean);
