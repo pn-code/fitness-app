@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-const Entry = ({ user, entry, setEntries, journalAPI }) => {
+const Entry = ({ user, entry, plans, setEntries, journalAPI }) => {
   const [viewEntry, setViewEntry] = useState(false);
   const formattedDate = DateTime.fromISO(entry.date).toFormat("LLL dd, yyyy");
 
@@ -78,7 +78,7 @@ const Entry = ({ user, entry, setEntries, journalAPI }) => {
             <Link
               className="bg-green-600 py-4 rounded-md hover:bg-green-400 text-center flex-1"
               to={`/edit-entry/${entry._id}`}
-              state={entry}
+              state={{entry, plans}}
             >
               Edit
             </Link>

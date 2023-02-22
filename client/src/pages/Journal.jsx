@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/journal.css";
 import Entry from "../components/Entry";
 import EntryForm from "../components/EntryForm";
@@ -8,8 +8,26 @@ import axios from "axios";
 const Journal = ({ user, API_URL }) => {
   const [addEntry, setAddEntry] = React.useState(false);
   const [entries, setEntries] = React.useState([]);
+  const [plans, setPlans] = useState([]);
 
   const journalAPI = `${API_URL}/journal/`;
+  const planAPI = `${API_URL}/plans/`;
+
+  const fetchPlans = async () => {
+    const res = await axios.get(`${planAPI}${user?._id}`, {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    });
+    setPlans(res.data.plans);
+  };
+
+  useEffect(() => {
+    if (user._id) {
+      fetchPlans();
+    }
+  }, []);
 
   const fetchEntries = async () => {
     const res = await axios.get(`${journalAPI}${user._id}`, {
@@ -48,6 +66,7 @@ const Journal = ({ user, API_URL }) => {
           journalAPI={journalAPI}
           setAddEntry={setAddEntry}
           fetchEntries={fetchEntries}
+          plans={plans}
         />
       )}
       {!addEntry && (
@@ -58,6 +77,7 @@ const Journal = ({ user, API_URL }) => {
               <Entry
                 user={user}
                 entry={entry}
+                plans={plans}
                 key={entry._id || idx}
                 setEntries={setEntries}
                 journalAPI={journalAPI}

@@ -9,11 +9,11 @@ import {
 
 const EntryForm = ({
     user,
+    plans,
     setEntries,
     setAddEntry,
     fetchEntries,
     journalAPI,
-    API_URL,
 }) => {
     const [entry, setEntry] = useState({
         userId: user._id,
@@ -26,25 +26,6 @@ const EntryForm = ({
     });
 
     const [viewAllExercises, setViewAllExercises] = useState(false);
-
-    const planAPI = `${API_URL}/plans/`;
-    const [plans, setPlans] = useState([]);
-
-    const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}${user?._id}`, {
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-        setPlans(res.data.plans);
-    };
-
-    useEffect(() => {
-        if (user._id) {
-            fetchPlans();
-        }
-    }, []);
 
     const handleChange = (e) => {
         setEntry((prevEntry) => ({
