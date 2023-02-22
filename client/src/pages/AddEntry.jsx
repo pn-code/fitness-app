@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect } from "react";
 import {
     BsFillArrowUpCircleFill,
     BsFillArrowDownCircleFill,
 } from "react-icons/bs";
+import { useLocation, useNavigate } from "react-router";
 
-const EntryForm = ({
+const AddEntry = ({
     user,
-    plans,
     setEntries,
     setAddEntry,
     fetchEntries,
-    journalAPI,
+    API_URL,
 }) => {
+    const journalAPI = `${API_URL}/journal`
+    const {state:plans} = useLocation()
+    const Navigate = useNavigate()
     const [entry, setEntry] = useState({
         userId: user._id,
         date: "",
@@ -63,29 +65,13 @@ const EntryForm = ({
                 Authorization: `Bearer ${user.accessToken}`,
             },
         });
-
-        // Add entry to entries array
-        setEntries((prevEntries) => [entry, ...prevEntries]);
-
-        // Reset entry state
-        setEntry({
-            _id: uuidv4(),
-            userId: user._id,
-            date: "",
-            plan: "",
-            calories: 2000,
-            macros: "",
-            notes: "",
-        });
-
-        setAddEntry(false);
-        fetchEntries();
+        Navigate("/journal")
     };
 
     const isSubmitPlanDisabled = ![entry.date, entry.calories].every(Boolean);
 
     return (
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-5 text-white">
             <form className="flex flex-col justify-center items-center p-10 bg-gray-700 py-5 rounded-lg">
                 <h4 className="text-xl font-semibold mb-4">
                     New Journal Entry
@@ -291,4 +277,4 @@ const EntryForm = ({
     );
 };
 
-export default EntryForm;
+export default AddEntry;

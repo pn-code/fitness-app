@@ -5,6 +5,7 @@ import Calculator from "./pages/Calculator";
 import MyPlans from "./pages/MyPlans";
 import EditPlans from "./pages/EditPlans";
 import Journal from "./pages/Journal";
+import AddEntry from "./pages/AddEntry";
 import EditEntry from "./pages/EditEntry";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
@@ -73,6 +74,17 @@ const App = () => {
           element={
             user ? (
               <Journal user={user} API_URL={API_URL} />
+            ) : (
+              <Navigate to="/landing" />
+            )
+          }
+        />
+
+        <Route
+          path="/add-entry"
+          element={
+            user ? (
+              <AddEntry user={user} API_URL={API_URL} />
             ) : (
               <Navigate to="/landing" />
             )
