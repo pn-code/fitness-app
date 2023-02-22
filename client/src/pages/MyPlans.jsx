@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Plan from "../components/Plan";
 import Planner from "./Planner";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyPlans = ({ user, API_URL }) => {
     const [savedPlans, setSavedPlans] = React.useState([]);
@@ -66,19 +67,24 @@ const MyPlans = ({ user, API_URL }) => {
                             <h2 className="text-4xl font-bold">
                                 {!renderPlanner && "Plans"}
                             </h2>
-                            <button
-                                className="btn-blue-light mt-0"
-                                onClick={() =>
-                                    setRenderPlanner(
-                                        (prevRenderPlanner) =>
-                                            !prevRenderPlanner
-                                    )
-                                }
-                            >
-                                {!renderPlanner
-                                    ? `Create New Plan`
-                                    : `My Plans: ${savedPlans.length}`}
-                            </button>
+                            <div className="flex gap-4">
+                                <button
+                                    className="btn-blue-light mt-0"
+                                    onClick={() =>
+                                        setRenderPlanner(
+                                            (prevRenderPlanner) =>
+                                                !prevRenderPlanner
+                                        )
+                                    }
+                                >
+                                    {!renderPlanner
+                                        ? `New Plan`
+                                        : `My Plans: ${savedPlans.length}`}
+                                </button>
+                                <Link to="/all-plans" className="btn-blue mt-0 text-center">
+                                    View All
+                                </Link>
+                            </div>
                         </div>
 
                         {!renderPlanner && (
