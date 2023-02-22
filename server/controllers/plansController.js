@@ -1,5 +1,12 @@
 const Plan = require("../models/Plan");
 
+const getAllPlans = async (req, res, next) => {
+    if (req.user) {
+        const plans = await Plan.find();
+        res.json({ plans });
+    }
+};
+
 const getUserPlans = async (req, res, next) => {
     if (req.params.userId) {
         const plans = await Plan.find({ userId: req.params.userId });
@@ -47,4 +54,4 @@ const updatePlan = async (req, res) => {
     }
 };
 
-module.exports = { getUserPlans, postPlan, deletePlan, updatePlan };
+module.exports = { getAllPlans, getUserPlans, postPlan, deletePlan, updatePlan };
