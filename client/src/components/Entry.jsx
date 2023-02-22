@@ -60,7 +60,7 @@ const Entry = ({ user, entry, plans, setEntries, journalAPI }) => {
                   <div key={exercise.id}>
                     <h4 className="text-yellow-400">{exercise.name}</h4>
                     <span>
-                      {exercise.sets} sets of {exercise.reps} reps
+                      {exercise.sets} sets of {exercise.reps} reps @ {exercise.weight}
                     </span>
                   </div>
                 ))}
