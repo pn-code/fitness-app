@@ -138,7 +138,7 @@ const EntryForm = ({
                         >
                             <option value="">NONE</option>
                             {plans.map((plan) => (
-                                <option key={plan._id} value={plan._id}>
+                                <option key={plan._id} value={plan.name}>
                                     {plan.title}
                                 </option>
                             ))}
