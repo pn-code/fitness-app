@@ -6,17 +6,54 @@ import {
     AiOutlineStar,
     AiFillStar,
 } from "react-icons/ai";
+import axios from "axios";
 
-const Plan = ({ user, plan, deletePlan, editPlan }) => {
+const Plan = ({ user, plan, deletePlan, planAPI }) => {
     const [view, setView] = useState(false);
 
-    const [isCurrentUserLiked, setIsCurrentUserLike] = useState(
+    const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(
         plan.likes.includes(user._id)
     );
 
     const [isCurrentUserSaved, setIsCurrentUserSaved] = useState(
         plan.saved.includes(user._id)
     );
+
+    const handleUserLike = async () => {
+        if (!isCurrentUserLiked) {
+            const addUserLikeToPlan = {
+                ...plan,
+                likes: [...plan.likes, user._id],
+            };
+            try {
+                await axios.put(`${planAPI}${plan._id}`, addUserLikeToPlan, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
+                setIsCurrentUserLiked(true);
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            const removeUserLikeFromPlan = {
+                ...plan,
+                likes: [...plan.likes].filter((userId) => userId !== user._id),
+            };
+            try {
+                await axios.put(`${planAPI}${plan._id}`, removeUserLikeFromPlan, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
+                setIsCurrentUserLiked(false);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     const handleView = () => {
         setView((view) => !view);
@@ -34,10 +71,13 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
                         </span>
                     </h3>
 
-                    <section className="flex gap-4">
+                    <section className="flex gap-6">
                         <div className="relative cursor-pointer">
-                            <div className="hover:text-green-400">
-                                {!isCurrentUserLiked ? (
+                            <div
+                                onClick={handleUserLike}
+                                className="hover:text-green-400"
+                            >
+                                {isCurrentUserLiked ? (
                                     <AiFillLike size={32} />
                                 ) : (
                                     <AiOutlineLike size={32} />
@@ -45,13 +85,13 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
                             </div>
 
                             <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
-                                6
+                                {plan.likes.length}
                             </span>
                         </div>
 
                         <div className="relative cursor-pointer">
-                            <div className="hover:text-yellow-400">
-                                {!isCurrentUserSaved ? (
+                            <div className="hover:text-yellow-300">
+                                {isCurrentUserSaved ? (
                                     <AiFillStar size={33} />
                                 ) : (
                                     <AiOutlineStar size={33} />
@@ -59,7 +99,7 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
                             </div>
 
                             <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
-                                6
+                                {plan.saved.length}
                             </span>
                         </div>
                     </section>
