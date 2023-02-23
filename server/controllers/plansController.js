@@ -38,12 +38,9 @@ const deletePlan = async (req, res) => {
 };
 
 const updatePlan = async (req, res) => {
-    const { userId } = req.body;
-    const { planId } = req.params;
-
-    if (req.user === userId) {
+    if (req.user) {
         try {
-            const plan = await Plan.findByIdAndUpdate(planId, req.body);
+            const plan = await Plan.findByIdAndUpdate(req.params.planId, req.body);
             res.json({
                 status: "Successful",
                 plan,
