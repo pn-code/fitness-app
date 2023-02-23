@@ -15,7 +15,7 @@ const Navbar = (props) => {
     };
 
     return (
-        <nav className="flex justify-between items-center p-5 flex-row bg-[#040324]">
+        <nav className="flex justify-between items-center p-5 flex-row bg-[#040324] text-white">
             {/* LOGO */}
             <div>
                 <Link style={{ textDecoration: "none" }} to="/">
@@ -23,6 +23,19 @@ const Navbar = (props) => {
                         FITNESS
                     </h1>
                 </Link>
+
+                {/* Weight & Calorie Plan Section */}
+                <section className="flex gap-2 text-sm">
+                    <div className="flex gap-1">
+                        <h3 className="text-yellow-500">Current:</h3>
+                        <span>120lb</span>
+                    </div>
+                    /
+                    <div className="flex gap-1">
+                        <h3 className="text-yellow-500">Daily Goal:</h3>
+                        <span>2000cal</span>
+                    </div>
+                </section>
             </div>
 
             {/* MOBILE -> HAMBURGER MENU */}
@@ -44,7 +57,7 @@ const Navbar = (props) => {
                             to="/"
                         >
                             <AiFillHome size={16} color="white" />
-                            <span className="sm:text-lg">HOME</span>
+                            <span className="text-lg">HOME</span>
                         </Link>
                     </li>
                     <li className="hover:scale-110 ease-linear duration-200">
@@ -53,7 +66,7 @@ const Navbar = (props) => {
                             to="/calculator"
                         >
                             <AiFillCalculator size={16} color="white" />
-                            <span className="sm:text-lg">CALCULATE</span>
+                            <span className="text-lg">CALCULATE</span>
                         </Link>
                     </li>
                     <li className="hover:scale-110 ease-linear duration-200">
@@ -62,7 +75,7 @@ const Navbar = (props) => {
                             to="/my-plans"
                         >
                             <AiFillBuild size={16} color="white" />
-                            <span className="sm:text-lg">PLANS</span>
+                            <span className="text-lg">PLANS</span>
                         </Link>
                     </li>
                     <li className="hover:scale-110 ease-linear duration-200">
@@ -71,7 +84,7 @@ const Navbar = (props) => {
                             to="/journal"
                         >
                             <IoIosJournal size={16} color="white" />
-                            <span className="sm:text-lg">JOURNAL</span>
+                            <span className="text-lg">JOURNAL</span>
                         </Link>
                     </li>
                     <li className="hover:scale-110 ease-linear duration-200">
@@ -80,7 +93,7 @@ const Navbar = (props) => {
                             to="/profile"
                         >
                             <CgProfile size={16} color="white" />
-                            <span className="sm:text-lg">PROFILE</span>
+                            <span className="text-lg">PROFILE</span>
                         </Link>
                     </li>
                 </ul>
