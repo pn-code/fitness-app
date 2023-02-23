@@ -27,7 +27,7 @@ const Navbar = (props) => {
 
             {/* MOBILE -> HAMBURGER MENU */}
             {user && (
-                <div className="relative sm:hidden cursor-pointer z-[999]">
+                <div className="relative md:hidden cursor-pointer z-[999]">
                     <button className="bg-[#040324]" onClick={handleClick}>
                         <GiHamburgerMenu size={28} color="white" />
                     </button>
@@ -37,7 +37,7 @@ const Navbar = (props) => {
 
             {/* NAVLINKS */}
             {user && (
-                <ul className="hidden sm:flex text-white gap-5">
+                <ul className="hidden md:flex text-white gap-5">
                     <li className="hover:scale-110 ease-linear duration-200">
                         <Link
                             className="flex gap-1 justify-center items-center"
