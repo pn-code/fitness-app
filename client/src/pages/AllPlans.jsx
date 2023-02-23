@@ -11,10 +11,12 @@ const AllPlans = ({ user, API_URL }) => {
     const [searchFilter, setSearchFilter] = useState("");
     const [filteredPlans, setFilteredPlans] = useState([]);
 
-    const applySearchFilter = () => {
+    const applySearchFilter = (e) => {
+        e.preventDefault();
         const regex = new RegExp(searchFilter, "i");
-        const filterAllPlans = allPlans.filter(({ title, emphasis, desc }) =>
-            [title, emphasis, desc].some((item) => item.match(regex))
+        const filterAllPlans = allPlans.filter(
+            ({ title, emphasis, desc, user }) =>
+                [title, emphasis, desc, user].some((item) => item.match(regex))
         );
 
         setFilteredPlans(filterAllPlans);
@@ -54,7 +56,10 @@ const AllPlans = ({ user, API_URL }) => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-center mb-8 gap-2">
+                    <form
+                        onSubmit={applySearchFilter}
+                        className="flex items-center justify-center mb-8 gap-2"
+                    >
                         <input
                             onChange={(e) => setSearchFilter(e.target.value)}
                             value={searchFilter}
@@ -64,13 +69,12 @@ const AllPlans = ({ user, API_URL }) => {
                             className="input-bl w-[92%] md:max-w-[800px] h-10 bg-blue-900 text-white placeholder-slate-300 mt-4"
                         />
                         <button
-                            onClick={applySearchFilter}
-                            type="button"
+                            type="submit"
                             className="btn-blue-light w-16 justify-center items-center"
                         >
                             <BiSearch className="text-center" size={26} />
                         </button>
-                    </div>
+                    </form>
 
                     <main className="plans--container">
                         {allPlans.length === 0 && (
