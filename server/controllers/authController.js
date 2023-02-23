@@ -15,8 +15,7 @@ const registerUser = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-        res.status(400);
-        throw new Error("User already exists.");
+        return res.status(400).json({ message: "User already exists."});
     }
 
     // Hash password
@@ -40,8 +39,7 @@ const registerUser = async (req, res) => {
             email: user.email,
         });
     } else {
-        res.status(400);
-        throw new Error("Invalid user data!");
+        res.status(400).json({ message: "Invalid user information"});
     }
 };
 
@@ -102,10 +100,10 @@ const loginUser = async (req, res) => {
 };
 
 const getUserData = async (req, res) => {
-    const { _id, firstName, lastName, email } = await User.findById(
+    const { _id, firstName, lastName, email, weights, calorieGoal } = await User.findById(
         req.user._id
     );
-    res.json({ _id, firstName, lastName, email });
+    res.json({ _id, firstName, lastName, email, weights, calorieGoal });
 };
 
 const logoutUser = async (req, res) => {
