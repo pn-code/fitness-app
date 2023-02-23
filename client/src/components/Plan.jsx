@@ -55,6 +55,43 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
         }
     };
 
+    const handleUserSave = async () => {
+        if (!isCurrentUserSaved) {
+            const addUserSaveToPlan = {
+                ...plan,
+                saved: [...plan.saved, user._id],
+            };
+            try {
+                await axios.put(`${planAPI}${plan._id}`, addUserSaveToPlan, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
+                setIsCurrentUserSaved(true);
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            const removeUserSaveFromPlan = {
+                ...plan,
+                saved: [...plan.saved].filter((userId) => userId !== user._id),
+            };
+            try {
+                await axios.put(`${planAPI}${plan._id}`, removeUserSaveFromPlan, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
+                setIsCurrentUserSaved(false);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
+
+
     const handleView = () => {
         setView((view) => !view);
     };
@@ -90,7 +127,7 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                         </div>
 
                         <div className="relative cursor-pointer">
-                            <div className="hover:text-yellow-300">
+                            <div onClick={handleUserSave} className="hover:text-yellow-300">
                                 {isCurrentUserSaved ? (
                                     <AiFillStar size={33} />
                                 ) : (
