@@ -78,7 +78,12 @@ const AllPlans = ({ user, API_URL }) => {
                         )}
                         <ul className="flex flex-col gap-6">
                             {filteredPlans.map((plan) => (
-                                <Plan plan={plan} key={plan._id} user={user} />
+                                <Plan
+                                    plan={plan}
+                                    key={plan._id}
+                                    user={user}
+                                    planAPI={planAPI}
+                                />
                             ))}
                         </ul>
                     </main>
