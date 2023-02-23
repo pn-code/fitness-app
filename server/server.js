@@ -34,6 +34,7 @@ app.use("/refresh", require("./routes/refreshRoute"));
 
 // PROTECTED ROUTES
 app.use(verifyJWT);
+app.use("/user", require("./routes/userRoute"))
 app.use("/plans", require("./routes/plansRoute"));
 app.use("/journal", require("./routes/journalRoute"));
 app.use("/feedback", require("./routes/feedbackRoute"));
