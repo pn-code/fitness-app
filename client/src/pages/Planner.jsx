@@ -53,6 +53,7 @@ const PlannerPage = ({
                 desc,
                 exercises,
                 userId: user._id,
+                user: `${user.firstName} ${user.lastName}`
             };
 
             await axios.post(planAPI, plan, {

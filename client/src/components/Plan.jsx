@@ -7,6 +7,7 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
     const handleView = () => {
         setView((view) => !view);
     };
+    console.log(plan);
 
     return (
         // Show this when view is false...
@@ -14,10 +15,18 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
             <div className="flex flex-col justify-between">
                 <div className="flex justify-between items-center mb-2">
                     <h3 className="text-lg font-bold">{plan.title}</h3>
-                    <span className="text-lg font-semibold">
+                    <span className="text-yellow-500 hover:underline cursor-pointer">
+                        {plan.user}
+                    </span>
+                </div>
+
+                <div>
+                    <h3 className="font-semibold mt-2">Emphasis: </h3>
+                    <span>
                         {plan.emphasis}
                     </span>
                 </div>
+
                 <h4 className="font-semibold mt-2">Description: </h4>
                 <p className="text mb-4">{plan.desc}</p>
                 {!view && (
@@ -55,7 +64,7 @@ const Plan = ({ user, plan, deletePlan, editPlan }) => {
                             <Link
                                 className="flex-1 bg-green-600 rounded-md mt-4 py-3 hover:bg-green-400 text-center"
                                 to={`/edit-plans/${plan._id}`}
-								state={plan}
+                                state={plan}
                             >
                                 Edit
                             </Link>
