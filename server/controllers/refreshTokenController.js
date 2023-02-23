@@ -29,6 +29,8 @@ const handleRefreshToken = async (req, res) => {
                 firstName: findUserByToken.firstName,
                 lastName: findUserByToken.lastName,
                 email: findUserByToken.email,
+                weights: findUserByToken.weights,
+                calorieGoal: findUserByToken.calorieGoal,
                 accessToken,
             });
         }
