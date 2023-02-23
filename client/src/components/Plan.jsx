@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import DeleteModal from "./DeleteModal";
 import {
     AiOutlineLike,
     AiFillLike,
@@ -12,6 +13,7 @@ const Plan = ({ user, plan, planAPI }) => {
     const [likes, setLikes] = useState(plan.likes.length);
     const [saved, setSaved] = useState(plan.saved.length);
     const [loading, setLoading] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     const [view, setView] = useState(false);
 
@@ -22,7 +24,8 @@ const Plan = ({ user, plan, planAPI }) => {
         plan.saved.includes(user._id)
     );
 
-    const deletePlan = async (planId, planUserId) => {
+    const deletePlan = async (e, planId, planUserId) => {
+        e.preventDefault();
         await axios.delete(planAPI, {
             data: {
                 userId: user._id,
@@ -38,6 +41,8 @@ const Plan = ({ user, plan, planAPI }) => {
         setSavedPlans((prevSavedPlans) =>
             prevSavedPlans.filter((plan) => planId !== plan._id)
         );
+        
+        setOpenDeleteModal(false)
     };
 
     const handleUserLike = async () => {
@@ -150,6 +155,13 @@ const Plan = ({ user, plan, planAPI }) => {
                         </span>
                     </h3>
 
+                    {openDeleteModal && (
+                        <DeleteModal
+                            action={(e) => deletePlan(e, plan._id, plan.userId)}
+                            closeModal={() => setOpenDeleteModal(false)}
+                        />
+                    )}
+
                     <section className="flex gap-6">
                         <div className="relative cursor-pointer">
                             <div
@@ -235,9 +247,7 @@ const Plan = ({ user, plan, planAPI }) => {
                             </Link>
                             <button
                                 className="flex-1 bg-red-500 rounded-md mt-4 py-3 hover:bg-red-400"
-                                onClick={() =>
-                                    deletePlan(plan._id, plan.userId)
-                                }
+                                onClick={() => setOpenDeleteModal(true)}
                             >
                                 Delete
                             </button>
