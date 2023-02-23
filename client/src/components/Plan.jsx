@@ -9,6 +9,9 @@ import {
 import axios from "axios";
 
 const Plan = ({ user, plan, deletePlan, planAPI }) => {
+    const [likes, setLikes] = useState(plan.likes.length);
+    const [saved, setSaved] = useState(plan.saved.length);
+
     const [view, setView] = useState(false);
 
     const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(
@@ -33,6 +36,7 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     },
                 });
                 setIsCurrentUserLiked(true);
+                setLikes(prevLikes => prevLikes + 1)
             } catch (error) {
                 console.error(error);
             }
@@ -42,13 +46,18 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                 likes: [...plan.likes].filter((userId) => userId !== user._id),
             };
             try {
-                await axios.put(`${planAPI}${plan._id}`, removeUserLikeFromPlan, {
-                    withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${user.accessToken}`,
-                    },
-                });
+                await axios.put(
+                    `${planAPI}${plan._id}`,
+                    removeUserLikeFromPlan,
+                    {
+                        withCredentials: true,
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`,
+                        },
+                    }
+                );
                 setIsCurrentUserLiked(false);
+                setLikes(prevLikes => prevLikes - 1)
             } catch (error) {
                 console.error(error);
             }
@@ -69,6 +78,7 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     },
                 });
                 setIsCurrentUserSaved(true);
+                setSaved(prevSaved => prevSaved + 1)
             } catch (error) {
                 console.error(error);
             }
@@ -78,19 +88,23 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                 saved: [...plan.saved].filter((userId) => userId !== user._id),
             };
             try {
-                await axios.put(`${planAPI}${plan._id}`, removeUserSaveFromPlan, {
-                    withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${user.accessToken}`,
-                    },
-                });
+                await axios.put(
+                    `${planAPI}${plan._id}`,
+                    removeUserSaveFromPlan,
+                    {
+                        withCredentials: true,
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`,
+                        },
+                    }
+                );
                 setIsCurrentUserSaved(false);
+                setSaved(prevSaved => prevSaved - 1)
             } catch (error) {
                 console.error(error);
             }
         }
     };
-
 
     const handleView = () => {
         setView((view) => !view);
@@ -122,12 +136,15 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                             </div>
 
                             <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
-                                {plan.likes.length}
+                                {likes}
                             </span>
                         </div>
 
                         <div className="relative cursor-pointer">
-                            <div onClick={handleUserSave} className="hover:text-yellow-300">
+                            <div
+                                onClick={handleUserSave}
+                                className="hover:text-yellow-300"
+                            >
                                 {isCurrentUserSaved ? (
                                     <AiFillStar size={33} />
                                 ) : (
@@ -136,7 +153,7 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                             </div>
 
                             <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
-                                {plan.saved.length}
+                                {saved}
                             </span>
                         </div>
                     </section>
