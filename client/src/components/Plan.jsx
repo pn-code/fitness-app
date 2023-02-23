@@ -1,30 +1,73 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+    AiOutlineLike,
+    AiFillLike,
+    AiOutlineStar,
+    AiFillStar,
+} from "react-icons/ai";
 
 const Plan = ({ user, plan, deletePlan, editPlan }) => {
     const [view, setView] = useState(false);
 
+    const [isCurrentUserLiked, setIsCurrentUserLike] = useState(
+        plan.likes.includes(user._id)
+    );
+
+    const [isCurrentUserSaved, setIsCurrentUserSaved] = useState(
+        plan.saved.includes(user._id)
+    );
+
     const handleView = () => {
         setView((view) => !view);
     };
-    console.log(plan);
 
     return (
         // Show this when view is false...
         <div className="bg-slate-700 px-6 py-3 rounded-md">
             <div className="flex flex-col justify-between">
                 <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-lg font-bold">{plan.title}</h3>
-                    <span className="text-yellow-500 hover:underline cursor-pointer">
-                        {plan.user}
-                    </span>
+                    <h3 className="text-lg font-bold">
+                        {plan.title} by{" "}
+                        <span className="text-yellow-500 hover:underline cursor-pointer">
+                            {plan.user}
+                        </span>
+                    </h3>
+
+                    <section className="flex gap-4">
+                        <div className="relative cursor-pointer">
+                            <div className="hover:text-green-400">
+                                {!isCurrentUserLiked ? (
+                                    <AiFillLike size={32} />
+                                ) : (
+                                    <AiOutlineLike size={32} />
+                                )}
+                            </div>
+
+                            <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
+                                6
+                            </span>
+                        </div>
+
+                        <div className="relative cursor-pointer">
+                            <div className="hover:text-yellow-400">
+                                {!isCurrentUserSaved ? (
+                                    <AiFillStar size={33} />
+                                ) : (
+                                    <AiOutlineStar size={33} />
+                                )}
+                            </div>
+
+                            <span className="bg-blue-700 px-2 rounded-full absolute -top-2 -right-4">
+                                6
+                            </span>
+                        </div>
+                    </section>
                 </div>
 
                 <div>
                     <h3 className="font-semibold mt-2">Emphasis: </h3>
-                    <span>
-                        {plan.emphasis}
-                    </span>
+                    <span>{plan.emphasis}</span>
                 </div>
 
                 <h4 className="font-semibold mt-2">Description: </h4>
