@@ -5,6 +5,7 @@ import cutIcon from "../images/cut.svg";
 import maintainIcon from "../images/maintain.svg";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const Calculator = ({ user, setUser, API_URL }) => {
     const [metric, setMetric] = useState(false);
@@ -23,6 +24,8 @@ const Calculator = ({ user, setUser, API_URL }) => {
     const [kg, setKg] = useState("");
     const [feet, setFeet] = useState("");
     const [inch, setInch] = useState("");
+
+    const Navigate = useNavigate();
 
     const saveWeightAndCaloriesToUser = async (weight, calorieGoal) => {
         // Weight by default is kg, so convert to lbs
@@ -47,13 +50,20 @@ const Calculator = ({ user, setUser, API_URL }) => {
               };
 
         // Set it in DB
-        const res = await axios.put(`${API_URL}/user/${user._id}`, updatedObj, {
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
+        try {
+            await axios.put(`${API_URL}/user/${user._id}`, updatedObj, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+
         // Set it on client side
+        setUser((user) => ({ ...user, ...updatedObj }));
+        Navigate("/")
     };
 
     const handleCalculatePlans = (e) => {
@@ -99,7 +109,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
         <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
             {/* HEADER */}
             <div className="mb-5">
-                <h2 className="text-4xl font-bold">Calorie Calculator</h2>
+                <h2 id="top" className="text-4xl font-bold">Calorie Calculator</h2>
 
                 <span>
                     Using{" "}
