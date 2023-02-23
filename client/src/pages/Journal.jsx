@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Journal = ({ user, API_URL }) => {
-  const [addEntry, setAddEntry] = React.useState(false);
   const [entries, setEntries] = React.useState([]);
   const [plans, setPlans] = useState([]);
 

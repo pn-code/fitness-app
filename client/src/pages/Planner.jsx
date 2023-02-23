@@ -4,11 +4,10 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
 
-const PlannerPage = ({
+const Planner = ({
     user,
     savedPlans,
     setSavedPlans,
-    fetchPlans,
     renderPlanner,
     setRenderPlanner,
     planAPI,
@@ -72,8 +71,6 @@ const PlannerPage = ({
             setDesc("");
             setExercises([]);
             setFormPage(0);
-
-            fetchPlans();
         } catch (error) {
             console.error(error);
         }
@@ -352,4 +349,4 @@ const PlannerPage = ({
     );
 };
 
-export default PlannerPage;
+export default Planner;
