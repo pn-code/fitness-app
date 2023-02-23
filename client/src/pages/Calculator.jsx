@@ -267,6 +267,7 @@ const Calculator = () => {
           </button>
         </div>
       </form>
+
       {calories && (
         <div className="calculator--output">
           {calories && (
@@ -285,6 +286,7 @@ const Calculator = () => {
           <h3 className="text-center mb-8 font-bold underline">
             Choose Your Calorie Plan Below.
           </h3>
+          
           <div className="bg-slate-700 rounded-lg p-5 mb-16 sm:bg-transparent">
             <div className="flex flex-col gap-8">
               <CaloriePlan
