@@ -66,7 +66,7 @@ const App = () => {
         <Route
           path="/calculator"
           element={
-            user ? <Calculator user={user} /> : <Navigate to="/landing" />
+            user ? <Calculator user={user} setUser={setUser} API_URL={API_URL}/> : <Navigate to="/landing" />
           }
         />
 

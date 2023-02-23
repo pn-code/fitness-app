@@ -6,11 +6,10 @@ import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = (props) => {
+const Navbar = ({ user }) => {
     const [open, setOpen] = useState(false);
-    const { user } = props;
 
-    const handleClick = () => {
+    const handleOpenMobileNavbar = () => {
         setOpen((open) => !open);
     };
 
@@ -28,12 +27,12 @@ const Navbar = (props) => {
                 <section className="flex gap-2 text-sm">
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Current:</h3>
-                        <span>120lb</span>
+                        <span>{parseInt(user?.weights[user.weights.length - 1].pounds) || null} lbs</span>
                     </div>
                     /
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Daily Goal:</h3>
-                        <span>2000cal</span>
+                        <span>{user?.calorieGoal || null} calories</span>
                     </div>
                 </section>
             </div>
@@ -41,7 +40,7 @@ const Navbar = (props) => {
             {/* MOBILE -> HAMBURGER MENU */}
             {user && (
                 <div className="relative md:hidden cursor-pointer z-[999]">
-                    <button className="bg-[#040324]" onClick={handleClick}>
+                    <button className="bg-[#040324]" onClick={handleOpenMobileNavbar}>
                         <GiHamburgerMenu size={28} color="white" />
                     </button>
                     {open && <NavMenu setOpen={setOpen} />}
