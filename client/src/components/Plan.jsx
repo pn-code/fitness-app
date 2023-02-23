@@ -8,22 +8,43 @@ import {
 } from "react-icons/ai";
 import axios from "axios";
 
-const Plan = ({ user, plan, deletePlan, planAPI }) => {
+const Plan = ({ user, plan, planAPI }) => {
     const [likes, setLikes] = useState(plan.likes.length);
     const [saved, setSaved] = useState(plan.saved.length);
+    const [loading, setLoading] = useState(false);
 
     const [view, setView] = useState(false);
 
     const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(
         plan.likes.includes(user._id)
     );
-
     const [isCurrentUserSaved, setIsCurrentUserSaved] = useState(
         plan.saved.includes(user._id)
     );
 
+    const deletePlan = async (planId, planUserId) => {
+        // // Delete selected plan from database
+        await axios.delete(planAPI, {
+            data: {
+                userId: user._id,
+                planUserId: planUserId,
+                currentPlanId: planId,
+            },
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+            },
+        });
+
+        // Delete from savedEntries via setSavedEntries
+        setSavedPlans((prevSavedPlans) =>
+            prevSavedPlans.filter((plan) => planId !== plan._id)
+        );
+    };
+
     const handleUserLike = async () => {
-        if (!isCurrentUserLiked) {
+        if (!isCurrentUserLiked && !loading) {
+            setLoading(true);
             const addUserLikeToPlan = {
                 ...plan,
                 likes: [...plan.likes, user._id],
@@ -36,11 +57,13 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     },
                 });
                 setIsCurrentUserLiked(true);
-                setLikes(prevLikes => prevLikes + 1)
+                setLikes((prevLikes) => prevLikes + 1);
             } catch (error) {
                 console.error(error);
             }
+            setLoading(false);
         } else {
+            setLoading(true);
             const removeUserLikeFromPlan = {
                 ...plan,
                 likes: [...plan.likes].filter((userId) => userId !== user._id),
@@ -57,20 +80,22 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     }
                 );
                 setIsCurrentUserLiked(false);
-                setLikes(prevLikes => prevLikes - 1)
+                setLikes((prevLikes) => prevLikes - 1);
             } catch (error) {
                 console.error(error);
             }
+            setLoading(false);
         }
     };
 
     const handleUserSave = async () => {
-        if (!isCurrentUserSaved) {
-            const addUserSaveToPlan = {
-                ...plan,
-                saved: [...plan.saved, user._id],
-            };
+        if (!isCurrentUserSaved && !loading) {
             try {
+                setLoading(true);
+                const addUserSaveToPlan = {
+                    ...plan,
+                    saved: [...plan.saved, user._id],
+                };
                 await axios.put(`${planAPI}${plan._id}`, addUserSaveToPlan, {
                     withCredentials: true,
                     headers: {
@@ -78,16 +103,20 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     },
                 });
                 setIsCurrentUserSaved(true);
-                setSaved(prevSaved => prevSaved + 1)
+                setSaved((prevSaved) => prevSaved + 1);
             } catch (error) {
                 console.error(error);
             }
+            setLoading(false);
         } else {
-            const removeUserSaveFromPlan = {
-                ...plan,
-                saved: [...plan.saved].filter((userId) => userId !== user._id),
-            };
             try {
+                setLoading(true);
+                const removeUserSaveFromPlan = {
+                    ...plan,
+                    saved: [...plan.saved].filter(
+                        (userId) => userId !== user._id
+                    ),
+                };
                 await axios.put(
                     `${planAPI}${plan._id}`,
                     removeUserSaveFromPlan,
@@ -99,10 +128,11 @@ const Plan = ({ user, plan, deletePlan, planAPI }) => {
                     }
                 );
                 setIsCurrentUserSaved(false);
-                setSaved(prevSaved => prevSaved - 1)
+                setSaved((prevSaved) => prevSaved - 1);
             } catch (error) {
                 console.error(error);
             }
+            setLoading(false);
         }
     };
 

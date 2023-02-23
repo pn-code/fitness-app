@@ -28,26 +28,6 @@ const MyPlans = ({ user, API_URL }) => {
         }
     }, [user]);
 
-    const deletePlan = async (planId, planUserId) => {
-        // // Delete selected plan from database
-        await axios.delete(planAPI, {
-            data: {
-                userId: user._id,
-                planUserId: planUserId,
-                currentPlanId: planId,
-            },
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-
-        // Delete from savedEntries via setSavedEntries
-        setSavedPlans((prevSavedPlans) =>
-            prevSavedPlans.filter((plan) => planId !== plan._id)
-        );
-    };
-
     return (
         <div>
             {renderPlanner ? (
@@ -99,8 +79,8 @@ const MyPlans = ({ user, API_URL }) => {
                                         <Plan
                                             plan={plan}
                                             key={plan._id}
-                                            deletePlan={deletePlan}
                                             user={user}
+                                            planAPI={planAPI}
                                         />
                                     ))}
                                 </ul>
