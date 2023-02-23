@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import axios from "axios";
 
-const Plan = ({ user, plan, planAPI }) => {
+const Plan = ({ user, plan, planAPI, setUserPlans }) => {
     const [likes, setLikes] = useState(plan.likes.length);
     const [saved, setSaved] = useState(plan.saved.length);
     const [loading, setLoading] = useState(false);
@@ -38,10 +38,10 @@ const Plan = ({ user, plan, planAPI }) => {
             },
         });
 
-        setSavedPlans((prevSavedPlans) =>
-            prevSavedPlans.filter((plan) => planId !== plan._id)
+        setUserPlans((prevUserPlans) =>
+            prevUserPlans.filter((plan) => planId !== plan._id)
         );
-        
+
         setOpenDeleteModal(false)
     };
 

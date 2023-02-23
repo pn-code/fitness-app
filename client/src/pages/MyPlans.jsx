@@ -92,6 +92,7 @@ const MyPlans = ({ user, API_URL }) => {
                                             key={plan._id}
                                             user={user}
                                             planAPI={planAPI}
+                                            setUserPlans={setUserPlans}
                                         />
                                     ))}
                                 </ul>
