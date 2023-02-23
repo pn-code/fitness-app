@@ -23,7 +23,6 @@ const Plan = ({ user, plan, planAPI }) => {
     );
 
     const deletePlan = async (planId, planUserId) => {
-        // // Delete selected plan from database
         await axios.delete(planAPI, {
             data: {
                 userId: user._id,
@@ -36,7 +35,6 @@ const Plan = ({ user, plan, planAPI }) => {
             },
         });
 
-        // Delete from savedEntries via setSavedEntries
         setSavedPlans((prevSavedPlans) =>
             prevSavedPlans.filter((plan) => planId !== plan._id)
         );

@@ -27,7 +27,7 @@ const Navbar = (props) => {
 
             {/* MOBILE -> HAMBURGER MENU */}
             {user && (
-                <div className="relative sm:hidden cursor-pointer">
+                <div className="relative sm:hidden cursor-pointer z-[999]">
                     <button className="bg-[#040324]" onClick={handleClick}>
                         <GiHamburgerMenu size={28} color="white" />
                     </button>
