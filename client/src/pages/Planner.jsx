@@ -6,8 +6,8 @@ import barbellImg from "../images/barbell.jpg";
 
 const Planner = ({
     user,
-    savedPlans,
-    setSavedPlans,
+    userPlans,
+    setUserPlans,
     renderPlanner,
     setRenderPlanner,
     planAPI,
@@ -52,7 +52,9 @@ const Planner = ({
                 desc,
                 exercises,
                 userId: user._id,
-                user: `${user.firstName} ${user.lastName}`
+                user: `${user.firstName} ${user.lastName}`,
+                likes: [],
+                saved: [],
             };
 
             await axios.post(planAPI, plan, {
@@ -63,7 +65,7 @@ const Planner = ({
             });
 
             // Save to array (Client-Sided Render)
-            setSavedPlans((prevSavedPlans) => [plan, ...prevSavedPlans]);
+            setUserPlans((prevUserPlans) => [plan, ...prevUserPlans]);
 
             // Reset Form
             setTitle("");
@@ -124,7 +126,7 @@ const Planner = ({
                     >
                         {!renderPlanner
                             ? `Create New Plan`
-                            : `My Plans: ${savedPlans.length}`}
+                            : `My Plans: ${userPlans.length}`}
                     </button>
                 </div>
 

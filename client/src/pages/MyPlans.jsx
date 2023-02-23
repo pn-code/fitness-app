@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const MyPlans = ({ user, API_URL }) => {
-    const [savedPlans, setSavedPlans] = React.useState([]);
+    const [userPlans, setUserPlans] = React.useState([]);
     const [renderPlanner, setRenderPlanner] = React.useState(false);
 
     const planAPI = `${API_URL}/plans/`;
@@ -18,10 +18,9 @@ const MyPlans = ({ user, API_URL }) => {
                 Authorization: `Bearer ${user.accessToken}`,
             },
         });
-        setSavedPlans(res.data.plans);
+        setUserPlans(res.data.plans);
     };
 
-    // Loads savedPlans on start with information from database
     useEffect(() => {
         if (user) {
             fetchPlans();
@@ -36,8 +35,8 @@ const MyPlans = ({ user, API_URL }) => {
                     fetchPlans={fetchPlans}
                     setRenderPlanner={setRenderPlanner}
                     renderPlanner={renderPlanner}
-                    savedPlans={savedPlans}
-                    setSavedPlans={setSavedPlans}
+                    userPlans={userPlans}
+                    setUserPlans={setUserPlans}
                     planAPI={planAPI}
                 />
             ) : (
@@ -59,7 +58,7 @@ const MyPlans = ({ user, API_URL }) => {
                                 >
                                     {!renderPlanner
                                         ? `New Plan`
-                                        : `My Plans: ${savedPlans.length}`}
+                                        : `My Plans: ${userPlans.length}`}
                                 </button>
                                 <Link to="/all-plans" className="btn-blue mt-0 text-center">
                                     View All
@@ -69,13 +68,13 @@ const MyPlans = ({ user, API_URL }) => {
 
                         {!renderPlanner && (
                             <main className="plans--container">
-                                {savedPlans.length === 0 && (
+                                {userPlans.length === 0 && (
                                     <h4>
                                         You currently have no training plans.
                                     </h4>
                                 )}
                                 <ul className="flex flex-col gap-6">
-                                    {savedPlans.map((plan) => (
+                                    {userPlans.map((plan) => (
                                         <Plan
                                             plan={plan}
                                             key={plan._id}
