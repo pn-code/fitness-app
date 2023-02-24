@@ -6,7 +6,6 @@ import serverAPI from "../api/serverAPI";
 const MyPlans = ({ user }) => {
     const [userPlans, setUserPlans] = useState([]);
     const [savedPlans, setSavedPlans] = useState([]);
-    const [renderPlanner, setRenderPlanner] = useState(false);
 
     const fetchPlans = async () => {
         const res = await serverAPI.get(`/plans`, {
@@ -30,21 +29,12 @@ const MyPlans = ({ user }) => {
 
     return (
         <div>
-            {/* <Planner
-                user={user}
-                fetchPlans={fetchPlans}
-                setRenderPlanner={setRenderPlanner}
-                renderPlanner={renderPlanner}
-                userPlans={userPlans}
-                setUserPlans={setUserPlans}
-            /> */}
-
             <div className="text-white mx-10 my-5 flex flex-col gap-2 justify-center sm:justify-left sm:mt-16">
                 <div className="mb-5">
                     <div className="flex justify-between items-center gap-4">
                         <h2 className="text-3xl font-bold">Plans</h2>
                         <div className="flex gap-4">
-                            <Link to="/planner" className="btn-blue-light mt-0">
+                            <Link to="/add-plan" className="btn-blue-light mt-0">
                                 New Plan
                             </Link>
                             <Link

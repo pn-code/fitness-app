@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
 import serverAPI from "../api/serverAPI";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
-const AddPlan = ({
-    user,
-    userPlans,
-    setUserPlans,
-    renderPlanner,
-    setRenderPlanner,
-}) => {
+const AddPlan = ({ user }) => {
     // Page State
     const [formPage, setFormPage] = useState(0);
 
@@ -24,6 +20,8 @@ const AddPlan = ({
     const [reps, setReps] = useState("");
 
     const [exercises, setExercises] = useState([]);
+
+    const Navigate = useNavigate();
 
     const addExercise = () => {
         const exercise = {
@@ -55,21 +53,13 @@ const AddPlan = ({
                 saved: [],
             };
 
-            const res = await serverAPI.post("/plans", plan, {
+            await serverAPI.post("/plans", plan, {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
             });
 
-            // Save to array (Client-Sided Render)
-            setUserPlans((prevUserPlans) => [res.data.plan, ...prevUserPlans]);
-
-            // Reset Form
-            setTitle("");
-            setEmphasis("");
-            setDesc("");
-            setExercises([]);
-            setFormPage(0);
+            Navigate("/my-plans");
         } catch (error) {
             console.error(error);
         }
@@ -113,18 +103,9 @@ const AddPlan = ({
             <div className="flex flex-col gap-3 text-sm sm:text-lg max-w-[500px] rounded-lg px-8 py-5 bg-gray-700 pt-5">
                 <div className="flex justify-between">
                     <h2 className="text-2xl sm:text-4xl font-bold">New Plan</h2>
-                    <button
-                        className="btn-blue-light mt-0"
-                        onClick={() =>
-                            setRenderPlanner(
-                                (prevRenderPlanner) => !prevRenderPlanner
-                            )
-                        }
-                    >
-                        {!renderPlanner
-                            ? `Create New Plan`
-                            : `My Plans: ${userPlans.length}`}
-                    </button>
+                    <Link to="/my-plans" className="btn-blue-light mt-0">
+                        My Plans
+                    </Link>
                 </div>
 
                 <span className="text-red-400">
