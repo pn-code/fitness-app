@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-require("dotenv").config()
+require("dotenv").config();
 
 const registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
@@ -15,7 +15,7 @@ const registerUser = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-        return res.status(400).json({ message: "User already exists."});
+        return res.status(400).json({ message: "User already exists." });
     }
 
     // Hash password
@@ -39,17 +39,18 @@ const registerUser = async (req, res) => {
             email: user.email,
         });
     } else {
-        res.status(400).json({ message: "Invalid user information"});
+        res.status(400).json({ message: "Invalid user information" });
     }
 };
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
-    // Checks for empty fields 
-    if (!email || !password) return res.status(400).json({
-        message: "Email and password are required."
-    })
+    // Checks for empty fields
+    if (!email || !password)
+        return res.status(400).json({
+            message: "Email and password are required.",
+        });
 
     // Check for user email
     const findUserByEmail = await User.findOne({ email });
@@ -58,7 +59,7 @@ const loginUser = async (req, res) => {
     if (!findUserByEmail) return res.sendStatus(401);
 
     // If user is found, check password against hashed password
-    const match = await bcrypt.compare(password, findUserByEmail.password)
+    const match = await bcrypt.compare(password, findUserByEmail.password);
 
     // If user pwd matches our pwd in the database...
     if (match) {
@@ -76,7 +77,9 @@ const loginUser = async (req, res) => {
         );
 
         // Update db with user's newly generated refresh token.
-        await User.findByIdAndUpdate(findUserByEmail._id, { refreshToken: refreshToken });
+        await User.findByIdAndUpdate(findUserByEmail._id, {
+            refreshToken: refreshToken,
+        });
 
         // Set cookie for our client
         res.cookie("jwt", refreshToken, {
@@ -91,6 +94,8 @@ const loginUser = async (req, res) => {
             firstName: findUserByEmail.firstName,
             lastName: findUserByEmail.lastName,
             email: findUserByEmail.email,
+            weights: findUserByEmail.weights,
+            calorieGoal: findUserByEmail.calorieGoal,
             accessToken,
         });
     } else {
@@ -100,9 +105,8 @@ const loginUser = async (req, res) => {
 };
 
 const getUserData = async (req, res) => {
-    const { _id, firstName, lastName, email, weights, calorieGoal } = await User.findById(
-        req.user._id
-    );
+    const { _id, firstName, lastName, email, weights, calorieGoal } =
+        await User.findById(req.user._id);
     res.json({ _id, firstName, lastName, email, weights, calorieGoal });
 };
 
