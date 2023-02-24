@@ -9,6 +9,9 @@ import { CgProfile } from "react-icons/cg";
 const Navbar = ({ user }) => {
     const [open, setOpen] = useState(false);
 
+    const currentUserWeight = user?.weights[user.weights.length - 1];
+    const currentCaloriePlan = user?.caloriePlan;
+
     const handleOpenMobileNavbar = () => {
         setOpen((open) => !open);
     };
@@ -18,7 +21,7 @@ const Navbar = ({ user }) => {
             {/* LOGO */}
             <div>
                 <Link style={{ textDecoration: "none" }} to="/">
-                    <h1 className="text-[20px] font-black text-white sm:text-3xl">
+                    <h1 className="text-[24px] font-black text-white sm:text-3xl">
                         FITNESS
                     </h1>
                 </Link>
@@ -27,12 +30,19 @@ const Navbar = ({ user }) => {
                 <section className="flex gap-2 text-sm">
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Current:</h3>
-                        <span>{parseInt(user?.weights[user.weights.length - 1].pounds) || null} lbs</span>
+                        <span className="hover:underline cursor-pointer">
+                            {currentUserWeight
+                                ? `${currentUserWeight} lbs`
+                                : "Add Weight"}
+                        </span>
                     </div>
                     /
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Daily Goal:</h3>
-                        <span>{user?.calorieGoal || null} calories</span>
+                        <span className="hover:underline cursor-pointer">
+                            {currentCaloriePlan ? `${currentCaloriePlan} calories` : "Add Calorie Range"}{" "}
+
+                        </span>
                     </div>
                 </section>
             </div>
@@ -40,7 +50,10 @@ const Navbar = ({ user }) => {
             {/* MOBILE -> HAMBURGER MENU */}
             {user && (
                 <div className="relative md:hidden cursor-pointer z-[999]">
-                    <button className="bg-[#040324]" onClick={handleOpenMobileNavbar}>
+                    <button
+                        className="bg-[#040324]"
+                        onClick={handleOpenMobileNavbar}
+                    >
                         <GiHamburgerMenu size={28} color="white" />
                     </button>
                     {open && <NavMenu setOpen={setOpen} />}
