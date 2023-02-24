@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/profile.css";
 import serverAPI from "../api/serverAPI";
 
 const Profile = (props) => {
