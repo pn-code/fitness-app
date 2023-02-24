@@ -1,32 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const Entry = require("../models/Entry");
+const journalController = require("../controllers/journalController")
 
-router.get("/:userId", async (req, res) => {
-	const { userId } = req.params;
-	const entries = await Entry.find({ userId: userId });
-	res.json({
-		status: "Success",
-		entries,
-	});
-});
+router.get("/:userId", journalController.getJournalEntries);
 
-router.post("/", async (req, res) => {
-	if (req.body.userId) {
-		const entry = await Entry.create(req.body);
-		res.json({
-			status: "Success",
-			entry,
-		});
-	}
-});
+router.post("/", journalController.postJournalEntry);
 
-router.delete("/:journalId", async (req, res) => {
-	const entry = await Entry.findByIdAndDelete(req.params.journalId);
-	res.json({
-		status: "Success",
-		entry,
-	});
-});
+router.delete("/:journalId", journalController.deleteJournalEntry);
+
+router.put("/:journalId", journalController.updateJournalEntry);
 
 module.exports = router;

@@ -7,6 +7,9 @@ const UserSchema = new Schema(
         lastName: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
+        weights: { type: Array },
+        calorieGoal: { type: String },
+        refreshToken: { type: String },
     },
     {
         timestamps: true,

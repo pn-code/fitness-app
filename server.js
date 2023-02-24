@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
+const credentials = require("./middleware/credentials");
+const verifyJWT = require("./middleware/verifyJWT");
 require("dotenv").config();
-const MemoryStore = require('memorystore')(session)
 
 const app = express();
 const PORT = 3000;
@@ -21,44 +22,22 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // Express Middleware
-app.use(
-    cors({
-        origin: process.env.CLIENT_URL,
-        credentials: true,
-    })
-);
+app.use(credentials);
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-    session({
-        cookie: { maxAge: 86400000 },
-        store: new MemoryStore({
-            checkPeriod: 86400000
-          }),
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: true,
-    })
-);
-app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(cookieParser());
 
 // ROUTES
-const authRoute = require("./routes/authRoute");
-const plansRoute = require("./routes/plansRoute");
-const journalRoute = require("./routes/journalRoute");
-const feedbackRoute = require("./routes/feedbackRoute");
+app.use("/auth", require("./routes/authRoute"));
+app.use("/refresh", require("./routes/refreshRoute"));
 
-// User Auth
-app.use("/auth", authRoute);
-
-// Training Planner
-app.use("/plans", plansRoute);
-
-// Daily Journals
-app.use("/journal", journalRoute);
-
-// Feedback
-app.use("/feedback", feedbackRoute);
+// PROTECTED ROUTES
+app.use(verifyJWT);
+app.use("/user", require("./routes/userRoute"))
+app.use("/plans", require("./routes/plansRoute"));
+app.use("/journal", require("./routes/journalRoute"));
+app.use("/feedback", require("./routes/feedbackRoute"));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}.`);
