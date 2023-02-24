@@ -1,7 +1,7 @@
 import React from "react";
 
 const CaloriePlan = (props) => {
-    const { imgSrc, planName, planInfo, calorieGoal } = props;
+    const { imgSrc, planName, planInfo, calorieGoal, setPlan } = props;
     const [isClicked, setIsClicked] = React.useState(false);
 
     const handleClick = () => {
@@ -12,7 +12,7 @@ const CaloriePlan = (props) => {
         <div className="h-72 sm:h-96 sm:bg-slate-700 sm:rounded-md">
             {!isClicked ? (
                 <div
-                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md"
+                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-800 hover:scale-110 duration-200 ease-in-out rounded-md"
                     onClick={handleClick}
                 >
                     <h3 className="text-lg mt-4">{planName}</h3>
@@ -22,8 +22,7 @@ const CaloriePlan = (props) => {
                 </div>
             ) : (
                 <div
-                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-200 hover:scale-110 duration-200 ease-in-out hover:text-black rounded-md"
-                    onClick={handleClick}
+                    className="h-full w-full flex flex-col py-2 px-4 justify-center items-center cursor-pointer hover:bg-gray-800 duration-200 ease-in-out rounded-md"
                 >
                     <h4 className="text-lg font-semibold mb-4">{planName}</h4>
                     <p>
@@ -35,7 +34,13 @@ const CaloriePlan = (props) => {
                             {calorieGoal} calories.
                         </span>
                     </p>
-                    <button className="btn-blue mt-10">SELECT PLAN</button>
+                    <button
+                        onClick={setPlan}
+                        className="btn-blue"
+                        type="button"
+                    >
+                        Set Plan
+                    </button>
                 </div>
             )}
         </div>

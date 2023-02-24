@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 
-const Login = ({ setUser, API_URL }) => {
+const Login = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [formError, setFormError] = useState(false);
 
     const Navigate = useNavigate();
 
     const canSubmit = email !== "" && password !== "" && loading !== true;
 
     const handleSubmit = async (e) => {
-        setError(false);
+        setFormError(false);
         setLoading(true);
         e.preventDefault();
         try {
-            const res = await axios.post(`${API_URL}/auth/login`, {
+            const res = await serverAPI.post(`/auth/login`, {
                 email,
                 password,
             });
@@ -26,10 +26,10 @@ const Login = ({ setUser, API_URL }) => {
                 setUser(res.data);
                 Navigate("/");
             } else {
-                setError(true);
+                throw new Error("Invalid Credentials");
             }
         } catch (error) {
-            console.error(error);
+            setFormError(true);
         }
         setLoading(false);
     };
@@ -37,9 +37,9 @@ const Login = ({ setUser, API_URL }) => {
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 pt-10 gap-2 items-center mt-10">
             <h1 className="text-3xl text-center">Login</h1>
-            {error && (
+            {formError && (
                 <span className="text-red-400 font-semibold">
-                    Wrong Credentials!
+                    Invalid Credentials!
                 </span>
             )}
             <form

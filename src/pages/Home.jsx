@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../styles/home.css";
 import { Link, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
