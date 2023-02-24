@@ -8,7 +8,7 @@ const AddWeightModal = ({ closeModal, API_URL, user, setUser }) => {
 
     const handleSubmitWeight = async (e) => {
         e.preventDefault();
-        if (user?._id) {
+        if (user?._id && currentWeight !== "") {
             try {
                 const weightObj =
                     checkedUnitInput === "pounds"
