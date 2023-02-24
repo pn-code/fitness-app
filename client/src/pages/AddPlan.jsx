@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
 import serverAPI from "../api/serverAPI";
 
-const Planner = ({
+const AddPlan = ({
     user,
     userPlans,
     setUserPlans,
@@ -348,4 +348,4 @@ const Planner = ({
     );
 };
 
-export default Planner;
+export default AddPlan;
