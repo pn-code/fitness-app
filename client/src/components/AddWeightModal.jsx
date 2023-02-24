@@ -50,8 +50,6 @@ const AddWeightModal = ({ closeModal, API_URL, user, setUser }) => {
         }
     };
 
-    console.log(user)
-
     return (
         <div className="absolute left-0 right-0 top-[30%] bottom-0 m-auto w-[320px] z-[999]">
             <form
