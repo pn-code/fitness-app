@@ -22,11 +22,12 @@ const postPlan = async (req, res, next) => {
 };
 
 const deletePlan = async (req, res) => {
-    const { userId, planUserId, currentPlanId } = req.body;
+    const { userId, planUserId } = req.body;
+    const { planId } = req.params;
 
     if (userId == planUserId) {
         try {
-            const plan = await Plan.findByIdAndDelete(currentPlanId);
+            const plan = await Plan.findByIdAndDelete(planId);
             res.json({
                 status: "Successful",
                 plan,
