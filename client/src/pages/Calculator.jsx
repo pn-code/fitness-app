@@ -109,7 +109,7 @@ const Calculator = ({ user, setUser }) => {
         <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
             {/* HEADER */}
             <div className="mb-5">
-                <h2 id="top" className="text-4xl font-bold">
+                <h2 id="top" className="text-3xl font-bold">
                     Calorie Calculator
                 </h2>
 

@@ -43,8 +43,8 @@ const MyPlans = ({ user }) => {
             ) : (
                 <div className="text-white mx-10 my-5 flex flex-col gap-2 justify-center sm:justify-left sm:mt-16">
                     <div className="mb-5">
-                        <div className="flex justify-between items-center mb-7">
-                            <h2 className="text-4xl font-bold">
+                        <div className="flex justify-between items-center gap-4">
+                            <h2 className="text-3xl font-bold">
                                 {!renderPlanner && "Plans"}
                             </h2>
                             <div className="flex gap-4">
