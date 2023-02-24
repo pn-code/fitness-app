@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Calculator from "./pages/Calculator";
 import MyPlans from "./pages/MyPlans";
+import AddPlan from "./pages/AddPlan";
 import AllPlans from "./pages/AllPlans";
 import EditPlans from "./pages/EditPlans";
 import Journal from "./pages/Journal";
@@ -19,19 +20,15 @@ import { useEffect } from "react";
 import serverAPI from "./api/serverAPI";
 
 const App = () => {
-    const API_URL = "http://localhost:3000";
-
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        serverAPI
-            .get(`/refresh`, { withCredentials: true })
-            .then((res) => setUser(res.data));
+        serverAPI.get(`/refresh`).then((res) => setUser(res.data));
     }, []);
 
     return (
         <div className="App">
-            <Navbar user={user} setUser={setUser} API_URL={API_URL} />
+            <Navbar user={user} setUser={setUser} />
             <Routes>
                 {/* LANDING */}
                 <Route
@@ -50,24 +47,14 @@ const App = () => {
                 {/* SIGN UP */}
                 <Route
                     path="/sign-up"
-                    element={
-                        user ? (
-                            <Navigate to="/" />
-                        ) : (
-                            <SignUp API_URL={API_URL} />
-                        )
-                    }
+                    element={user ? <Navigate to="/" /> : <SignUp />}
                 />
 
                 {/* LOGIN */}
                 <Route
                     path="/login"
                     element={
-                        user ? (
-                            <Navigate to="/" />
-                        ) : (
-                            <Login API_URL={API_URL} setUser={setUser} />
-                        )
+                        user ? <Navigate to="/" /> : <Login setUser={setUser} />
                     }
                 />
 
@@ -75,11 +62,7 @@ const App = () => {
                     path="/calculator"
                     element={
                         user ? (
-                            <Calculator
-                                user={user}
-                                setUser={setUser}
-                                API_URL={API_URL}
-                            />
+                            <Calculator user={user} setUser={setUser} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -90,7 +73,7 @@ const App = () => {
                     path="/journal"
                     element={
                         user ? (
-                            <Journal user={user} API_URL={API_URL} />
+                            <Journal user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -101,7 +84,7 @@ const App = () => {
                     path="/add-entry"
                     element={
                         user ? (
-                            <AddEntry user={user} API_URL={API_URL} />
+                            <AddEntry user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -112,7 +95,7 @@ const App = () => {
                     path="/edit-entry/:entryId"
                     element={
                         user ? (
-                            <EditEntry user={user} API_URL={API_URL} />
+                            <EditEntry user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -123,11 +106,7 @@ const App = () => {
                     path="/profile"
                     element={
                         user ? (
-                            <Profile
-                                setUser={setUser}
-                                user={user}
-                                API_URL={API_URL}
-                            />
+                            <Profile setUser={setUser} user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -138,7 +117,18 @@ const App = () => {
                     path="/my-plans"
                     element={
                         user ? (
-                            <MyPlans user={user} API_URL={API_URL} />
+                            <MyPlans user={user} />
+                        ) : (
+                            <Navigate to="/landing" />
+                        )
+                    }
+                />
+
+                <Route
+                    path="/add-plan"
+                    element={
+                        user ? (
+                            <AddPlan user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -149,7 +139,7 @@ const App = () => {
                     path="/all-plans"
                     element={
                         user ? (
-                            <AllPlans user={user} API_URL={API_URL} />
+                            <AllPlans user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -160,7 +150,7 @@ const App = () => {
                     path="/edit-plans/:planId"
                     element={
                         user ? (
-                            <EditPlans user={user} API_URL={API_URL} />
+                            <EditPlans user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
@@ -171,7 +161,7 @@ const App = () => {
                     path="/feedback"
                     element={
                         user ? (
-                            <Feedback user={user} API_URL={API_URL} />
+                            <Feedback user={user} />
                         ) : (
                             <Navigate to="/landing" />
                         )
