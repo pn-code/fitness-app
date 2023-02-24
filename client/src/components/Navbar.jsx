@@ -8,7 +8,7 @@ import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = ({ user, setUser, API_URL }) => {
+const Navbar = ({ user, setUser }) => {
     const [open, setOpen] = useState(false);
     const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
     const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] =
@@ -38,7 +38,6 @@ const Navbar = ({ user, setUser, API_URL }) => {
                         user={user}
                         setUser={setUser}
                         closeModal={() => setOpenAddWeightModal(false)}
-                        API_URL={API_URL}
                     />
                 )}
 
@@ -47,7 +46,6 @@ const Navbar = ({ user, setUser, API_URL }) => {
                         user={user}
                         setUser={setUser}
                         closeModal={() => setOpenAddCalorieGoalModal(false)}
-                        API_URL={API_URL}
                     />
                 )}
 

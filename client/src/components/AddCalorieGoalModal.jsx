@@ -1,19 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 
-const AddCalorieGoalModal = ({ closeModal, API_URL, user, setUser }) => {
+const AddCalorieGoalModal = ({ closeModal, user, setUser }) => {
     const [calorieGoal, setCalorieGoal] = useState("");
 
     const handleSubmitCalorieGoal = async (e) => {
         e.preventDefault();
         if (user?._id && calorieGoal !== "") {
             try {
-                await axios.put(
-                    `${API_URL}/user/${user._id}`,
+                await serverAPI.put(
+                    `/user/${user._id}`,
                     { calorieGoal: calorieGoal },
                     {
-                        withCredentials: true,
                         headers: {
                             Authorization: `Bearer ${user.accessToken}`,
                         },

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
-import axios from "axios";
 import DeleteModal from "../components/DeleteModal";
+import serverAPI from "../api/serverAPI";
 
-const Entry = ({ user, entry, plans, setEntries, journalAPI }) => {
+const Entry = ({ user, entry, plans, setEntries }) => {
     const [viewEntry, setViewEntry] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -13,7 +13,7 @@ const Entry = ({ user, entry, plans, setEntries, journalAPI }) => {
     const deleteEntry = async (e, id) => {
         e.preventDefault();
 
-        await axios.delete(journalAPI + id, {
+        await serverAPI.delete(`/journal/${id}`, {
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,

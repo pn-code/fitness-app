@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 
-const AddWeightModal = ({ closeModal, API_URL, user, setUser }) => {
+const AddWeightModal = ({ closeModal, user, setUser }) => {
     const [currentWeight, setCurrentWeight] = useState("");
     const [checkedUnitInput, setCheckedUnitInput] = useState("pounds");
 
@@ -27,23 +27,18 @@ const AddWeightModal = ({ closeModal, API_URL, user, setUser }) => {
                     weights: [...user?.weights, weightObj],
                 };
 
-                await axios.put(
-                    `${API_URL}/user/${user._id}`,
-                    newWeightsArray,
-                    {
-                        withCredentials: true,
-                        headers: {
-                            Authorization: `Bearer ${user.accessToken}`,
-                        },
-                    }
-                );
+                await serverAPI.put(`/user/${user._id}`, newWeightsArray, {
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
 
-                setUser(user => ({
-                    ...user, 
-                    weights: [...user?.weights, weightObj]
-                }))
+                setUser((user) => ({
+                    ...user,
+                    weights: [...user?.weights, weightObj],
+                }));
 
-                closeModal()
+                closeModal();
             } catch (error) {
                 console.error(error);
             }

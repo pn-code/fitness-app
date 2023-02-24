@@ -7,7 +7,7 @@ import {
     AiOutlineStar,
     AiFillStar,
 } from "react-icons/ai";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 
 const Plan = ({ user, plan, planAPI, setUserPlans }) => {
     const [likes, setLikes] = useState(plan.likes.length);
@@ -26,13 +26,12 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
 
     const deletePlan = async (e, planId, planUserId) => {
         e.preventDefault();
-        await axios.delete(planAPI, {
+        await serverAPI.delete(`/plans/${planAPI}`, {
             data: {
                 userId: user._id,
                 planUserId: planUserId,
                 currentPlanId: planId,
             },
-            withCredentials: true,
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
             },
@@ -42,7 +41,7 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
             prevUserPlans.filter((plan) => planId !== plan._id)
         );
 
-        setOpenDeleteModal(false)
+        setOpenDeleteModal(false);
     };
 
     const handleUserLike = async () => {
@@ -53,8 +52,7 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
                 likes: [...plan.likes, user._id],
             };
             try {
-                await axios.put(`${planAPI}${plan._id}`, addUserLikeToPlan, {
-                    withCredentials: true,
+                await serverAPI.put(`/plans/${plan._id}`, addUserLikeToPlan, {
                     headers: {
                         Authorization: `Bearer ${user.accessToken}`,
                     },
@@ -72,8 +70,8 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
                 likes: [...plan.likes].filter((userId) => userId !== user._id),
             };
             try {
-                await axios.put(
-                    `${planAPI}${plan._id}`,
+                await serverAPI.put(
+                    `/plans/${plan._id}`,
                     removeUserLikeFromPlan,
                     {
                         withCredentials: true,
@@ -99,8 +97,7 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
                     ...plan,
                     saved: [...plan.saved, user._id],
                 };
-                await axios.put(`${planAPI}${plan._id}`, addUserSaveToPlan, {
-                    withCredentials: true,
+                await serverAPI.put(`/plans/${plan._id}`, addUserSaveToPlan, {
                     headers: {
                         Authorization: `Bearer ${user.accessToken}`,
                     },
@@ -120,11 +117,10 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
                         (userId) => userId !== user._id
                     ),
                 };
-                await axios.put(
-                    `${planAPI}${plan._id}`,
+                await serverAPI.put(
+                    `/plans/${plan._id}`,
                     removeUserSaveFromPlan,
                     {
-                        withCredentials: true,
                         headers: {
                             Authorization: `Bearer ${user.accessToken}`,
                         },
