@@ -4,59 +4,44 @@ import axios from "axios";
 
 const AddCalorieGoalModal = ({ closeModal, API_URL, user, setUser }) => {
     const [calorieGoal, setCalorieGoal] = useState("");
+console.log(user)
+    const handleSubmitCalorieGoal = async (e) => {
+        e.preventDefault();
+        if (user?._id && calorieGoal !== "") {
+            try {
+                await axios.put(
+                    `${API_URL}/user/${user._id}`,
+                    { calorieGoal: calorieGoal },
+                    {
+                        withCredentials: true,
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`,
+                        },
+                    }
+                );
 
-    // const handleSubmitWeight = async (e) => {
-    //     e.preventDefault();
-    //     if (user?._id) {
-    //         try {
-    //             const weightObj =
-    //                 checkedUnitInput === "pounds"
-    //                     ? {
-    //                           pounds: currentWeight,
-    //                           kilograms: currentWeight / 2.205,
-    //                           date: new Date(),
-    //                       }
-    //                     : {
-    //                           pounds: currentWeight * 2.205,
-    //                           kilograms: currentWeight,
-    //                           date: new Date(),
-    //                       };
+                setUser((user) => ({
+                    ...user,
+                    calorieGoal,
+                }));
 
-    //             const newWeightsArray = {
-    //                 weights: [...user?.weights, weightObj],
-    //             };
-
-    //             await axios.put(
-    //                 `${API_URL}/user/${user._id}`,
-    //                 newWeightsArray,
-    //                 {
-    //                     withCredentials: true,
-    //                     headers: {
-    //                         Authorization: `Bearer ${user.accessToken}`,
-    //                     },
-    //                 }
-    //             );
-
-    //             setUser(user => ({
-    //                 ...user, 
-    //                 weights: [...user?.weights, weightObj]
-    //             }))
-
-    //             closeModal()
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     }
-    // };
+                closeModal();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     return (
         <div className="absolute left-0 right-0 top-[30%] bottom-0 m-auto w-[320px] z-[999]">
             <form
-                // onSubmit={(e) => handleSubmitWeight(e)}
+                onSubmit={(e) => handleSubmitCalorieGoal(e)}
                 className="bg-slate-900 text-white p-12 rounded-md"
             >
                 <h1 className="text-2xl font-bold mb-2">Calorie Goal</h1>
-                <p className="text-sm text-red-300 mb-4">If unsure, use the calculator page.</p>
+                <p className="text-sm text-red-300 mb-4">
+                    If unsure, use the calculator page.
+                </p>
 
                 <fieldset className="flex flex-col gap-4">
                     <section className="flex flex-col gap-2 mb-4">

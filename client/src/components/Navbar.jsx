@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavMenu from "./NavMenu";
 import AddWeightModal from "./AddWeightModal";
+import AddCalorieGoalModal from "./AddCalorieGoalModal";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
@@ -10,9 +11,10 @@ import { CgProfile } from "react-icons/cg";
 const Navbar = ({ user, setUser, API_URL }) => {
     const [open, setOpen] = useState(false);
     const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
+    const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] = useState(false);
 
-    const currentUserWeight = user?.weights[user.weights.length - 1].pounds
-    const currentCaloriePlan = user?.caloriePlan;
+    const currentUserWeight = user?.weights[user.weights.length - 1].pounds;
+    const currentCalorieGoal = user?.calorieGoal;
 
     const handleOpenMobileNavbar = () => {
         setOpen((open) => !open);
@@ -37,6 +39,15 @@ const Navbar = ({ user, setUser, API_URL }) => {
                     />
                 )}
 
+                {openAddCalorieGoalModal && (
+                    <AddCalorieGoalModal
+                        user={user}
+                        setUser={setUser}
+                        closeModal={() => setOpenAddCalorieGoalModal(false)}
+                        API_URL={API_URL}
+                    />
+                )}
+
                 {/* Weight & Calorie Plan Section */}
                 <section className="flex gap-2 text-sm">
                     <div className="flex gap-1">
@@ -53,9 +64,12 @@ const Navbar = ({ user, setUser, API_URL }) => {
                     /
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Daily Goal:</h3>
-                        <span className="hover:underline cursor-pointer">
-                            {currentCaloriePlan
-                                ? `${currentCaloriePlan} calories`
+                        <span
+                            onClick={() => setOpenAddCalorieGoalModal(true)}
+                            className="hover:underline cursor-pointer"
+                        >
+                            {currentCalorieGoal
+                                ? `${currentCalorieGoal} calories`
                                 : "Add Calorie Range"}{" "}
                         </span>
                     </div>
