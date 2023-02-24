@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import NavMenu from "./NavMenu";
+import AddWeightModal from "./AddWeightModal";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, setUser, API_URL }) => {
     const [open, setOpen] = useState(false);
+    const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
 
-    const currentUserWeight = user?.weights[user.weights.length - 1];
+    const currentUserWeight = user?.weights[user.weights.length - 1].pounds
     const currentCaloriePlan = user?.caloriePlan;
 
     const handleOpenMobileNavbar = () => {
@@ -26,11 +28,23 @@ const Navbar = ({ user }) => {
                     </h1>
                 </Link>
 
+                {openAddWeightModal && (
+                    <AddWeightModal
+                        user={user}
+                        setUser={setUser}
+                        closeModal={() => setOpenAddWeightModal(false)}
+                        API_URL={API_URL}
+                    />
+                )}
+
                 {/* Weight & Calorie Plan Section */}
                 <section className="flex gap-2 text-sm">
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Current:</h3>
-                        <span className="hover:underline cursor-pointer">
+                        <span
+                            onClick={() => setOpenAddWeightModal(true)}
+                            className="hover:underline cursor-pointer"
+                        >
                             {currentUserWeight
                                 ? `${currentUserWeight} lbs`
                                 : "Add Weight"}
@@ -40,8 +54,9 @@ const Navbar = ({ user }) => {
                     <div className="flex gap-1">
                         <h3 className="text-yellow-500">Daily Goal:</h3>
                         <span className="hover:underline cursor-pointer">
-                            {currentCaloriePlan ? `${currentCaloriePlan} calories` : "Add Calorie Range"}{" "}
-
+                            {currentCaloriePlan
+                                ? `${currentCaloriePlan} calories`
+                                : "Add Calorie Range"}{" "}
                         </span>
                     </div>
                 </section>

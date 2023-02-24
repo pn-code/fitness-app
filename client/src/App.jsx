@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar user={user} />
+      <Navbar user={user} setUser={setUser} API_URL={API_URL}/>
       <Routes>
         {/* LANDING */}
         <Route
