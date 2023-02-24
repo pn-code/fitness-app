@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Plan from "../components/Plan";
 import Planner from "./Planner";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import serverAPI from "../api/serverAPI";
 
-const MyPlans = ({ user, API_URL }) => {
+const MyPlans = ({ user }) => {
     const [userPlans, setUserPlans] = useState([]);
     const [savedPlans, setSavedPlans] = useState([]);
     const [renderPlanner, setRenderPlanner] = useState(false);
 
-    const planAPI = `${API_URL}/plans/`;
-
     const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}`, {
-            withCredentials: true,
+        const res = await serverAPI.get(`/plans`, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
             },
@@ -43,7 +39,6 @@ const MyPlans = ({ user, API_URL }) => {
                     renderPlanner={renderPlanner}
                     userPlans={userPlans}
                     setUserPlans={setUserPlans}
-                    planAPI={planAPI}
                 />
             ) : (
                 <div className="text-white mx-10 my-5 flex flex-col gap-2 justify-center sm:justify-left sm:mt-16">
@@ -91,7 +86,6 @@ const MyPlans = ({ user, API_URL }) => {
                                             plan={plan}
                                             key={plan._id}
                                             user={user}
-                                            planAPI={planAPI}
                                             setUserPlans={setUserPlans}
                                         />
                                     ))}
@@ -116,7 +110,6 @@ const MyPlans = ({ user, API_URL }) => {
                                             plan={plan}
                                             key={plan._id}
                                             user={user}
-                                            planAPI={planAPI}
                                         />
                                     ))}
                                 </ul>

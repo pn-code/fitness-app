@@ -1,10 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
+import serverAPI from "../api/serverAPI";
 
-const SignUp = ({API_URL}) => {
-    const API = `${API_URL}/auth/register`;
-
+const SignUp = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -28,11 +26,11 @@ const SignUp = ({API_URL}) => {
         // If password & confirm password are equivalent, proceed with API call
         if (confirmPw === password) {
             try {
-                const res = await axios.post(API, user);
+                const res = await serverAPI.post("/auth/register", user);
                 if (res.status === 201) {
                     setLoading(false);
                     setRegister(true);
-                    Navigate("/login")
+                    Navigate("/login");
                 }
             } catch (err) {
                 console.log(err);
@@ -41,12 +39,17 @@ const SignUp = ({API_URL}) => {
         setLoading(false);
     };
 
-    const registerDisabler = (![firstName, lastName, email, password, confirmPw].every(Boolean)) || loading
+    const registerDisabler =
+        ![firstName, lastName, email, password, confirmPw].every(Boolean) ||
+        loading;
 
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 gap-16">
             {register && <Navigate replace to="/login" />}
-            <form onSubmit={(e) => e.preventDefault()} className="bg-[#040324] flex flex-col items-center justify-center gap-3">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="bg-[#040324] flex flex-col items-center justify-center gap-3"
+            >
                 <h2 className="text-3xl text-center mb-4">SIGN UP</h2>
                 <span className="text-red-400">Please fill in all fields.</span>
                 <div className="flex flex-col">

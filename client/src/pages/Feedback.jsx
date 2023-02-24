@@ -1,11 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import serverAPI from "../api/serverAPI";
 
-const Feedback = ({ user, API_URL }) => {
-    const feedbackAPI = `${API_URL}/feedback`;
-
+const Feedback = ({ user }) => {
     const [feedback, setFeedback] = useState({
         author: user._id,
         email: user.email,
@@ -23,7 +21,7 @@ const Feedback = ({ user, API_URL }) => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        const res = await axios.post(feedbackAPI, feedback, {
+        const res = await serverAPI.post(`/feedback`, feedback, {
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,

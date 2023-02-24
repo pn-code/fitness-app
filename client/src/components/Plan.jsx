@@ -26,7 +26,7 @@ const Plan = ({ user, plan, planAPI, setUserPlans }) => {
 
     const deletePlan = async (e, planId, planUserId) => {
         e.preventDefault();
-        await serverAPI.delete(`/plans/${planAPI}`, {
+        await serverAPI.delete(`/plans/${plan._id}`, {
             data: {
                 userId: user._id,
                 planUserId: planUserId,

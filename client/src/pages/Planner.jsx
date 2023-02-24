@@ -1,8 +1,7 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
+import serverAPI from "../api/serverAPI";
 
 const Planner = ({
     user,
@@ -10,7 +9,6 @@ const Planner = ({
     setUserPlans,
     renderPlanner,
     setRenderPlanner,
-    planAPI,
 }) => {
     // Page State
     const [formPage, setFormPage] = useState(0);
@@ -57,15 +55,14 @@ const Planner = ({
                 saved: [],
             };
 
-            await axios.post(planAPI, plan, {
-                withCredentials: true,
+            const res = await serverAPI.post("/plans", plan, {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
             });
 
             // Save to array (Client-Sided Render)
-            setUserPlans((prevUserPlans) => [plan, ...prevUserPlans]);
+            setUserPlans((prevUserPlans) => [res.data.plan, ...prevUserPlans]);
 
             // Reset Form
             setTitle("");

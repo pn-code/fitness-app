@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 
-const Login = ({ setUser, API_URL }) => {
+const Login = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -17,14 +17,10 @@ const Login = ({ setUser, API_URL }) => {
         setLoading(true);
         e.preventDefault();
         try {
-            const res = await axios.post(
-                `${API_URL}/auth/login`,
-                {
-                    email,
-                    password,
-                },
-                { withCredentials: true }
-            );
+            const res = await serverAPI.post(`/auth/login`, {
+                email,
+                password,
+            });
 
             if (res.status === 200) {
                 setUser(res.data);

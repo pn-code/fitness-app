@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import {
     BsFillArrowUpCircleFill,
     BsFillArrowDownCircleFill,
 } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router";
+import serverAPI from "../api/serverAPI";
 
-const AddEntry = ({ user, API_URL }) => {
-    const journalAPI = `${API_URL}/journal`;
+const AddEntry = ({ user }) => {
     const { state: plans } = useLocation();
     const Navigate = useNavigate();
 
@@ -56,8 +55,7 @@ const AddEntry = ({ user, API_URL }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Submit data to database
-        await axios.post(journalAPI, entry, {
-            withCredentials: true,
+        await serverAPI.post(`/journal`, entry, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
             },

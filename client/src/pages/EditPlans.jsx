@@ -1,19 +1,15 @@
-import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import barbellImg from "../images/barbell.jpg";
+import serverAPI from "../api/serverAPI"
 
-const EditPlans = ({
-    user,
-    API_URL,
-}) => {
+const EditPlans = ({ user }) => {
     const { planId } = useParams();
     const { state: plan } = useLocation();
 
-    const planAPI = `${API_URL}/plans/${planId}`
     const Navigate = useNavigate();
 
     // Page State
@@ -59,14 +55,14 @@ const EditPlans = ({
                 userId: user._id,
             };
 
-            const res = await axios.put(planAPI, plan, {
+            await serverAPI.put(`/plans/${planId}`, plan, {
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
             });
 
-            Navigate("/my-plans")
+            Navigate("/my-plans");
         } catch (error) {
             console.error(error);
         }

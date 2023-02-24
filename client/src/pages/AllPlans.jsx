@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import Plan from "../components/Plan";
+import serverAPI from "../api/serverAPI";
 
-const AllPlans = ({ user, API_URL }) => {
-    const planAPI = `${API_URL}/plans/`;
-
+const AllPlans = ({ user }) => {
     const [allPlans, setAllPlans] = useState([]);
     const [searchFilter, setSearchFilter] = useState("");
     const [filteredPlans, setFilteredPlans] = useState([]);
@@ -23,8 +21,7 @@ const AllPlans = ({ user, API_URL }) => {
     };
 
     const fetchPlans = async () => {
-        const res = await axios.get(`${planAPI}`, {
-            withCredentials: true,
+        const res = await serverAPI.get(`/plans`, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
             },
@@ -86,7 +83,6 @@ const AllPlans = ({ user, API_URL }) => {
                                     plan={plan}
                                     key={plan._id}
                                     user={user}
-                                    planAPI={planAPI}
                                 />
                             ))}
                         </ul>

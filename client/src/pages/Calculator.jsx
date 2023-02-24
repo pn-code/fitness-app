@@ -4,10 +4,10 @@ import bulkIcon from "../images/bulk.svg";
 import cutIcon from "../images/cut.svg";
 import maintainIcon from "../images/maintain.svg";
 import { AiFillQuestionCircle } from "react-icons/ai";
-import axios from "axios";
+import serverAPI from "../api/serverAPI";
 import { useNavigate } from "react-router";
 
-const Calculator = ({ user, setUser, API_URL }) => {
+const Calculator = ({ user, setUser }) => {
     const [metric, setMetric] = useState(false);
     const [calories, setCalories] = useState(null);
     const [showActivity, setShowActivity] = useState(false);
@@ -51,7 +51,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
 
         // Set it in DB
         try {
-            await axios.put(`${API_URL}/user/${user._id}`, updatedObj, {
+            await serverAPI.put(`/user/${user._id}`, updatedObj, {
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,

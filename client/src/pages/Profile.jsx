@@ -1,14 +1,14 @@
 import React from "react";
-import "../styles/profile.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import "../styles/profile.css";
+import serverAPI from "../api/serverAPI";
 
 const Profile = (props) => {
-    const { user, setUser, API_URL } = props;
+    const { user, setUser } = props;
 
     const logOutUser = async () => {
-        await axios.get(`${API_URL}/auth/logout` ,{ withCredentials: true }).then((res) => setUser(res.data));
-        setUser(null)
+        await serverAPI.get(`/auth/logout`).then((res) => setUser(res.data));
+        setUser(null);
     };
 
     return (
