@@ -11,9 +11,12 @@ import { CgProfile } from "react-icons/cg";
 const Navbar = ({ user, setUser, API_URL }) => {
     const [open, setOpen] = useState(false);
     const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
-    const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] = useState(false);
+    const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] =
+        useState(false);
 
-    const currentUserWeight = user?.weights[user.weights.length - 1].pounds;
+    const currentUserWeight = user?.weights?.length > 0
+        ? user?.weights[user.weights.length - 1].pounds
+        : null;
     const currentCalorieGoal = user?.calorieGoal;
 
     const handleOpenMobileNavbar = () => {
@@ -49,31 +52,33 @@ const Navbar = ({ user, setUser, API_URL }) => {
                 )}
 
                 {/* Weight & Calorie Plan Section */}
-                <section className="flex gap-2 text-sm">
-                    <div className="flex gap-1">
-                        <h3 className="text-yellow-500">Current:</h3>
-                        <span
-                            onClick={() => setOpenAddWeightModal(true)}
-                            className="hover:underline cursor-pointer"
-                        >
-                            {currentUserWeight
-                                ? `${currentUserWeight} lbs`
-                                : "Add Weight"}
-                        </span>
-                    </div>
-                    /
-                    <div className="flex gap-1">
-                        <h3 className="text-yellow-500">Daily Goal:</h3>
-                        <span
-                            onClick={() => setOpenAddCalorieGoalModal(true)}
-                            className="hover:underline cursor-pointer"
-                        >
-                            {currentCalorieGoal
-                                ? `${currentCalorieGoal} calories`
-                                : "Add Calorie Range"}{" "}
-                        </span>
-                    </div>
-                </section>
+                {user && (
+                    <section className="flex gap-2 text-sm">
+                        <div className="flex gap-1">
+                            <h3 className="text-yellow-500">Current:</h3>
+                            <span
+                                onClick={() => setOpenAddWeightModal(true)}
+                                className="hover:underline cursor-pointer"
+                            >
+                                {currentUserWeight
+                                    ? `${currentUserWeight} lbs`
+                                    : "Add Weight"}
+                            </span>
+                        </div>
+                        /
+                        <div className="flex gap-1">
+                            <h3 className="text-yellow-500">Daily Goal:</h3>
+                            <span
+                                onClick={() => setOpenAddCalorieGoalModal(true)}
+                                className="hover:underline cursor-pointer"
+                            >
+                                {currentCalorieGoal
+                                    ? `${currentCalorieGoal} calories`
+                                    : "Add Calorie Range"}{" "}
+                            </span>
+                        </div>
+                    </section>
+                )}
             </div>
 
             {/* MOBILE -> HAMBURGER MENU */}
