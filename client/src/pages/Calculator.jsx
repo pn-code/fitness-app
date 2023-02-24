@@ -15,7 +15,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
     // Input States
     const [weight, setWeight] = useState(0);
     const [age, setAge] = useState("");
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState("male");
     const [height, setHeight] = useState("");
     const [activity, setActivity] = useState("");
 
@@ -29,7 +29,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
 
     const saveWeightAndCaloriesToUser = async (weight, calorieGoal) => {
         // Weight by default is kg, so convert to lbs
-        const weightInPounds = weight * 2.205;
+        const weightInPounds = parseInt(weight * 2.205);
 
         // Create weight object to store under user measurements
         const newWeight = {
@@ -63,7 +63,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
 
         // Set it on client side
         setUser((user) => ({ ...user, ...updatedObj }));
-        Navigate("/")
+        Navigate("/");
     };
 
     const handleCalculatePlans = (e) => {
@@ -109,7 +109,9 @@ const Calculator = ({ user, setUser, API_URL }) => {
         <div className="text-white mx-10 my-5 flex flex-col gap-2 sm:justify-center sm:items-center sm:mt-16">
             {/* HEADER */}
             <div className="mb-5">
-                <h2 id="top" className="text-4xl font-bold">Calorie Calculator</h2>
+                <h2 id="top" className="text-4xl font-bold">
+                    Calorie Calculator
+                </h2>
 
                 <span>
                     Using{" "}
@@ -225,6 +227,7 @@ const Calculator = ({ user, setUser, API_URL }) => {
                     <div className="flex gap-8">
                         <div className="flex items-center justify-center">
                             <input
+                                defaultChecked
                                 onChange={(e) => setGender(e.target.value)}
                                 value="male"
                                 id="gender-male"
