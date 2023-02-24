@@ -4,7 +4,7 @@ import axios from "axios";
 
 const AddCalorieGoalModal = ({ closeModal, API_URL, user, setUser }) => {
     const [calorieGoal, setCalorieGoal] = useState("");
-console.log(user)
+
     const handleSubmitCalorieGoal = async (e) => {
         e.preventDefault();
         if (user?._id && calorieGoal !== "") {
