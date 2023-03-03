@@ -93,7 +93,7 @@ const Navbar = ({ user, setUser }) => {
 
             {/* MOBILE -> HAMBURGER MENU */}
             {user && (
-                <div className="relative md:hidden cursor-pointer z-[999]">
+                <div className="md:hidden cursor-pointer z-[999]">
                     <button
                         className="bg-[#040324]"
                         onClick={handleOpenMobileNavbar}

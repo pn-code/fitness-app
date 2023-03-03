@@ -10,56 +10,67 @@ const NavMenu = ({ setOpen }) => {
     };
 
     return (
-        <div className="absolute -right-5 top-10 bg-[#36338d] w-[200px] h-[920px] rounded-md">
-            <ul className="pt-10 p-5 bg-black/85 flex flex-col items-start justify-end text-white gap-16">
-                <li>
+        <div className="fixed left-0 top-0 bg-gray-700 w-[100%] h-[100vh] flex flex-col justify-center items-center">
+            <section className="flex items-center mb-10 gap-6">
+                <h1 className="text-3xl font-bold">FITNESS</h1>
+                <button
+                    onClick={handleClick}
+                    className="btn-blue-light text-xl rounded-full mt-0"
+                >
+                    X
+                </button>
+            </section>
+            <ul className="flex flex-col gap-4 items-start">
+                <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 justify-center items-center"
+                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
                         to="/"
                     >
                         <AiFillHome size={30} color="white" />
-                        <span className="text-xl">HOME</span>
+                        <span className="text-2xl font-semibold">HOME</span>
                     </Link>
                 </li>
-                <li>
+                <li className="w-full" className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 justify-center items-center"
+                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
                         to="/calculator"
                     >
                         <AiFillCalculator size={30} color="white" />
-                        <span className="text-xl">CALCULATE</span>
+                        <span className="text-2xl font-semibold">
+                            CALCULATE
+                        </span>
                     </Link>
                 </li>
-                <li>
+                <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 justify-center items-center"
+                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
                         to="/my-plans"
                     >
                         <AiFillBuild size={30} color="white" />
-                        <span className="text-xl">PLANS</span>
+                        <span className="text-2xl font-semibold">PLANS</span>
                     </Link>
                 </li>
-                <li>
+                <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 justify-center items-center"
+                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
                         to="/journal"
                     >
                         <IoIosJournal size={30} color="white" />
-                        <span className="text-xl">JOURNAL</span>
+                        <span className="text-2xl font-semibold">JOURNAL</span>
                     </Link>
                 </li>
-                <li>
+                <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 justify-center items-center"
+                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
                         to="/profile"
                     >
                         <CgProfile size={30} color="white" />
-                        <span className="text-xl">PROFILE</span>
+                        <span className="text-2xl font-semibold">PROFILE</span>
                     </Link>
                 </li>
             </ul>
