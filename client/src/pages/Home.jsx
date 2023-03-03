@@ -36,29 +36,6 @@ const Home = (props) => {
                             Fitness is yours to take.
                         </span>
                     </section>
-                    {!user && (
-                        <section className="sign-up--section">
-                            <h3>Sign-Up</h3>
-                            <p>
-                                <strong>
-                                    If you want to get your fitness goals in
-                                    line, then look no further.{" "}
-                                </strong>
-                                <br />
-                                <br />
-                                Create an account with us to make significant
-                                progress towards your fitness goals.
-                            </p>
-                            <div className="sign-up--container">
-                                <Link to="/sign-up">
-                                    <button>Sign Up</button>
-                                </Link>
-                                <Link to="/login">
-                                    <button>Login</button>
-                                </Link>
-                            </div>
-                        </section>
-                    )}
                 </main>
             )}
         </div>
