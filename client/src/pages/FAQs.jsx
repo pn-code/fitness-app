@@ -98,28 +98,40 @@ const FAQs = () => {
                                 the muscle groups I deemed mandatory above:
                             </p>
 
-                            <ul className="list-disc mx-5">
+                            <ul className="list-disc mx-5 flex flex-col gap-2 my-8">
+                                <h4 className="text-lg text-yellow-400">
+                                    Sample Plan
+                                </h4>
                                 <li>
-                                    <h6>Back:</h6>
+                                    <h6 className="font-semibold inline mr-2">
+                                        Back:
+                                    </h6>
                                     <span>Pull-ups & Rows</span>
                                 </li>
                                 <li>
-                                    <h6>Chest & Shoulders:</h6>
+                                    <h6 className="font-semibold inline mr-2">
+                                        Chest & Shoulders:
+                                    </h6>
                                     <span>Bench Press & Overhead Press</span>
                                 </li>
                                 <li>
-                                    <h6>Hamstrings & Glutes:</h6>
+                                    <h6 className="font-semibold inline mr-2">
+                                        Hamstrings & Glutes:
+                                    </h6>
                                     <span>Deadlifts & Leg Curls</span>
                                 </li>
                                 <li>
-                                    <h6>Quadriceps:</h6>
-                                    <span>Back Squats</span>
+                                    <h6 className="font-semibold inline mr-2">
+                                        Quadriceps:
+                                    </h6>
+                                    <span>Back Squats & Leg Extensions</span>
                                 </li>
                             </ul>
 
                             <p>
-                                Now that you have your exercises. You can set
-                                them up to fit into your desired training split.
+                                In my opinion, you should always have some sort
+                                of variation of these exercises above in your
+                                training plan.
                             </p>
                         </section>
                     </article>
