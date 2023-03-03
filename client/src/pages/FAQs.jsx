@@ -28,30 +28,37 @@ const FAQs = () => {
                         <div className="flex flex-col gap-2 text-[16px]">
                             <h5>Simply follow this QUICK 3-STEP GUIDE:</h5>
 
-                            <h6 className="underline">
-                                Step 1: Set your weight & daily goal.
-                            </h6>
-
-                            <p className="block text-gray-300 text-[15px]">
-                                Click on weight/daily goal by the top-left
-                                corner or visit the CALCULATE link and select a
-                                plan.
-                            </p>
-
-                            <h6 className="underline">
-                                Step 2: Add or create an exercise plan.
-                            </h6>
-                            <p className="block text-gray-300 text-[15px]">
-                                Visit the PLANS link to add/create a plan.
-                            </p>
-
-                            <h5 className="underline">
-                                Step 3: Utilize the journal.
-                            </h5>
-                            <p className="block text-gray-300 text-[15px]">
-                                Visit the JOURNAL link to add entries, fill out
-                                exercise plans done, and calories consumed.
-                            </p>
+                            <ol className="flex flex-col gap-2">
+                                <li>
+                                    <h6 className="underline">
+                                        Step 1: Set your weight & daily goal.
+                                    </h6>
+                                    <p className="block text-gray-300 text-[15px]">
+                                        Click on weight/daily goal by the
+                                        top-left corner or visit the CALCULATE
+                                        link and select a plan.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h6 className="underline">
+                                        Step 2: Add or create an exercise plan.
+                                    </h6>
+                                    <p className="block text-gray-300 text-[15px]">
+                                        Visit the PLANS link to add/create a
+                                        plan.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h5 className="underline">
+                                        Step 3: Utilize the journal.
+                                    </h5>
+                                    <p className="block text-gray-300 text-[15px]">
+                                        Visit the JOURNAL link to add entries,
+                                        fill out exercise plans completed, and
+                                        calories consumed.
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </article>
 
@@ -67,9 +74,9 @@ const FAQs = () => {
                                 plan, read this before moving forward.
                             </p>
 
-                            <h6 className="mt-2">
-                                Choose 1-2 movements for each muscle group
-                                listed below.
+                            <h6 className="mt-2 font-semibold">
+                                Research and choose 1-2 movements for each
+                                muscle group listed below.
                             </h6>
 
                             <ul className="list-disc mx-5">
@@ -129,12 +136,14 @@ const FAQs = () => {
                             </ul>
 
                             <p>
-                                In my opinion, you should always have some sort
-                                of variation of these exercises above in your
-                                training plan.
+                                <strong>In my opinion</strong>, you should
+                                always have some sort of variation of these
+                                exercises above in your training plan.
                             </p>
 
-                            <span className="text-red-400 text-lg">*IMPORTANT</span>
+                            <span className="text-red-400 text-lg">
+                                *IMPORTANT
+                            </span>
 
                             <p>
                                 Before you go ahead and do these exercises as
