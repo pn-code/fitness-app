@@ -10,7 +10,7 @@ const FAQs = () => {
                 </h2>
 
                 <section className="flex flex-col gap-6">
-                    <article>
+                    <article className="bg-gray-800 py-2 px-4 rounded-md">
                         <h4 className="text-xl text-yellow-400 mb-2">
                             What is this website for?
                         </h4>
@@ -21,7 +21,7 @@ const FAQs = () => {
                         </p>
                     </article>
 
-                    <article>
+                    <article className="bg-gray-800 py-2 px-4 rounded-md">
                         <h4 className="text-xl text-yellow-400 mb-2">
                             How do I start?
                         </h4>
@@ -62,7 +62,7 @@ const FAQs = () => {
                         </div>
                     </article>
 
-                    <article>
+                    <article className="bg-gray-800 py-2 px-4 rounded-md">
                         <h4 className="text-xl text-yellow-400 mb-2">
                             Exercise Selection
                         </h4>
@@ -101,14 +101,15 @@ const FAQs = () => {
                             </p>
 
                             <p>
-                                Here's a simple exercise plan I've created from
-                                the muscle groups I deemed mandatory above:
+                                Here's a{" "}
+                                <span className="text-yellow-400">
+                                    simple exercises list
+                                </span>{" "}
+                                I've created from the muscle groups I deemed
+                                mandatory above:
                             </p>
 
-                            <ul className="list-disc mx-5 flex flex-col gap-2 my-8">
-                                <h4 className="text-lg text-yellow-400">
-                                    Sample Exercises
-                                </h4>
+                            <ul className="list-disc mx-5 flex flex-col gap-2 my-3">
                                 <li>
                                     <h6 className="font-semibold inline mr-2">
                                         Back:

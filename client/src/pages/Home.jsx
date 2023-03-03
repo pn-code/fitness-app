@@ -22,12 +22,9 @@ const Home = ({ user }) => {
                             Fitness is yours to take.
                         </span>
                     </section>
-                    <section>
-                        <h4 className="mb-5">If you are new, or need some help...</h4>
                         <Link to="/FAQs" className="btn-blue w-52 text-xl text-center">
-                            START HERE!
+                            See FAQs
                         </Link>
-                    </section>
                 </main>
             )}
         </div>

@@ -53,7 +53,7 @@ const Navbar = ({ user, setUser }) => {
                 {user && (
                     <section className="flex gap-2 text-sm">
                         <div className="flex gap-1">
-                            <h3 className="text-yellow-500">Current:</h3>
+                            <h3 className="text-yellow-500">Weight:</h3>
                             <span
                                 onClick={() => setOpenAddWeightModal(true)}
                                 className="hover:underline cursor-pointer"
