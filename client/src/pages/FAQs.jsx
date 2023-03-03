@@ -100,7 +100,7 @@ const FAQs = () => {
 
                             <ul className="list-disc mx-5 flex flex-col gap-2 my-8">
                                 <h4 className="text-lg text-yellow-400">
-                                    Sample Plan
+                                    Sample Exercises
                                 </h4>
                                 <li>
                                     <h6 className="font-semibold inline mr-2">
@@ -132,6 +132,17 @@ const FAQs = () => {
                                 In my opinion, you should always have some sort
                                 of variation of these exercises above in your
                                 training plan.
+                            </p>
+
+                            <span className="text-red-400 text-lg">*IMPORTANT</span>
+
+                            <p>
+                                Before you go ahead and do these exercises as
+                                part of your training plan. Make sure they are
+                                split up into different days. The exercises
+                                listed above can be very difficult and taxing on
+                                your body. However you do that is up to you or
+                                your trainer's choosing.
                             </p>
                         </section>
                     </article>
