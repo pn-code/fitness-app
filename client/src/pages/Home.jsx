@@ -1,23 +1,9 @@
-import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Home = (props) => {
-    const { user } = props;
-    const [redirect, setRedirect] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (!user) {
-                setRedirect(true);
-            }
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [user]);
-
+const Home = ({ user }) => {
     return (
         <div className="container">
-            {redirect && <Navigate replace to="/landing" />}
             {user && (
                 <main className="text-white mx-10 my-5 flex flex-col gap-4">
                     <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.firstName},`}</h2>
@@ -35,6 +21,12 @@ const Home = (props) => {
                         <span className="text-[#FDCA15] text-xl font-bold">
                             Fitness is yours to take.
                         </span>
+                    </section>
+                    <section>
+                        <h4 className="mb-5">If you are new, or need some help...</h4>
+                        <Link to="/FAQs" className="btn-blue w-52 text-xl text-center">
+                            START HERE!
+                        </Link>
                     </section>
                 </main>
             )}
