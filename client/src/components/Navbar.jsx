@@ -4,7 +4,12 @@ import AddWeightModal from "./AddWeightModal";
 import AddCalorieGoalModal from "./AddCalorieGoalModal";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
+import {
+    AiFillHome,
+    AiFillCalculator,
+    AiFillBuild,
+    AiFillQuestionCircle,
+} from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
@@ -14,9 +19,10 @@ const Navbar = ({ user, setUser }) => {
     const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] =
         useState(false);
 
-    const currentUserWeight = user?.weights?.length > 0
-        ? user?.weights[user.weights.length - 1].pounds
-        : null;
+    const currentUserWeight =
+        user?.weights?.length > 0
+            ? user?.weights[user.weights.length - 1].pounds
+            : null;
     const currentCalorieGoal = user?.calorieGoal;
 
     const handleOpenMobileNavbar = () => {
@@ -27,11 +33,17 @@ const Navbar = ({ user, setUser }) => {
         <nav className="flex justify-between items-center p-5 flex-row bg-[#040324] text-white">
             {/* LOGO */}
             <div>
-                <Link style={{ textDecoration: "none" }} to="/">
-                    <h1 className="text-[24px] font-black text-white sm:text-3xl">
+                <h1 className="flex gap-2">
+                    <Link
+                        className="font-black text-white text-3xl hover:text-gray-300 decoration-0"
+                        to="/"
+                    >
                         FITNESS
-                    </h1>
-                </Link>
+                    </Link>
+                    <Link to="/FAQs">
+                        <AiFillQuestionCircle className="hover:text-yellow-400" size={20} />
+                    </Link>
+                </h1>
 
                 {openAddWeightModal && (
                     <AddWeightModal
