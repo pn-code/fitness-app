@@ -15,7 +15,7 @@ const NavMenu = ({ setOpen }) => {
                 <h1 className="text-3xl font-bold">FITNESS</h1>
                 <button
                     onClick={handleClick}
-                    className="btn-blue-light text-xl rounded-full mt-0"
+                    className="btn-blue bg-blue-700 text-xl rounded-full mt-0 font-bold"
                 >
                     X
                 </button>
@@ -24,17 +24,17 @@ const NavMenu = ({ setOpen }) => {
                 <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
+                        className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/"
                     >
                         <AiFillHome size={30} color="white" />
                         <span className="text-2xl font-semibold">HOME</span>
                     </Link>
                 </li>
-                <li className="w-full" className="w-full">
+                <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
+                        className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/calculator"
                     >
                         <AiFillCalculator size={30} color="white" />
@@ -46,7 +46,7 @@ const NavMenu = ({ setOpen }) => {
                 <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
+                        className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/my-plans"
                     >
                         <AiFillBuild size={30} color="white" />
@@ -56,7 +56,7 @@ const NavMenu = ({ setOpen }) => {
                 <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
+                        className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/journal"
                     >
                         <IoIosJournal size={30} color="white" />
@@ -66,7 +66,7 @@ const NavMenu = ({ setOpen }) => {
                 <li className="w-full">
                     <Link
                         onClick={handleClick}
-                        className="flex gap-4 items-center hover:bg-gray-500 py-2 px-8 rounded-md"
+                        className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/profile"
                     >
                         <CgProfile size={30} color="white" />
