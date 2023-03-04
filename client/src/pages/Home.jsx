@@ -6,7 +6,15 @@ const Home = ({ user }) => {
         <div className="container">
             {user && (
                 <main className="text-white mx-10 my-5 flex flex-col gap-4">
-                    <h2 className="text-3xl font-semibold mb-6">{`Welcome ${user.firstName},`}</h2>
+                    <h2 className="text-3xl font-semibold mb-2">{`Welcome ${user.firstName},`}</h2>
+
+                    {user?._id == 1 && (
+                        <div className="text-red-400 text-sm">
+                            <h4 className="font-semibold">WARNING: </h4>
+                            <span>TEST USER / GUEST INFORMATION IS NOT SAVED.</span>
+                        </div>
+                    )}
+
                     <section className="flex flex-col gap-6">
                         <p className="text-xl">
                             When I built this website, I had one goal in mind...
@@ -22,9 +30,12 @@ const Home = ({ user }) => {
                             Fitness is yours to take.
                         </span>
                     </section>
-                        <Link to="/FAQs" className="btn-blue w-52 text-xl text-center">
-                            See FAQs
-                        </Link>
+                    <Link
+                        to="/FAQs"
+                        className="btn-blue w-52 text-xl text-center"
+                    >
+                        See FAQs
+                    </Link>
                 </main>
             )}
         </div>
