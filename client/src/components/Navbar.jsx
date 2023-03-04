@@ -43,6 +43,7 @@ const Navbar = ({ user, setUser }) => {
                     <Link to="/FAQs">
                         <AiFillQuestionCircle className="hover:text-yellow-400" size={20} />
                     </Link>
+                    {user?._id === 1 && <span className="text-red-400 text-sm">TEST USER / GUEST</span>}
                 </h1>
 
                 {openAddWeightModal && (
