@@ -56,7 +56,7 @@ const MyPlans = ({ user }) => {
                         {userPlans.length === 0 && (
                             <h4>You currently have no training plans.</h4>
                         )}
-                        {user?._id && (
+                        {user?._id == 1 && (
                             <div className="text-red-400 text-sm mt-2">
                                 <h4 className="font-semibold">WARNING: </h4>
                                 <span>
