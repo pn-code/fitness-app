@@ -50,15 +50,17 @@ const Calculator = ({ user, setUser }) => {
               };
 
         // Set it in DB
-        try {
-            await serverAPI.put(`/user/${user._id}`, updatedObj, {
-                withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${user.accessToken}`,
-                },
-            });
-        } catch (err) {
-            console.error(err);
+        if (user._id != 1) {
+            try {
+                await serverAPI.put(`/user/${user._id}`, updatedObj, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${user.accessToken}`,
+                    },
+                });
+            } catch (err) {
+                console.error(err);
+            }
         }
 
         // Set it on client side

@@ -53,11 +53,17 @@ const AddPlan = ({ user }) => {
                 saved: [],
             };
 
-            await serverAPI.post("/plans", plan, {
-                headers: {
-                    Authorization: `Bearer ${user.accessToken}`,
-                },
-            });
+            if (user._id != 1) {
+                try {
+                    await serverAPI.post("/plans", plan, {
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`,
+                        },
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            }
 
             Navigate("/my-plans");
         } catch (error) {

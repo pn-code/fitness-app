@@ -8,7 +8,21 @@ const AddWeightModal = ({ closeModal, user, setUser }) => {
 
     const handleSubmitWeight = async (e) => {
         e.preventDefault();
-        if (user?._id && currentWeight !== "") {
+
+        const weightObj =
+            checkedUnitInput === "pounds"
+                ? {
+                      pounds: currentWeight,
+                      kilograms: currentWeight / 2.205,
+                      date: new Date(),
+                  }
+                : {
+                      pounds: currentWeight * 2.205,
+                      kilograms: currentWeight,
+                      date: new Date(),
+                  };
+
+        if (user?._id && currentWeight !== "" && user?._id != 1) {
             try {
                 const weightObj =
                     checkedUnitInput === "pounds"
@@ -32,17 +46,17 @@ const AddWeightModal = ({ closeModal, user, setUser }) => {
                         Authorization: `Bearer ${user.accessToken}`,
                     },
                 });
-
-                setUser((user) => ({
-                    ...user,
-                    weights: [...user?.weights, weightObj],
-                }));
-
-                closeModal();
             } catch (error) {
                 console.error(error);
             }
         }
+
+        setUser((user) => ({
+            ...user,
+            weights: [...user?.weights, weightObj],
+        }));
+
+        closeModal();
     };
 
     return (

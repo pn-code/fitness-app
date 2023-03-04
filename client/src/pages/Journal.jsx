@@ -9,12 +9,14 @@ const Journal = ({ user }) => {
     const [plans, setPlans] = useState([]);
 
     const fetchPlans = async () => {
-        const res = await serverAPI.get(`/plans/${user?._id}`, {
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-        setPlans(res.data.plans);
+        if (user._id != 1) {
+            const res = await serverAPI.get(`/plans/${user?._id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+            setPlans(res.data.plans);
+        }
     };
 
     useEffect(() => {
@@ -24,12 +26,14 @@ const Journal = ({ user }) => {
     }, []);
 
     const fetchEntries = async () => {
-        const res = await serverAPI.get(`/journal/${user._id}`, {
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-        setEntries(res.data.entries);
+        if (user._id != 1) {
+            const res = await serverAPI.get(`/journal/${user._id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+            setEntries(res.data.entries);
+        }
     };
 
     useEffect(() => {
