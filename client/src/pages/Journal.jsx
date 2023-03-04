@@ -55,6 +55,12 @@ const Journal = ({ user }) => {
                 {entries.length === 0 && (
                     <h4>You have no saved journal entries.</h4>
                 )}
+                {user?._id && (
+                    <div className="text-red-400 text-sm mt-2">
+                        <h4 className="font-semibold">WARNING: </h4>
+                        <span>TEST USER / GUEST PLANS ARE NOT SAVED.</span>
+                    </div>
+                )}
                 {entries.length > 0 &&
                     entries.map((entry, idx) => (
                         <Entry
