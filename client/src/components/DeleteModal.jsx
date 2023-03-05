@@ -1,8 +1,6 @@
-import React from "react";
-
 const DeleteModal = ({ action, closeModal }) => {
     return (
-        <div className="absolute left-0 right-0 top-[30%] bottom-0 m-auto w-[300px] z-[999]">
+        <div className="fixed left-0 top-0 bg-gray-700/90 w-[100%] h-[100vh] flex flex-col justify-center items-center z-[9999]">
             <form
                 onSubmit={action}
                 className="bg-slate-900 text-white p-12 rounded-md"
