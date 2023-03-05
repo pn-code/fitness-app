@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import serverAPI from "../api/serverAPI";
 
-const Plan = ({ user, plan, planAPI, setUserPlans }) => {
+const Plan = ({ user, plan, setUserPlans }) => {
     const [likes, setLikes] = useState(plan.likes.length);
     const [saved, setSaved] = useState(plan.saved.length);
     const [loading, setLoading] = useState(false);
