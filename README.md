@@ -2,26 +2,39 @@
 
 This fitness app was developed to provide users access to fundamental fitness tools that will enable user to achieve their fitness goals
 
+## Technologies Used:
+
+- ReactJS
+- NodeJS/ExpressJS
+- MongoDB
+- TailwindCSS
+
+## Skills Applied
+
+1. MVC Architecture
+2. Clean UI & Responsive Design
+3. CRUD Functionality
+4. Database
+5. Authentication and Authorization
+6. Functional Programming
+
 ## Functionality:
-    - User Authentication
+
+The app offers the following functionality:
+
+    - User Authentication and Authorization (JWT)
     - Calorie Calculator
-    - Exercise Planner (Create and View Exercise Plans)
-    - Daily Journal (Create and View Journal Entries)
+    - Weight Tracker / Calorie Goal Setter
+    - Exercise Planner (Create Your Own or View Others' Exercise Plans)
+    - Journal Entries (Track Your Daily Progress)
     - Send Feedback
 
-
 ## Technologies used:
-    - Web Development Fundamentals (HTML, CSS, and JavaScript)
+
     - ReactJS
     - NodeJS/ExpressJS
     - MongoDB
     - TailwindCSS
-
-
-## WIP/TODOS:
-    - Add functionality to analytics in profile
-    - FAQ Page
-    - Select Plan functionality in caloriePlan component
 
 ## Preview:
 
