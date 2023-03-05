@@ -1,5 +1,9 @@
 # fitness-app
 
+<img src="./preview/preview-main.png" alt="preview"/>
+
+<a target="_blank" rel="noopener noreferrer" href="https://fitness.philipnguyen.dev">Visit the Website</a>
+
 This fitness app was developed to provide users access to fundamental fitness tools that will enable user to achieve their fitness goals
 
 ## Technologies Used:
@@ -28,6 +32,7 @@ The app offers the following functionality:
     - Exercise Planner (Create Your Own or View Others' Exercise Plans)
     - Journal Entries (Track Your Daily Progress)
     - Send Feedback
+    - Guest Account
 
 ## Technologies used:
 
