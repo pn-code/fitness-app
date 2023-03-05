@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import serverAPI from "../api/serverAPI";
 
@@ -13,15 +12,15 @@ const Feedback = ({ user }) => {
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         setFeedback((prevFeedback) => {
             return { ...prevFeedback, [e.target.name]: e.target.value };
         });
     };
 
-    const handleSubmit = async () => {
+    const sendFeedback = async () => {
         setLoading(true);
-        const res = await serverAPI.post(`/feedback`, feedback, {
+        await serverAPI.post(`/feedback`, feedback, {
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
@@ -45,7 +44,7 @@ const Feedback = ({ user }) => {
                             id="title"
                             name="title"
                             type="text"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             value={feedback.title}
                         />
                     </div>
@@ -57,7 +56,7 @@ const Feedback = ({ user }) => {
                             id="text"
                             cols="30"
                             rows="10"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             value={feedback.text}
                         ></textarea>
                     </div>
@@ -66,7 +65,7 @@ const Feedback = ({ user }) => {
                         disabled={loading}
                         className="btn-blue sm:w-96"
                         type="button"
-                        onClick={handleSubmit}
+                        onClick={sendFeedback}
                     >
                         Submit
                     </button>

@@ -36,11 +36,11 @@ const AddPlan = ({ user }) => {
         setReps("");
     };
 
-    const handleNext = () => {
+    const handleNextPage = () => {
         setFormPage((page) => page + 1);
     };
 
-    const handleSubmit = async () => {
+    const createPlan = async () => {
         try {
             const plan = {
                 title,
@@ -278,7 +278,7 @@ const AddPlan = ({ user }) => {
 
                         {formPage < 2 && (
                             <button
-                                onClick={handleNext}
+                                onClick={handleNextPage}
                                 className="btn-blue"
                                 type="button"
                             >
@@ -292,7 +292,7 @@ const AddPlan = ({ user }) => {
                                 disabled={submitDisabler}
                                 className="btn-blue"
                                 type="button"
-                                onClick={handleSubmit}
+                                onClick={createPlan}
                             >
                                 Submit
                             </button>

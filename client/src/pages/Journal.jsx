@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Entry from "../components/Entry";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import serverAPI from "../api/serverAPI";
+import Entry from "../components/Entry";
 
 const Journal = ({ user }) => {
-  const [entries, setEntries] = React.useState([]);
+  const [entries, setEntries] = useState([]);
   const [plans, setPlans] = useState([]);
 
   const fetchPlans = async () => {

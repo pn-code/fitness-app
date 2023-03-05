@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { BsCalculatorFill, BsJournalRichtext } from "react-icons/bs";
 import { BiRun } from "react-icons/bi";
 import previewImage from "../images/fitness-preview.png";
-import { Link } from "react-router-dom";
+
 
 const Landing = () => {
     const [matches, setMatches] = useState(

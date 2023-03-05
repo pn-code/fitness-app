@@ -25,7 +25,7 @@ const EditEntry = ({ user }) => {
 
     const [viewAllExercises, setViewAllExercises] = useState(false);
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         setEntry((prevEntry) => ({
             ...prevEntry,
             [e.target.name]: e.target.value,
@@ -54,7 +54,7 @@ const EditEntry = ({ user }) => {
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const updateJournalEntry = async (e) => {
         e.preventDefault();
         // Submit data to database
         await serverAPI.put(`/journal/${entryId}`, entry, {
@@ -89,7 +89,7 @@ const EditEntry = ({ user }) => {
                             type="date"
                             id="date"
                             name="date"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             value={entry.date}
                             required
                         />
@@ -103,7 +103,7 @@ const EditEntry = ({ user }) => {
                             className="input-bl-lg w-72"
                             id="plan"
                             name="plan"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             value={entry.plan}
                         >
                             <option value="">NONE</option>
@@ -227,7 +227,7 @@ const EditEntry = ({ user }) => {
                             type="number"
                             id="calories"
                             name="calories"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             placeholder="Enter Caloric Intake"
                             value={entry.calories}
                             required
@@ -243,7 +243,7 @@ const EditEntry = ({ user }) => {
                             type="text"
                             id="macros"
                             name="macros"
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             placeholder="Carbohydrates / Fat / Protein"
                             value={entry.macros}
                         />
@@ -260,7 +260,7 @@ const EditEntry = ({ user }) => {
                             rows="10"
                             name="notes"
                             placeholder="Add notes here..."
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             value={entry.notes}
                         ></textarea>
                     </div>
@@ -268,7 +268,7 @@ const EditEntry = ({ user }) => {
                 <div className="flex">
                     <button
                         disabled={isSubmitPlanDisabled}
-                        onClick={(e) => handleSubmit(e)}
+                        onClick={(e) => updateJournalEntry(e)}
                         type="submit"
                         className="btn-blue w-72"
                     >
