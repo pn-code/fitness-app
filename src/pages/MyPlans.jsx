@@ -34,7 +34,10 @@ const MyPlans = ({ user }) => {
                     <div className="flex justify-between items-center gap-4">
                         <h2 className="text-3xl font-bold">Plans</h2>
                         <div className="flex gap-4">
-                            <Link to="/add-plan" className="btn-blue-light mt-0">
+                            <Link
+                                to="/add-plan"
+                                className="btn-blue-light mt-0"
+                            >
                                 New Plan
                             </Link>
                             <Link
@@ -52,6 +55,14 @@ const MyPlans = ({ user }) => {
                         </h2>
                         {userPlans.length === 0 && (
                             <h4>You currently have no training plans.</h4>
+                        )}
+                        {user?._id == 1 && (
+                            <div className="text-red-400 text-sm mt-2">
+                                <h4 className="font-semibold">WARNING: </h4>
+                                <span>
+                                    TEST USER / GUEST PLANS ARE NOT SAVED.
+                                </span>
+                            </div>
                         )}
                         <ul className="flex flex-col gap-6">
                             {userPlans.map((plan) => (

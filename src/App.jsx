@@ -18,6 +18,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import serverAPI from "./api/serverAPI";
+import FAQs from "./pages/FAQs";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -56,6 +57,11 @@ const App = () => {
                     element={
                         user ? <Navigate to="/" /> : <Login setUser={setUser} />
                     }
+                />
+
+                <Route
+                    path="/FAQs"
+                    element={user ? <FAQs /> : <Navigate to="/FAQs" />}
                 />
 
                 <Route

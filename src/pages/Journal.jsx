@@ -9,12 +9,14 @@ const Journal = ({ user }) => {
     const [plans, setPlans] = useState([]);
 
     const fetchPlans = async () => {
-        const res = await serverAPI.get(`/plans/${user?._id}`, {
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-        setPlans(res.data.plans);
+        if (user._id != 1) {
+            const res = await serverAPI.get(`/plans/${user?._id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+            setPlans(res.data.plans);
+        }
     };
 
     useEffect(() => {
@@ -24,12 +26,14 @@ const Journal = ({ user }) => {
     }, []);
 
     const fetchEntries = async () => {
-        const res = await serverAPI.get(`/journal/${user._id}`, {
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
-        setEntries(res.data.entries);
+        if (user._id != 1) {
+            const res = await serverAPI.get(`/journal/${user._id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+            setEntries(res.data.entries);
+        }
     };
 
     useEffect(() => {
@@ -51,6 +55,14 @@ const Journal = ({ user }) => {
                 {entries.length === 0 && (
                     <h4>You have no saved journal entries.</h4>
                 )}
+
+                {user?._id == 1 && (
+                    <div className="text-red-400 text-sm mt-2">
+                        <h4 className="font-semibold">WARNING: </h4>
+                        <span>TEST USER / GUEST PLANS ARE NOT SAVED.</span>
+                    </div>
+                )}
+
                 {entries.length > 0 &&
                     entries.map((entry, idx) => (
                         <Entry

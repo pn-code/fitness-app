@@ -12,7 +12,7 @@ const Login = ({ setUser }) => {
 
     const canSubmit = email !== "" && password !== "" && loading !== true;
 
-    const handleSubmit = async (e) => {
+    const loginUser = async (e) => {
         setFormError(false);
         setLoading(true);
         e.preventDefault();
@@ -34,6 +34,16 @@ const Login = ({ setUser }) => {
         setLoading(false);
     };
 
+    const loginAsGuest = async () => {
+        const res = await serverAPI.post(`/auth/guest`);
+        if (res.status === 200) {
+            setUser(res.data);
+            Navigate("/");
+        } else {
+            throw new Error("Invalid Credentials");
+        }
+    };
+
     return (
         <div className="flex flex-col bg-[#040324] text-white px-10 pt-10 gap-2 items-center mt-10">
             <h1 className="text-3xl text-center">Login</h1>
@@ -43,7 +53,7 @@ const Login = ({ setUser }) => {
                 </span>
             )}
             <form
-                onSubmit={handleSubmit}
+                onSubmit={loginUser}
                 className="bg-[#040324] flex flex-col items-center justify-center gap-3"
             >
                 <div className="flex flex-col">
@@ -70,13 +80,22 @@ const Login = ({ setUser }) => {
                     />
                 </div>
 
-                <button
-                    disabled={!canSubmit}
-                    className="bg-[#3731e0] text-white mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
-                    type="submit"
-                >
-                    Log In
-                </button>
+                <section className="flex gap-4">
+                    <button
+                        disabled={!canSubmit}
+                        className="bg-[#3731e0] text-white mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
+                        type="submit"
+                    >
+                        Log In
+                    </button>
+                    <button
+                        onClick={loginAsGuest}
+                        className="bg-blue-900 text-gray-100 mt-5 px-5 py-2 rounded-lg hover:bg-white hover:text-[#040324] ease-in duration-150"
+                        type="button"
+                    >
+                        Login as Guest
+                    </button>
+                </section>
             </form>
 
             <Link to="/sign-up">

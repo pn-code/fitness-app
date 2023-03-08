@@ -55,11 +55,13 @@ const AddEntry = ({ user }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Submit data to database
-        await serverAPI.post(`/journal`, entry, {
-            headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-            },
-        });
+        if (user._id != 1) {
+            await serverAPI.post(`/journal`, entry, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            });
+        }
         Navigate("/journal");
     };
 

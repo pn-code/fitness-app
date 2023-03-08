@@ -7,7 +7,7 @@ const AddCalorieGoalModal = ({ closeModal, user, setUser }) => {
 
     const handleSubmitCalorieGoal = async (e) => {
         e.preventDefault();
-        if (user?._id && calorieGoal !== "") {
+        if (user?._id && calorieGoal !== "" && user?._id != 1) {
             try {
                 await serverAPI.put(
                     `/user/${user._id}`,
@@ -18,17 +18,17 @@ const AddCalorieGoalModal = ({ closeModal, user, setUser }) => {
                         },
                     }
                 );
-
-                setUser((user) => ({
-                    ...user,
-                    calorieGoal,
-                }));
-
-                closeModal();
             } catch (error) {
                 console.error(error);
             }
         }
+        
+        setUser((user) => ({
+            ...user,
+            calorieGoal,
+        }));
+
+        closeModal();
     };
 
     return (
