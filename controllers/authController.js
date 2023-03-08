@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
         const accessToken = jwt.sign(
             { _id: findUserByEmail._id },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "1200s" }
+            { expiresIn: "1500s" }
         );
 
         const refreshToken = jwt.sign(
@@ -99,8 +99,30 @@ const loginUser = async (req, res) => {
             accessToken,
         });
     } else {
-        res.status(400);
-        throw new Error("Invalid credentials");
+        res.status(403).json({ success: false, message: "Wrong Credentials." });
+    }
+};
+
+const loginAsGuest = async (req, res) => {
+    try {
+        const randomNumber = Math.ceil(Math.random() * 10000);
+        const accessToken = jwt.sign(
+            { _id: randomNumber },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "1500s" }
+        );
+        
+        res.json({
+            _id: 1,
+            firstName: "Guest",
+            lastName: "",
+            email: "",
+            weights: [],
+            calorieGoal: "",
+            accessToken,
+        });
+    } catch (error) {
+        res.status(500).json({ success: false });
     }
 };
 
@@ -144,4 +166,10 @@ const logoutUser = async (req, res) => {
     res.sendStatus(204);
 };
 
-module.exports = { registerUser, loginUser, getUserData, logoutUser };
+module.exports = {
+    registerUser,
+    loginUser,
+    loginAsGuest,
+    getUserData,
+    logoutUser,
+};
