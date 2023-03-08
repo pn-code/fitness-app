@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import serverAPI from "../api/serverAPI";
 
 const AddWeightModal = ({ closeModal, user, setUser }) => {
@@ -60,7 +59,7 @@ const AddWeightModal = ({ closeModal, user, setUser }) => {
     };
 
     return (
-        <div className="absolute left-0 right-0 top-[30%] bottom-0 m-auto w-[320px] z-[999]">
+        <div className="fixed left-0 top-0 bg-gray-700/90 w-[100%] h-[100vh] flex flex-col justify-center items-center z-[9999]">
             <form
                 onSubmit={(e) => handleSubmitWeight(e)}
                 className="bg-slate-900 text-white p-12 rounded-md"
@@ -73,9 +72,9 @@ const AddWeightModal = ({ closeModal, user, setUser }) => {
                         <input
                             onChange={(e) => setCurrentWeight(e.target.value)}
                             value={currentWeight}
-                            className="input-bl w-36"
+                            className="input-bl w-36 block mt-2"
                             type="number"
-                            placeholder="Current Weight"
+                            placeholder="Weight"
                         />
                     </section>
 

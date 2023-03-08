@@ -4,9 +4,9 @@ import { AiFillHome, AiFillCalculator, AiFillBuild } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
-const NavMenu = ({ setOpen }) => {
-    const handleClick = () => {
-        setOpen(false);
+const NavMenu = ({ setOpenNavMenu }) => {
+    const closeNavMenu = () => {
+        setOpenNavMenu(false);
     };
 
     return (
@@ -14,7 +14,7 @@ const NavMenu = ({ setOpen }) => {
             <section className="flex items-center mb-10 gap-6">
                 <h1 className="text-3xl font-bold">FITNESS</h1>
                 <button
-                    onClick={handleClick}
+                    onClick={closeNavMenu}
                     className="btn-blue bg-blue-700 text-xl rounded-full mt-0 font-bold"
                 >
                     X
@@ -23,7 +23,7 @@ const NavMenu = ({ setOpen }) => {
             <ul className="flex flex-col gap-4 items-start">
                 <li className="w-full">
                     <Link
-                        onClick={handleClick}
+                        onClick={closeNavMenu}
                         className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/"
                     >
@@ -33,7 +33,7 @@ const NavMenu = ({ setOpen }) => {
                 </li>
                 <li className="w-full">
                     <Link
-                        onClick={handleClick}
+                        onClick={closeNavMenu}
                         className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/calculator"
                     >
@@ -45,7 +45,7 @@ const NavMenu = ({ setOpen }) => {
                 </li>
                 <li className="w-full">
                     <Link
-                        onClick={handleClick}
+                        onClick={closeNavMenu}
                         className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/my-plans"
                     >
@@ -55,7 +55,7 @@ const NavMenu = ({ setOpen }) => {
                 </li>
                 <li className="w-full">
                     <Link
-                        onClick={handleClick}
+                        onClick={closeNavMenu}
                         className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/journal"
                     >
@@ -65,7 +65,7 @@ const NavMenu = ({ setOpen }) => {
                 </li>
                 <li className="w-full">
                     <Link
-                        onClick={handleClick}
+                        onClick={closeNavMenu}
                         className="flex gap-4 items-center hover:bg-blue-700 py-2 px-8 rounded-md"
                         to="/profile"
                     >

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import serverAPI from "../api/serverAPI";
 import CaloriePlan from "../components/CaloriePlan";
 import bulkIcon from "../images/bulk.svg";
 import cutIcon from "../images/cut.svg";
 import maintainIcon from "../images/maintain.svg";
 import { AiFillQuestionCircle } from "react-icons/ai";
-import serverAPI from "../api/serverAPI";
-import { useNavigate } from "react-router";
+
 
 const Calculator = ({ user, setUser }) => {
     const [metric, setMetric] = useState(false);

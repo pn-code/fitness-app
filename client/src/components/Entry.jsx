@@ -97,6 +97,7 @@ const Entry = ({ user, entry, plans, setEntries }) => {
                             <span>{entry.notes}</span>
                         </div>
                     </section>
+
                     <div className="flex justify-between gap-[16%] mt-5">
                         <Link
                             className="bg-green-600 py-4 rounded-md hover:bg-green-400 text-center flex-1"
@@ -112,6 +113,7 @@ const Entry = ({ user, entry, plans, setEntries }) => {
                             Remove
                         </button>
                     </div>
+                    
                     {viewEntry && (
                         <div
                             onClick={() => setViewEntry(false)}
