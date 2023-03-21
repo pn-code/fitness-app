@@ -1,41 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import WeightGraph from "../components/WeightGraph";
 
 const Home = ({ user }) => {
     return (
-        <div className="container">
+        <div className="w-full">
             {user && (
-                <main className="text-white mx-10 my-5 flex flex-col gap-4">
-                    <h2 className="text-3xl font-semibold mb-2">{`Welcome ${user.firstName},`}</h2>
+                <main className="text-white mx-10 my-5 flex flex-col gap-8">
+                    <header className="flex justify-between items-center">
+                        <h2 className="text-3xl font-semibold">{`Hello, ${user.firstName}.`}</h2>
+                        <Link
+                            to="/FAQs"
+                            className="btn-blue w-32 text-xl text-center mt-0"
+                        >
+                            See FAQs
+                        </Link>
+                    </header>
 
                     {user?._id == 1 && (
                         <div className="text-red-400 text-sm">
                             <h4 className="font-semibold">WARNING: </h4>
-                            <span>TEST USER / GUEST INFORMATION IS NOT SAVED.</span>
+                            <span>
+                                TEST USER / GUEST INFORMATION IS NOT SAVED.
+                            </span>
                         </div>
                     )}
 
-                    <section className="flex flex-col gap-6">
-                        <p className="text-xl">
-                            When I built this website, I had one goal in mind...
-                            <br />
-                            <br />
-                            I wanted to free people all around the world.
-                            <br />
-                            <br />
-                            The fitness tools found here will allow for any
-                            person to reach their fitness goals.
-                        </p>
-                        <span className="text-[#FDCA15] text-xl font-bold">
-                            Fitness is yours to take.
-                        </span>
-                    </section>
-                    <Link
-                        to="/FAQs"
-                        className="btn-blue w-52 text-xl text-center"
-                    >
-                        See FAQs
-                    </Link>
+                    <WeightGraph weightData={user.weights} />
                 </main>
             )}
         </div>
