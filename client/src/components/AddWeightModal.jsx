@@ -40,20 +40,33 @@ const AddWeightModal = ({ closeModal, user, setUser }) => {
                     weights: [...user?.weights, weightObj],
                 };
 
-                await serverAPI.put(`/user/${user._id}`, newWeightsArray, {
-                    headers: {
-                        Authorization: `Bearer ${user.accessToken}`,
-                    },
-                });
+                const res = await serverAPI.put(
+                    `/user/${user._id}`,
+                    newWeightsArray,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.accessToken}`,
+                        },
+                    }
+                );
+
+                if (res.data.weights) {
+                    setUser((user) => ({
+                        ...user,
+                        weights: res.data.weights,
+                    }));
+                }
+                
+                if (res.data.calorieGoal) {
+                    setUser((user) => ({
+                        ...user,
+                        calorieGoal: res.data.calorieGoal,
+                    }));
+                }
             } catch (error) {
                 console.error(error);
             }
         }
-
-        setUser((user) => ({
-            ...user,
-            weights: [...user?.weights, weightObj],
-        }));
 
         closeModal();
     };
