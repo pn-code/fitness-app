@@ -5,30 +5,30 @@ import AddCalorieGoalModal from "./AddCalorieGoalModal";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import {
-  AiFillHome,
-  AiFillCalculator,
-  AiFillBuild,
-  AiFillQuestionCircle,
+    AiFillHome,
+    AiFillCalculator,
+    AiFillBuild,
+    AiFillQuestionCircle,
 } from "react-icons/ai";
 import { IoIosJournal } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
 const Navbar = ({ user, setUser }) => {
-  const [openNavMenu, setOpenNavMenu] = useState(false);
-  const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
-  const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] = useState(false);
+    const [openNavMenu, setOpenNavMenu] = useState(false);
+    const [openAddWeightModal, setOpenAddWeightModal] = useState(false);
+    const [openAddCalorieGoalModal, setOpenAddCalorieGoalModal] =
+        useState(false);
 
-  const currentUserWeight =
-    user?.weights?.length > 0
-      ? user?.weights[user.weights.length - 1].pounds
-      : null;
-  const currentCalorieGoal = user?.calorieGoal;
+    const currentUserWeight =
+        user?.weights?.length > 0
+            ? user?.weights[user.weights.length - 1].pounds
+            : null;
+    const currentCalorieGoal = user?.calorieGoal;
 
-  const handleOpenNavMenu = () => {
-    setOpenNavMenu((open) => !open);
-  };
+    const handleOpenNavMenu = () => {
+        setOpenNavMenu((open) => !open);
+    };
 
-<<<<<<< HEAD
     return (
         <nav className="flex justify-between items-center p-5 flex-row bg-[#040324] text-white">
             {/* LOGO */}
@@ -54,130 +54,118 @@ const Navbar = ({ user, setUser }) => {
                         </span>
                     )}
                 </h1>
-=======
-  return (
-    <nav className="flex justify-between items-center p-5 flex-row bg-[#040324] text-white">
-      {/* LOGO */}
-      <div>
-        <h1 className="flex gap-2">
-          <Link
-            className="font-black text-white text-3xl hover:text-gray-300 decoration-0"
-            to="/"
-          >
-            FITNESS
-          </Link>
-          <Link to="/FAQs">
-            <AiFillQuestionCircle className="hover:text-yellow-400" size={20} />
-          </Link>
-          {user?._id === 1 && (
-            <span className="text-red-400 text-sm">TEST USER / GUEST</span>
-          )}
-        </h1>
->>>>>>> c804f0d5417f3cfb015cc77d047b9af6f396a705
 
-        {openAddWeightModal && (
-          <AddWeightModal
-            user={user}
-            setUser={setUser}
-            closeModal={() => setOpenAddWeightModal(false)}
-          />
-        )}
+                {openAddWeightModal && (
+                    <AddWeightModal
+                        user={user}
+                        setUser={setUser}
+                        closeModal={() => setOpenAddWeightModal(false)}
+                    />
+                )}
 
-        {openAddCalorieGoalModal && (
-          <AddCalorieGoalModal
-            user={user}
-            setUser={setUser}
-            closeModal={() => setOpenAddCalorieGoalModal(false)}
-          />
-        )}
+                {openAddCalorieGoalModal && (
+                    <AddCalorieGoalModal
+                        user={user}
+                        setUser={setUser}
+                        closeModal={() => setOpenAddCalorieGoalModal(false)}
+                    />
+                )}
 
-        {/* Weight & Calorie Plan Section */}
-        {user && (
-          <section className="flex gap-2 text-sm">
-            <div className="flex gap-1">
-              <h3 className="text-yellow-500">Weight:</h3>
-              <span
-                onClick={() => setOpenAddWeightModal(true)}
-                className="hover:underline cursor-pointer"
-              >
-                {currentUserWeight ? `${currentUserWeight} lbs` : "Add Weight"}
-              </span>
+                {/* Weight & Calorie Plan Section */}
+                {user && (
+                    <section className="flex gap-2 text-sm">
+                        <div className="flex gap-1">
+                            <h3 className="text-yellow-500">Weight:</h3>
+                            <span
+                                onClick={() => setOpenAddWeightModal(true)}
+                                className="hover:underline cursor-pointer"
+                            >
+                                {currentUserWeight
+                                    ? `${currentUserWeight} lbs`
+                                    : "Add Weight"}
+                            </span>
+                        </div>
+                        /
+                        <div className="flex gap-1">
+                            <h3 className="text-yellow-500">Daily Goal:</h3>
+                            <span
+                                onClick={() => setOpenAddCalorieGoalModal(true)}
+                                className="hover:underline cursor-pointer"
+                            >
+                                {currentCalorieGoal
+                                    ? `${currentCalorieGoal} calories`
+                                    : "Add Calorie Range"}{" "}
+                            </span>
+                        </div>
+                    </section>
+                )}
             </div>
-            /
-            <div className="flex gap-1">
-              <h3 className="text-yellow-500">Daily Goal:</h3>
-              <span
-                onClick={() => setOpenAddCalorieGoalModal(true)}
-                className="hover:underline cursor-pointer"
-              >
-                {currentCalorieGoal
-                  ? `${currentCalorieGoal} calories`
-                  : "Add Calorie Range"}{" "}
-              </span>
-            </div>
-          </section>
-        )}
-      </div>
 
-      {/* MOBILE -> HAMBURGER MENU */}
-      {user && (
-        <div className="md:hidden z-[999]">
-          <button className="bg-[#040324]" onClick={handleOpenNavMenu}>
-            <GiHamburgerMenu size={28} color="white" />
-          </button>
-          {openNavMenu && <NavMenu setOpenNavMenu={setOpenNavMenu} />}
-        </div>
-      )}
+            {/* MOBILE -> HAMBURGER MENU */}
+            {user && (
+                <div className="md:hidden z-[999]">
+                    <button
+                        className="bg-[#040324]"
+                        onClick={handleOpenNavMenu}
+                    >
+                        <GiHamburgerMenu size={28} color="white" />
+                    </button>
+                    {openNavMenu && <NavMenu setOpenNavMenu={setOpenNavMenu} />}
+                </div>
+            )}
 
-      {/* NAVLINKS */}
-      {user && (
-        <ul className="hidden md:flex text-white gap-5">
-          <li className="hover:scale-110 ease-linear duration-200">
-            <Link className="flex gap-1 justify-center items-center" to="/">
-              <AiFillHome size={16} color="white" />
-              <span className="text-lg">HOME</span>
-            </Link>
-          </li>
-          <li className="hover:scale-110 ease-linear duration-200">
-            <Link
-              className="flex gap-1 justify-center items-center"
-              to="/calculator"
-            >
-              <AiFillCalculator size={16} color="white" />
-              <span className="text-lg">CALCULATE</span>
-            </Link>
-          </li>
-          <li className="hover:scale-110 ease-linear duration-200">
-            <Link
-              className="flex gap-1 justify-center items-center"
-              to="/my-plans"
-            >
-              <AiFillBuild size={16} color="white" />
-              <span className="text-lg">PLANS</span>
-            </Link>
-          </li>
-          <li className="hover:scale-110 ease-linear duration-200">
-            <Link
-              className="flex gap-1 justify-center items-center"
-              to="/journal"
-            >
-              <IoIosJournal size={16} color="white" />
-              <span className="text-lg">JOURNAL</span>
-            </Link>
-          </li>
-          <li className="hover:scale-110 ease-linear duration-200">
-            <Link
-              className="flex gap-1 justify-center items-center"
-              to="/profile"
-            >
-              <CgProfile size={16} color="white" />
-              <span className="text-lg">PROFILE</span>
-            </Link>
-          </li>
-        </ul>
-      )}
-    </nav>
-  );
+            {/* NAVLINKS */}
+            {user && (
+                <ul className="hidden md:flex text-white gap-5">
+                    <li className="hover:scale-110 ease-linear duration-200">
+                        <Link
+                            className="flex gap-1 justify-center items-center"
+                            to="/"
+                        >
+                            <AiFillHome size={16} color="white" />
+                            <span className="text-lg">HOME</span>
+                        </Link>
+                    </li>
+                    <li className="hover:scale-110 ease-linear duration-200">
+                        <Link
+                            className="flex gap-1 justify-center items-center"
+                            to="/calculator"
+                        >
+                            <AiFillCalculator size={16} color="white" />
+                            <span className="text-lg">CALCULATE</span>
+                        </Link>
+                    </li>
+                    <li className="hover:scale-110 ease-linear duration-200">
+                        <Link
+                            className="flex gap-1 justify-center items-center"
+                            to="/my-plans"
+                        >
+                            <AiFillBuild size={16} color="white" />
+                            <span className="text-lg">PLANS</span>
+                        </Link>
+                    </li>
+                    <li className="hover:scale-110 ease-linear duration-200">
+                        <Link
+                            className="flex gap-1 justify-center items-center"
+                            to="/journal"
+                        >
+                            <IoIosJournal size={16} color="white" />
+                            <span className="text-lg">JOURNAL</span>
+                        </Link>
+                    </li>
+                    <li className="hover:scale-110 ease-linear duration-200">
+                        <Link
+                            className="flex gap-1 justify-center items-center"
+                            to="/profile"
+                        >
+                            <CgProfile size={16} color="white" />
+                            <span className="text-lg">PROFILE</span>
+                        </Link>
+                    </li>
+                </ul>
+            )}
+        </nav>
+    );
 };
 
 export default Navbar;
