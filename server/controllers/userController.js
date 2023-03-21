@@ -11,17 +11,29 @@ const updateUserMeasurements = async (req, res) => {
                 weights,
                 calorieGoal,
             });
-            res.status(201).json({ success: true, user: updateUser });
+
+            res.status(202).json({
+                success: true,
+                weights,
+                calorieGoal,
+            });
         } else if (weights) {
             const updateUser = await User.findByIdAndUpdate(userId, {
                 weights,
             });
-            res.status(201).json({ success: true, user: updateUser });
+
+            res.status(202).json({
+                success: true,
+                weights,
+            });
         } else if (calorieGoal) {
             const updateUser = await User.findByIdAndUpdate(userId, {
                 calorieGoal,
             });
-            res.status(201).json({ success: true, user: updateUser });
+            res.status(202).json({
+                success: true,
+                calorieGoal,
+            });
         }
     }
 };
