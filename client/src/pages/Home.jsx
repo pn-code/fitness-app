@@ -25,8 +25,9 @@ const Home = ({ user }) => {
                             </span>
                         </div>
                     )}
-
-                    <WeightGraph weightData={user.weights} />
+                    <section className="flex justify-center">
+                        <WeightGraph weightData={user.weights} />
+                    </section>
                 </main>
             )}
         </div>

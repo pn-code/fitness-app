@@ -25,14 +25,14 @@ ChartJS.register(
 
 const WeightGraph = ({ weightData }) => {
     const weights = weightData.map((data) => Number(data.pounds));
-    const dates = weightData.map((data) => data.date.substring(0, 10));
+    const dates = weightData.map((data) => data.date.substring(5, 10));
 
     const data = {
         labels: [...dates],
         datasets: [
             {
                 fill: true,
-                label: "Weight over Time (lbs)",
+                label: "Weight (lbs)",
                 data: [...weights],
                 borderColor: "rgb(53, 162, 235)",
                 backgroundColor: "rgba(53, 162, 235, 0.5)",
@@ -41,8 +41,8 @@ const WeightGraph = ({ weightData }) => {
     };
 
     return (
-        <div className="w-full sm:max-w-[800px]">
-            <h2 className="font-bold">Your Weight</h2>
+        <div className="w-full sm:max-w-[72%]">
+            <h2 className="font-bold sm:text-center sm:text-2xl">Weight Over Time</h2>
             <Line data={data} />
         </div>
     );
